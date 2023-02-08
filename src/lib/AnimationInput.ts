@@ -1,4 +1,4 @@
-export type NormalizedAnimation = {
+export interface NormalizedAnimation {
     keyframes: Keyframe[];
     options: KeyframeAnimationOptions;
 };

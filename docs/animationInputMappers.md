@@ -13,7 +13,7 @@
 
 ### persistedAnimation
 
-▸ **persistedAnimation**(`toPersist`): [`NormalizedAnimation`](../wiki/AnimationInput#normalizedanimation)
+▸ **persistedAnimation**(`toPersist`): [`NormalizedAnimation`](../wiki/AnimationInput.NormalizedAnimation)
 
 Returns an edited animation that runs it's last keyframe infinitely (until interrupted)
 Useful for controlled animations that are tied to state rather than transitions
@@ -30,11 +30,11 @@ The edits are:
 
 #### Returns
 
-[`NormalizedAnimation`](../wiki/AnimationInput#normalizedanimation)
+[`NormalizedAnimation`](../wiki/AnimationInput.NormalizedAnimation)
 
 #### Defined in
 
-animationInputMappers.ts:14
+[animationInputMappers.ts:14](https://github.com/tristanjohnson849/react-controlled-animations/blob/1674950/src/lib/animationInputMappers.ts#L14)
 
 ___
 
@@ -58,7 +58,7 @@ See useSimpleTransitionState!
 
 #### Defined in
 
-animationInputMappers.ts:80
+[animationInputMappers.ts:80](https://github.com/tristanjohnson849/react-controlled-animations/blob/1674950/src/lib/animationInputMappers.ts#L80)
 
 ___
 
@@ -83,13 +83,13 @@ The edits are:
 
 #### Defined in
 
-animationInputMappers.ts:62
+[animationInputMappers.ts:62](https://github.com/tristanjohnson849/react-controlled-animations/blob/1674950/src/lib/animationInputMappers.ts#L62)
 
 ___
 
 ### toTransitionAnimation
 
-▸ **toTransitionAnimation**(`animation`): [`NormalizedAnimation`](../wiki/AnimationInput#normalizedanimation)
+▸ **toTransitionAnimation**(`animation`): [`NormalizedAnimation`](../wiki/AnimationInput.NormalizedAnimation)
 
 Returns an edited animation that retains the style of its last keyframe
 Useful for controlled animations that are tied to transitions so that when the transition is complete, the style persists in the new state
@@ -105,8 +105,8 @@ The edits are:
 
 #### Returns
 
-[`NormalizedAnimation`](../wiki/AnimationInput#normalizedanimation)
+[`NormalizedAnimation`](../wiki/AnimationInput.NormalizedAnimation)
 
 #### Defined in
 
-animationInputMappers.ts:46
+[animationInputMappers.ts:46](https://github.com/tristanjohnson849/react-controlled-animations/blob/1674950/src/lib/animationInputMappers.ts#L46)

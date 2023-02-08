@@ -25,7 +25,7 @@
 
 #### Defined in
 
-hooks/useSimpleTransitionState.ts:5
+[hooks/useSimpleTransitionState.ts:5](https://github.com/tristanjohnson849/react-controlled-animations/blob/1674950/src/lib/hooks/useSimpleTransitionState.ts#L5)
 
 ## Functions
 
@@ -51,7 +51,7 @@ This is a simplified version of useAnimatedTransitionState where only one animat
 
 #### Defined in
 
-hooks/useSimpleTransitionState.ts:33
+[hooks/useSimpleTransitionState.ts:33](https://github.com/tristanjohnson849/react-controlled-animations/blob/1674950/src/lib/hooks/useSimpleTransitionState.ts#L33)
 
 ▸ **default**<`S`, `E`\>(`initialState`, `initialTransitioning?`, `onTransitionEnd?`): [`SimpleTransitionState`](../wiki/hooks.useSimpleTransitionState#simpletransitionstate)<`S`, `E`\>
 
@@ -81,4 +81,4 @@ This is a simplified version of useAnimatedTransitionState where only one animat
 
 #### Defined in
 
-hooks/useSimpleTransitionState.ts:37
+[hooks/useSimpleTransitionState.ts:37](https://github.com/tristanjohnson849/react-controlled-animations/blob/1674950/src/lib/hooks/useSimpleTransitionState.ts#L37)

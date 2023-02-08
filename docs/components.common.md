@@ -31,7 +31,7 @@ Standard Props for an animated element. Includes the HTMLAttributes for the give
 
 #### Defined in
 
-[components/common.ts:62](https://github.com/tristanjohnson849/react-controlled-animations/blob/c4bddd7/src/lib/components/common.ts#L62)
+[components/common.ts:62](https://github.com/tristanjohnson849/react-controlled-animations/blob/1674950/src/lib/components/common.ts#L62)
 
 ___
 
@@ -44,7 +44,7 @@ Excludes tags that extend React.SVGProps
 
 #### Defined in
 
-[components/common.ts:14](https://github.com/tristanjohnson849/react-controlled-animations/blob/c4bddd7/src/lib/components/common.ts#L14)
+[components/common.ts:14](https://github.com/tristanjohnson849/react-controlled-animations/blob/1674950/src/lib/components/common.ts#L14)
 
 ___
 
@@ -62,7 +62,7 @@ TagHTMLAttributes<"a"> is equivalent to React.AnchorHTMLAttributes<HTMLAnchorEle
 
 #### Defined in
 
-[components/common.ts:30](https://github.com/tristanjohnson849/react-controlled-animations/blob/c4bddd7/src/lib/components/common.ts#L30)
+[components/common.ts:30](https://github.com/tristanjohnson849/react-controlled-animations/blob/1674950/src/lib/components/common.ts#L30)
 
 ___
 
@@ -80,7 +80,7 @@ TagHTMLElement<"button"> is equivalent to HTMLButtonElement
 
 #### Defined in
 
-[components/common.ts:19](https://github.com/tristanjohnson849/react-controlled-animations/blob/c4bddd7/src/lib/components/common.ts#L19)
+[components/common.ts:19](https://github.com/tristanjohnson849/react-controlled-animations/blob/1674950/src/lib/components/common.ts#L19)
 
 ## Functions
 
@@ -111,7 +111,7 @@ a new ref that manages both given refs as one
 
 #### Defined in
 
-[components/common.ts:83](https://github.com/tristanjohnson849/react-controlled-animations/blob/c4bddd7/src/lib/components/common.ts#L83)
+[components/common.ts:83](https://github.com/tristanjohnson849/react-controlled-animations/blob/1674950/src/lib/components/common.ts#L83)
 
 ___
 
@@ -140,4 +140,4 @@ Helper to update a ref (either CallbackRef or RefObject) to the given next value
 
 #### Defined in
 
-[components/common.ts:68](https://github.com/tristanjohnson849/react-controlled-animations/blob/c4bddd7/src/lib/components/common.ts#L68)
+[components/common.ts:68](https://github.com/tristanjohnson849/react-controlled-animations/blob/1674950/src/lib/components/common.ts#L68)

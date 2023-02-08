@@ -2,26 +2,29 @@
 
 ## Table of contents
 
+### Interfaces
+
+- [NormalizedAnimation](../wiki/AnimationInput.NormalizedAnimation)
+
 ### Type Aliases
 
 - [AnimationInput](../wiki/AnimationInput#animationinput)
 - [AnimationOptions](../wiki/AnimationInput#animationoptions)
 - [AnimationsByName](../wiki/AnimationInput#animationsbyname)
-- [NormalizedAnimation](../wiki/AnimationInput#normalizedanimation)
 
 ### Functions
 
-- [normalizedAnimation](../wiki/AnimationInput#normalizedanimation-1)
+- [normalizedAnimation](../wiki/AnimationInput#normalizedanimation)
 
 ## Type Aliases
 
 ### AnimationInput
 
-Ƭ **AnimationInput**: `Keyframe`[] \| [`NormalizedAnimation`](../wiki/AnimationInput#normalizedanimation) \| { `keyframes`: `Keyframe`[] ; `options`: [`AnimationOptions`](../wiki/AnimationInput#animationoptions)  }
+Ƭ **AnimationInput**: `Keyframe`[] \| [`NormalizedAnimation`](../wiki/AnimationInput.NormalizedAnimation) \| { `keyframes`: `Keyframe`[] ; `options`: [`AnimationOptions`](../wiki/AnimationInput#animationoptions)  }
 
 #### Defined in
 
-[AnimationInput.ts:8](https://github.com/tristanjohnson849/react-controlled-animations/blob/c4bddd7/src/lib/AnimationInput.ts#L8)
+[AnimationInput.ts:8](https://github.com/tristanjohnson849/react-controlled-animations/blob/1674950/src/lib/AnimationInput.ts#L8)
 
 ___
 
@@ -31,7 +34,7 @@ ___
 
 #### Defined in
 
-[AnimationInput.ts:6](https://github.com/tristanjohnson849/react-controlled-animations/blob/c4bddd7/src/lib/AnimationInput.ts#L6)
+[AnimationInput.ts:6](https://github.com/tristanjohnson849/react-controlled-animations/blob/1674950/src/lib/AnimationInput.ts#L6)
 
 ___
 
@@ -47,30 +50,13 @@ ___
 
 #### Defined in
 
-[AnimationInput.ts:27](https://github.com/tristanjohnson849/react-controlled-animations/blob/c4bddd7/src/lib/AnimationInput.ts#L27)
-
-___
-
-### NormalizedAnimation
-
-Ƭ **NormalizedAnimation**: `Object`
-
-#### Type declaration
-
-| Name | Type |
-| :------ | :------ |
-| `keyframes` | `Keyframe`[] |
-| `options` | `KeyframeAnimationOptions` |
-
-#### Defined in
-
-[AnimationInput.ts:1](https://github.com/tristanjohnson849/react-controlled-animations/blob/c4bddd7/src/lib/AnimationInput.ts#L1)
+[AnimationInput.ts:27](https://github.com/tristanjohnson849/react-controlled-animations/blob/1674950/src/lib/AnimationInput.ts#L27)
 
 ## Functions
 
 ### normalizedAnimation
 
-▸ **normalizedAnimation**(`animation`): [`NormalizedAnimation`](../wiki/AnimationInput#normalizedanimation)
+▸ **normalizedAnimation**(`animation`): [`NormalizedAnimation`](../wiki/AnimationInput.NormalizedAnimation)
 
 #### Parameters
 
@@ -80,8 +66,8 @@ ___
 
 #### Returns
 
-[`NormalizedAnimation`](../wiki/AnimationInput#normalizedanimation)
+[`NormalizedAnimation`](../wiki/AnimationInput.NormalizedAnimation)
 
 #### Defined in
 
-[AnimationInput.ts:16](https://github.com/tristanjohnson849/react-controlled-animations/blob/c4bddd7/src/lib/AnimationInput.ts#L16)
+[AnimationInput.ts:16](https://github.com/tristanjohnson849/react-controlled-animations/blob/1674950/src/lib/AnimationInput.ts#L16)

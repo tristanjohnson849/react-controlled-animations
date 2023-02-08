@@ -26,7 +26,7 @@
 
 #### Defined in
 
-[hooks/useAnimatedTransitionState.ts:11](https://github.com/tristanjohnson849/react-controlled-animations/blob/c4bddd7/src/lib/hooks/useAnimatedTransitionState.ts#L11)
+[hooks/useAnimatedTransitionState.ts:11](https://github.com/tristanjohnson849/react-controlled-animations/blob/1674950/src/lib/hooks/useAnimatedTransitionState.ts#L11)
 
 ## Functions
 
@@ -52,7 +52,7 @@ Hook to useState that animates on transitioning states
 
 #### Defined in
 
-[hooks/useAnimatedTransitionState.ts:38](https://github.com/tristanjohnson849/react-controlled-animations/blob/c4bddd7/src/lib/hooks/useAnimatedTransitionState.ts#L38)
+[hooks/useAnimatedTransitionState.ts:38](https://github.com/tristanjohnson849/react-controlled-animations/blob/1674950/src/lib/hooks/useAnimatedTransitionState.ts#L38)
 
 ▸ **default**<`S`, `A`, `E`\>(`initialState`, `initialAnimation?`, `onAnimationEnd?`): [`AnimatedTransitionState`](../wiki/hooks.useAnimatedTransitionState#animatedtransitionstate)<`S`, `A`, `E`\>
 
@@ -82,7 +82,7 @@ Hook to useState that animates on transitioning states
 
 #### Defined in
 
-[hooks/useAnimatedTransitionState.ts:43](https://github.com/tristanjohnson849/react-controlled-animations/blob/c4bddd7/src/lib/hooks/useAnimatedTransitionState.ts#L43)
+[hooks/useAnimatedTransitionState.ts:43](https://github.com/tristanjohnson849/react-controlled-animations/blob/1674950/src/lib/hooks/useAnimatedTransitionState.ts#L43)
 
 ▸ **default**<`S`, `A`, `E`\>(`initialState`, `initialAnimation?`, `onAnimationEnd?`): [`AnimatedTransitionState`](../wiki/hooks.useAnimatedTransitionState#animatedtransitionstate)<`S` \| `undefined`, `A`, `E`\>
 
@@ -112,4 +112,4 @@ Hook to useState that animates on transitioning states
 
 #### Defined in
 
-[hooks/useAnimatedTransitionState.ts:48](https://github.com/tristanjohnson849/react-controlled-animations/blob/c4bddd7/src/lib/hooks/useAnimatedTransitionState.ts#L48)
+[hooks/useAnimatedTransitionState.ts:48](https://github.com/tristanjohnson849/react-controlled-animations/blob/1674950/src/lib/hooks/useAnimatedTransitionState.ts#L48)
