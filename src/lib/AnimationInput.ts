@@ -1,16 +1,18 @@
-export interface NormalizedAnimation {
-    keyframes: Keyframe[];
-    options: KeyframeAnimationOptions;
+export type AnimationOptions = Omit<KeyframeAnimationOptions, "iterations"> & {
+    iterations?: number | 'Infinity'
 };
 
-export type AnimationOptions = number | KeyframeAnimationOptions;
+export interface NormalizedAnimation {
+    keyframes: Keyframe[];
+    options: AnimationOptions;
+}
 
 export type AnimationInput =
     | Keyframe[]
     | NormalizedAnimation
     | {
           keyframes: Keyframe[];
-          options: AnimationOptions;
+          options: number | AnimationOptions;
       };
 
 export const normalizedAnimation = (animation: AnimationInput): NormalizedAnimation => {

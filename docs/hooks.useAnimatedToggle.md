@@ -41,7 +41,7 @@ ___
 
 ### default
 
-▸ **default**<`E`\>(`initialState?`, `initialAnimationState?`): [`AnimatedToggleState`](../wiki/hooks.useAnimatedToggle#animatedtogglestate)<`E`\>
+▸ **default**<`E`\>(`initialState?`, `initialanimationName?`): [`AnimatedToggleState`](../wiki/hooks.useAnimatedToggle#animatedtogglestate)<`E`\>
 
 Hook to create a boolean toggle state that animates when toggled
 
@@ -56,7 +56,7 @@ Hook to create a boolean toggle state that animates when toggled
 | Name | Type | Default value | Description |
 | :------ | :------ | :------ | :------ |
 | `initialState` | `boolean` | `false` |  |
-| `initialAnimationState` | [`ToggleAnimations`](../wiki/hooks.useAnimatedToggle#toggleanimations) | `null` | if provided, will toggle away from initialState when the togglingElementRef is first set |
+| `initialanimationName` | [`ToggleAnimations`](../wiki/hooks.useAnimatedToggle#toggleanimations) | `null` | if provided, will toggle away from initialState when the togglingElementRef is first set |
 
 #### Returns
 

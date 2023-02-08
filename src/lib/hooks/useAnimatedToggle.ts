@@ -21,7 +21,7 @@ export type AnimatedToggleState<E extends HTMLElement> = readonly [
      */
     Ref<E>,
     /**
-     * currentAnimationState, null if not currently transitioning
+     * currentanimationName, null if not currently transitioning
      */
     ToggleAnimations | null
 ];
@@ -30,19 +30,19 @@ export type AnimatedToggleState<E extends HTMLElement> = readonly [
  * Hook to create a boolean toggle state that animates when toggled
  * @typeParam E the Animated HTMLElement
  * @param initialState
- * @param initialAnimationState if provided, will toggle away from initialState when the togglingElementRef is first set
+ * @param initialanimationName if provided, will toggle away from initialState when the togglingElementRef is first set
  *
  * @return [isToggled, toggleCallback, togglingElementRef, currentAnimation]
  */
 function useAnimatedTransitionToggle<E extends HTMLElement>(
     initialState = false,
-    initialAnimationState: ToggleAnimations | null = null
+    initialanimationName: ToggleAnimations | null = null
 ): AnimatedToggleState<E> {
     const [isToggled, animatedSetState, elementRef, isTransitioning] = useAnimatedTransitionState<
         boolean,
         ToggleAnimations,
         E
-    >(initialState, initialAnimationState);
+    >(initialState, initialanimationName);
 
     const nextAnimation = isToggled ? 'togglingOff' : 'togglingOn';
 

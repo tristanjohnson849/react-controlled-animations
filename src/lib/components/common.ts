@@ -35,14 +35,17 @@ export type TagHTMLAttributes<T extends HTMLIntrinsics> = JSX.IntrinsicElements[
     ? A
     : never;
 
-interface NonHTMLAnimatedProps<A extends string, T extends HTMLIntrinsics = 'div'> {
+/**
+ * AnimatedProps excluding HTML Attributes, exported
+ */
+export interface NonHTMLAnimatedProps<A extends string, T extends HTMLIntrinsics = 'div'> {
     /**
      * The given tag that this Animated element delegates to
      */
     as?: T;
 
     /**
-     * The mapping of animationState A to an AnimationInput
+     * The mapping of animationName A to an AnimationInput
      */
     animations?: AnimationsByName<A>;
 
@@ -59,7 +62,7 @@ interface NonHTMLAnimatedProps<A extends string, T extends HTMLIntrinsics = 'div
  * @typeParam A the accepted animation names
  * @typeParam T the HTML Tag delegate
  */
-export type AnimatedProps<A extends string = string, T extends HTMLIntrinsics = 'div'> = NonHTMLAnimatedProps<A> &
+export type AnimatedProps<A extends string = string, T extends HTMLIntrinsics = 'div'> = NonHTMLAnimatedProps<A, T> &
     Omit<TagHTMLAttributes<T>, 'onAnimationEnd'>;
 
 /**

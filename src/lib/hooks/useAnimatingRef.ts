@@ -7,6 +7,8 @@ import { AnimationsByName, normalizedAnimation } from '../AnimationInput';
  *
  * Expects the AnimationsByName<A> to be serialized as a JSON string in the data-animations attribute on the element - see {@link ControlledAnimated!}
  *
+ * Note: will interrupt and play a new animation if the animations stored at data-animations change and the Component using this hook is rerendered
+ * 
  * @typeParam A the accepted animation names
  * @param currentAnimation the animation to be applied to the ref'd element
  * @param onAnimationEnd callback to be called when the animation is finished(), or if the animation is interrupted (currentAnimation changes before finishing)
@@ -33,10 +35,15 @@ function useAnimatedRef<A extends string = string, E extends HTMLElement = HTMLE
                         keyframes,
                         options: { ...options },
                     } = normalizedAnimation(animations[currentAnimation]);
+
                     const webAnimation = elementRef.current.animate(keyframes, options);
 
                     const end = () => {
-                        webAnimation.commitStyles();
+                        try {
+                            webAnimation.commitStyles();
+                        } catch (e) {
+                            // element may have been unmounted
+                        }
                         onAnimationEnd && onAnimationEnd(currentAnimation, webAnimation);
                     };
                     webAnimation.onfinish = end;

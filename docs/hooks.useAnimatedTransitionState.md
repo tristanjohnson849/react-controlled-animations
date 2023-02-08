@@ -14,7 +14,7 @@
 
 ### AnimatedTransitionState
 
-Ƭ **AnimatedTransitionState**<`S`, `A`, `E`\>: readonly [`S`, (`nextState`: `SetStateAction`<`S`\>, `nextAnimationState`: `A` \| ``null``) => `void`, `Ref`<`E`\>, `A` \| ``null``]
+Ƭ **AnimatedTransitionState**<`S`, `A`, `E`\>: readonly [`S`, (`nextState`: `SetStateAction`<`S`\>, `nextanimationName`: `A` \| ``null``) => `void`, `Ref`<`E`\>, `A` \| ``null``]
 
 #### Type parameters
 

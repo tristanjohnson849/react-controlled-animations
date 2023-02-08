@@ -11,7 +11,7 @@ import { ToggleAnimations } from './hooks/useAnimatedToggle';
  *
  * @param toPersist the AnimationInput to get a persisted version of
  */
-export const persistedAnimation = (toPersist: AnimationInput): NormalizedAnimation => {
+export const toPersistedAnimation = (toPersist: AnimationInput): NormalizedAnimation => {
     const { keyframes, options } = normalizedAnimation(toPersist);
     if (!keyframes.length) {
         return { keyframes: [], options: options };

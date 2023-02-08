@@ -1,6 +1,6 @@
 import React, { RefAttributes } from 'react';
 import useAnimatingRef from '../hooks/useAnimatingRef';
-import {AnimatedProps, HTMLIntrinsics, TagHTMLAttributes, setRef, TagHTMLElement, mergeRefs } from "./common";
+import {AnimatedProps, HTMLIntrinsics, TagHTMLElement, mergeRefs } from "./common";
 
 
 export type ControlledAnimatedProps<A extends string, T extends HTMLIntrinsics = "div"> = {

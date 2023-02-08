@@ -1,7 +1,7 @@
 import React from "react";
 import { HTMLIntrinsics, mergeRefs, TagHTMLElement, AnimatedProps } from "./common";
 import ControlledAnimated from "./ControlledAnimated";
-import useIsHovering from "../hooks/useIsHovering";
+import useIsHovering from "../hooks/useIsHovered";
 
 export type HoverAnimations = 'hovering'|'notHovering';
 

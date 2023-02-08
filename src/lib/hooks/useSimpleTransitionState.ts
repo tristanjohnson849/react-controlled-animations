@@ -13,7 +13,7 @@ export type SimpleTransitionState<S, E extends HTMLElement> = readonly [
      * Analog of setState
      *
      * When called, will animate the transitionand setState once the animation is finished()
-     * Supports queuing multiple state transitions during the course of an animation (note that the animation will be interrupted if the nextAnimationState is set while the currentAnimation is not finished())
+     * Supports queuing multiple state transitions during the course of an animation (note that the animation will be interrupted if the nextanimationName is set while the currentAnimation is not finished())
      * @param nextState a React setState action for this state
      * @param animate flag to animate the transition, or skip animation if false
      */
@@ -57,7 +57,7 @@ function useSimpleTransitionState<S, E extends HTMLElement = HTMLElement>(
     initialTransitioning = false,
     onTransitionEnd?: () => void
 ): SimpleTransitionState<S | undefined, E> {
-    const [state, animatedSetState, elementRef, animationState] = useAnimatedTransitionState<S, 'transition', E>(
+    const [state, animatedSetState, elementRef, animationName] = useAnimatedTransitionState<S, 'transition', E>(
         initialState,
         initialTransitioning ? 'transition' : null,
         onTransitionEnd
@@ -67,7 +67,7 @@ function useSimpleTransitionState<S, E extends HTMLElement = HTMLElement>(
         state,
         (action, animate = true) => animatedSetState(action, animate ? 'transition' : null),
         elementRef,
-        animationState !== null,
+        animationName !== null,
     ];
 }
 
