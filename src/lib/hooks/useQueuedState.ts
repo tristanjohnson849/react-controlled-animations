@@ -1,22 +1,46 @@
 import { SetStateAction, useState } from 'react';
 
-export type QueuedState<T> = {
-    readonly current: T;
-    readonly enqueue: (action: SetStateAction<T>) => void;
+/**
+ * State that supports queueing transitioning
+ */
+export interface QueuedTransitionState<S> {
+    /**
+     * Current state value
+     */
+    readonly current: S;
+    /**
+     * enqueue a state transition
+     */
+    readonly enqueue: (action: SetStateAction<S>) => void;
+    /**
+     * process one queued transition
+     */
     readonly transition: () => void;
+    /**
+     * process all queued transitions
+     */
     readonly transitionAll: () => void;
-};
+}
 
-function useQueuedState<T = undefined>(): QueuedState<T | undefined>;
-function useQueuedState<T>(initialState: T): QueuedState<T>;
-function useQueuedState<T>(initialState?: T): QueuedState<T | undefined> {
-    const [queuedState, setQueuedState] = useState<InternalQueuedState<T | undefined>>({
+function useQueuedState<S = undefined>(): QueuedTransitionState<S | undefined>;
+function useQueuedState<S>(initialState: S): QueuedTransitionState<S>;
+
+/**
+ * Hook to use a QueuedTransitionState
+ *
+ * Useful for queuing state transitions while waiting for a concurrent event (like an animation completion)
+ *
+ * @param initialState
+ * @returns QueuedTransitionState
+ */
+function useQueuedState<S>(initialState?: S): QueuedTransitionState<S | undefined> {
+    const [queuedState, setQueuedState] = useState<InternalQueuedState<S | undefined>>({
         current: initialState,
         actionQueue: [],
     });
 
     const transition = () =>
-        setQueuedState(({ current, actionQueue }: InternalQueuedState<T | undefined>) => {
+        setQueuedState(({ current, actionQueue }: InternalQueuedState<S | undefined>) => {
             if (actionQueue.length <= 0) {
                 return { current, actionQueue };
             }
@@ -28,13 +52,11 @@ function useQueuedState<T>(initialState?: T): QueuedState<T | undefined> {
         });
 
     return {
-        current: queuedState.current as T,
-        enqueue: (newAction: SetStateAction<T | undefined>) =>
+        current: queuedState.current as S,
+        enqueue: (newAction: SetStateAction<S | undefined>) =>
             setQueuedState(({ current, actionQueue }) => ({
                 current,
-                actionQueue:
-                    // have to make assertions to get around the optional param
-                    [...actionQueue, newAction],
+                actionQueue: [...actionQueue, newAction],
             })),
         transition,
         transitionAll: () => {

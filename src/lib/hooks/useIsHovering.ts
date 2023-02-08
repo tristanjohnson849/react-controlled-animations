@@ -1,6 +1,11 @@
 import { Ref, useEffect, useRef, useState } from 'react';
 
-function useIsHovering<E extends HTMLElement>(): readonly [boolean, Ref<E>] {
+/**
+ * Hook to capture the hovering state of a ref'd HTMLElement
+ *
+ * @returns [isHovered, elementRef]
+ */
+function useIsHovered<E extends HTMLElement = HTMLElement>(): readonly [boolean, Ref<E>] {
     const [value, setValue] = useState(false);
     const ref = useRef<E>(null);
     const handleMouseOver = () => setValue(true);
@@ -21,4 +26,4 @@ function useIsHovering<E extends HTMLElement>(): readonly [boolean, Ref<E>] {
     return [value, ref];
 }
 
-export default useIsHovering;
+export default useIsHovered;

@@ -1,55 +1,35 @@
 import React from "react";
-import { AnimationInput, NormalizedAnimation, normalizedAnimation } from "../AnimationInput";
-import { HTMLIntrinsics, mergeRefs, TagElement, AnimatedProps } from "./common";
+import { HTMLIntrinsics, mergeRefs, TagHTMLElement, AnimatedProps } from "./common";
 import ControlledAnimated from "./ControlledAnimated";
 import useIsHovering from "../hooks/useIsHovering";
 
 export type HoverAnimations = 'hovering'|'notHovering';
 
-function hoverAnimated<T extends HTMLIntrinsics = "div">(
-    props: AnimatedProps<HoverAnimations, T>,
-    ref?: React.ForwardedRef<TagElement<T>>
+function hoverAnimated<A extends string = never, T extends HTMLIntrinsics = "div">(
+    props: AnimatedProps<HoverAnimations | A, T>,
+    ref?: React.ForwardedRef<TagHTMLElement<T>>
 ): React.ReactElement<any, any> {
     const [hovering, hoverRef] = useIsHovering();
 
     return (
-       <ControlledAnimated<HoverAnimations, T>
+       <ControlledAnimated<HoverAnimations | A, T>
             currentAnimation={hovering ? "hovering" : "notHovering"}
-            ref={mergeRefs(ref, hoverRef as React.ForwardedRef<TagElement<T>>)}
+            ref={mergeRefs(ref, hoverRef as React.ForwardedRef<TagHTMLElement<T>>)}
             {...props}
        />
     );
 };
 
-const HoverAnimated = React.forwardRef(hoverAnimated) as <T extends HTMLIntrinsics = "div">(
-    props: AnimatedProps<HoverAnimations, T> & React.RefAttributes<TagElement<T>>
+/**
+ * An Animated component that will track hover (via mouseenter/mouseleave listeners) and change animations to the corresponding hover state
+ * May accept a ref to forward to the HTML tag delegate
+ * @typeParam A the additional animation names; default = never makes the default animation names exactly {@link HoverAnimations}
+ * @typeParam T the HTML Tag delegate
+ */
+const HoverAnimated = React.forwardRef(hoverAnimated) as <A extends string = never, T extends HTMLIntrinsics = "div">(
+    props: AnimatedProps<HoverAnimations | A, T> & React.RefAttributes<TagHTMLElement<T>>
 ) => React.ReactElement<any, any>;
 
 hoverAnimated.displayName = "HoverAnimated";
-
-// Makes a given animation run it's last frame infinitely
-// Useful for controlled animations that are tied to state rather than transitions
-export const persistedAnimation = (toPersist: AnimationInput): NormalizedAnimation => {
-    const { keyframes, options } = normalizedAnimation(toPersist);
-    if (!keyframes.length) {
-        return { keyframes: [], options: options }
-    }
-
-    const lastKeyframe = keyframes.slice(-1)[0];
-    const rest = keyframes.slice(0, -1);
-
-    const persistedLast: Keyframe = { 
-        iterations: 'Infinity', 
-        ...lastKeyframe 
-    };
-    const persistentOptions: KeyframeAnimationOptions = {
-        fill: 'forwards',
-        ...options
-    }
-    return { 
-        keyframes: [...rest, persistedLast],
-        options: persistentOptions 
-    };
-}
 
 export default HoverAnimated;

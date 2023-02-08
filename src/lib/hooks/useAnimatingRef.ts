@@ -1,11 +1,21 @@
 import { Ref, useEffect, useRef } from 'react';
 
-import { AnimationInput, normalizedAnimation } from '../AnimationInput';
+import { AnimationsByName, normalizedAnimation } from '../AnimationInput';
 
-const useAnimatingRef = <A extends string, E extends HTMLElement>(
+/**
+ * Low-level hook to useRef that will animate the ref'd HTML element with the given currentAnimation name
+ *
+ * Expects the AnimationsByName<A> to be serialized as a JSON string in the data-animations attribute on the element - see {@link ControlledAnimated!}
+ *
+ * @typeParam A the accepted animation names
+ * @param currentAnimation the animation to be applied to the ref'd element
+ * @param onAnimationEnd callback to be called when the animation is finished(), or if the animation is interrupted (currentAnimation changes before finishing)
+ * @returns react Ref to be assigned to the Animated element
+ */
+function useAnimatedRef<A extends string = string, E extends HTMLElement = HTMLElement>(
     currentAnimation: A | null,
     onAnimationEnd?: (completedAnimationName: A, webAnimation: Animation | null) => void
-): Ref<E> => {
+): Ref<E> {
     const elementRef = useRef<E>(null);
 
     const animationsAttr = elementRef.current?.getAttribute('data-animations') || '{}';
@@ -13,7 +23,7 @@ const useAnimatingRef = <A extends string, E extends HTMLElement>(
     useEffect(() => {
         if (elementRef.current !== null) {
             try {
-                const animations = JSON.parse(animationsAttr) as unknown as Record<A, AnimationInput>;
+                const animations = JSON.parse(animationsAttr) as unknown as AnimationsByName<A>;
                 if (currentAnimation !== null) {
                     if (!animations || !animations[currentAnimation]) {
                         onAnimationEnd && onAnimationEnd(currentAnimation, null);
@@ -52,6 +62,6 @@ const useAnimatingRef = <A extends string, E extends HTMLElement>(
     }, [elementRef.current, currentAnimation, animationsAttr]);
 
     return elementRef;
-};
+}
 
-export default useAnimatingRef;
+export default useAnimatedRef;
