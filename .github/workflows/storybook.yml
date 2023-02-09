@@ -1,6 +1,6 @@
 name: Build and Deploy
 on: 
-  - push
+  -  push
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
