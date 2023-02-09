@@ -67,7 +67,7 @@ const AnimatedTransitionExample: React.FC<{ chosenAnimation: MyAnimations }> = (
             <div>Animation: {currentAnimation || "null"}</div>
             <button onClick={() => animatedTransition(
                 prev => prev + 1, 
-                Math.rand() > 0.5 ? 'flying' : 'sliding'
+                Math.random() > 0.5 ? 'flying' : 'sliding'
             )}>
                 Increment
             </button>
