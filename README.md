@@ -81,4 +81,4 @@ Components
 
 Hooks
 - [useAnimatedToggle](https://github.com/tristanjohnson849/react-controlled-animations/wiki/hooks.useAnimatedToggle): a hook based on useAnimatedTransitionState that allows you to animate transitions on a boolean toggle
--[useSimpleTransitionState](https://github.com/tristanjohnson849/react-controlled-animations/wiki/hooks.useSimpleTransitionState): a simplified version of useAnimatedTransitionState that assumes a single animation for all transitions
+- [useSimpleTransitionState](https://github.com/tristanjohnson849/react-controlled-animations/wiki/hooks.useSimpleTransitionState): a simplified version of useAnimatedTransitionState that assumes a single animation for all transitions
