@@ -59,6 +59,12 @@ const HoveringExample = () => {
 export default {
     component: HoveringExample,
     title: 'HoveringExample',
+    parameters: {
+        componentSource: {
+          url: 'https://raw.githubusercontent.com/tristanjohnson849/react-controlled-animations/main/src/components/HoverAnimated.stories.tsx',
+          language: 'typescript',
+        }
+    },
 };
 
 const Template = args => <HoveringExample {...args} />;

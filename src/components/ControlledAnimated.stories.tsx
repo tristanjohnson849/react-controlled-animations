@@ -103,6 +103,12 @@ const AnimatedTransitionExample: React.FC<{ chosenAnimation: MyAnimations }> = (
 export default {
     component: AnimatedTransitionExample,
     title: 'AnimatedTransitionExample',
+    parameters: {
+        componentSource: {
+            url: 'https://raw.githubusercontent.com/tristanjohnson849/react-controlled-animations/main/src/components/ControlledAnimated.stories.tsx',
+            language: 'javascript',
+        }
+    }
 };
 
 const Template = args => <AnimatedTransitionExample {...args} />;
@@ -111,7 +117,6 @@ export const Default = Template.bind({});
 Default.args = {
     chosenAnimation: 'flying'
 };
-
 export const Jumping = Template.bind({});
 Jumping.args = {
     chosenAnimation: 'jumping'

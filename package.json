@@ -85,6 +85,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "standard-version": "^9.5.0",
+    "storybook-source-code-addon": "^1.2.0",
     "ts-node": "^10.9.1",
     "typedoc": "^0.23.24",
     "typedoc-github-wiki-theme": "^1.0.1",
