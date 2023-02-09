@@ -1,4 +1,4 @@
-import { AnimationInput, AnimationsByName, normalizedAnimation, NormalizedAnimation } from './AnimationInput';
+import { AnimationInput, AnimationOptions, AnimationsByName, normalizedAnimation, NormalizedAnimation } from './AnimationInput';
 import { ToggleAnimations } from './hooks/useAnimatedToggle';
 
 /**
@@ -24,7 +24,7 @@ export const toPersistedAnimation = (toPersist: AnimationInput): NormalizedAnima
         ...lastKeyframe,
         iterations: 'Infinity',
     };
-    const persistentOptions: KeyframeAnimationOptions = {
+    const persistentOptions: AnimationOptions = {
         ...options,
         fill: 'forwards',
     };

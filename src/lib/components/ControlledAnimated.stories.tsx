@@ -11,7 +11,7 @@ const AnimatedTransitionExample: React.FC<{ chosenAnimation: MyAnimations }> = (
     const [
         moveCounter, animatedTransition,
         elementRef, currentAnimation
-    ] = useAnimatedTransitionState<string, MyAnimations, HTMLImageElement>(0);
+    ] = useAnimatedTransitionState<number, MyAnimations, HTMLImageElement>(0);
 
     return (
         <ControlledAnimated<'movingBackground'>

@@ -36,7 +36,7 @@ function useAnimatedRef<A extends string = string, E extends HTMLElement = HTMLE
                         options: { ...options },
                     } = normalizedAnimation(animations[currentAnimation]);
 
-                    const webAnimation = elementRef.current.animate(keyframes, options);
+                    const webAnimation = elementRef.current.animate(keyframes, options as KeyframeAnimationOptions);
 
                     const end = () => {
                         try {
