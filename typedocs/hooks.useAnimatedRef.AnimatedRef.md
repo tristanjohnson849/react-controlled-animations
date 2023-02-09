@@ -25,7 +25,7 @@ A React.Ref that declares itself as an AnimatedRef
 
 #### Defined in
 
-[hooks/useAnimatedRef.ts:9](https://github.com/tristanjohnson849/react-controlled-animations/blob/2b16b7f/src/hooks/useAnimatedRef.ts#L9)
+[hooks/useAnimatedRef.ts:9](https://github.com/tristanjohnson849/react-controlled-animations/blob/1a5aaaa/src/hooks/useAnimatedRef.ts#L9)
 
 ___
 
@@ -35,4 +35,4 @@ ___
 
 #### Defined in
 
-[hooks/useAnimatedRef.ts:10](https://github.com/tristanjohnson849/react-controlled-animations/blob/2b16b7f/src/hooks/useAnimatedRef.ts#L10)
+[hooks/useAnimatedRef.ts:10](https://github.com/tristanjohnson849/react-controlled-animations/blob/1a5aaaa/src/hooks/useAnimatedRef.ts#L10)

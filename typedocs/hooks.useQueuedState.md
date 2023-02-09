@@ -34,13 +34,11 @@ QueuedTransitionState
 
 #### Defined in
 
-[hooks/useQueuedState.ts:25](https://github.com/tristanjohnson849/react-controlled-animations/blob/2b16b7f/src/hooks/useQueuedState.ts#L25)
+[hooks/useQueuedState.ts:25](https://github.com/tristanjohnson849/react-controlled-animations/blob/1a5aaaa/src/hooks/useQueuedState.ts#L25)
 
 ▸ **default**<`S`\>(`initialState`): [`QueuedTransitionState`](../wiki/hooks.useQueuedState.QueuedTransitionState)<`S`\>
 
-Hook to use a QueuedTransitionState
-
-Useful for queuing state transitions while waiting for a concurrent event (like an animation completion)
+State is always a defined S if an initial state is provided
 
 #### Type parameters
 
@@ -58,8 +56,6 @@ Useful for queuing state transitions while waiting for a concurrent event (like 
 
 [`QueuedTransitionState`](../wiki/hooks.useQueuedState.QueuedTransitionState)<`S`\>
 
-QueuedTransitionState
-
 #### Defined in
 
-[hooks/useQueuedState.ts:26](https://github.com/tristanjohnson849/react-controlled-animations/blob/2b16b7f/src/hooks/useQueuedState.ts#L26)
+[hooks/useQueuedState.ts:29](https://github.com/tristanjohnson849/react-controlled-animations/blob/1a5aaaa/src/hooks/useQueuedState.ts#L29)

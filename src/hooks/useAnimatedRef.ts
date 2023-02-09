@@ -16,12 +16,7 @@ export interface AnimatedRef<E> {
  * @returns
  */
 export function isAnimatedRef<E>(ref: Ref<E> | null | undefined): ref is AnimatedRef<E> {
-    return (
-        !!ref && 
-        typeof ref === 'object' && 
-        'refType' in ref && 
-        ref.refType === 'animated'
-    );
+    return !!ref && typeof ref === 'object' && 'refType' in ref && ref.refType === 'animated';
 }
 
 /**

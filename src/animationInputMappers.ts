@@ -79,7 +79,7 @@ export const toToggleAnimations = (togglingOn: AnimationInput): AnimationsByName
 /**
  * Helper to create AnimationsByName for a SimpleTransition animation
  *
- * See {@link useSimpleTransitionState!}
+ * See {@link hooks.useSimpleTransitionState!default}
  *
  * @param transition
  */

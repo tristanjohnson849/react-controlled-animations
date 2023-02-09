@@ -26,7 +26,7 @@
 
 #### Defined in
 
-[hooks/useAnimatedTransitionState.ts:11](https://github.com/tristanjohnson849/react-controlled-animations/blob/2b16b7f/src/hooks/useAnimatedTransitionState.ts#L11)
+[hooks/useAnimatedTransitionState.ts:11](https://github.com/tristanjohnson849/react-controlled-animations/blob/1a5aaaa/src/hooks/useAnimatedTransitionState.ts#L11)
 
 ## Functions
 
@@ -52,37 +52,35 @@ Hook to useState that animates on transitioning states
 
 #### Defined in
 
-[hooks/useAnimatedTransitionState.ts:38](https://github.com/tristanjohnson849/react-controlled-animations/blob/2b16b7f/src/hooks/useAnimatedTransitionState.ts#L38)
+[hooks/useAnimatedTransitionState.ts:37](https://github.com/tristanjohnson849/react-controlled-animations/blob/1a5aaaa/src/hooks/useAnimatedTransitionState.ts#L37)
 
 ▸ **default**<`S`, `A`, `E`\>(`initialState`, `initialAnimation?`, `onAnimationEnd?`): [`AnimatedTransitionState`](../wiki/hooks.useAnimatedTransitionState#animatedtransitionstate)<`S`, `A`, `E`\>
 
-Hook to useState that animates on transitioning states
+State is always a defined S if an initial state is provided
 
 #### Type parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `S` | `S` | type of state |
-| `A` | extends `string` = `string` | the accepted animation names |
-| `E` | extends `HTMLElement`<`E`\> = `HTMLElement` | the Animated HTML element |
+| Name | Type |
+| :------ | :------ |
+| `S` | `S` |
+| `A` | extends `string` = `string` |
+| `E` | extends `HTMLElement`<`E`\> = `HTMLElement` |
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `initialState` | `S` |  |
-| `initialAnimation?` | `A` | if provided, will animate when the togglingElementRef is first set. State will remain as initialState when finished() |
-| `onAnimationEnd?` | (`completedAnimation`: `A`) => `void` |  |
+| Name | Type |
+| :------ | :------ |
+| `initialState` | `S` |
+| `initialAnimation?` | `A` |
+| `onAnimationEnd?` | (`completedAnimation`: `A`) => `void` |
 
 #### Returns
 
 [`AnimatedTransitionState`](../wiki/hooks.useAnimatedTransitionState#animatedtransitionstate)<`S`, `A`, `E`\>
 
-[state, animatedStateTransition, elementRef, currentAnimation]
-
 #### Defined in
 
-[hooks/useAnimatedTransitionState.ts:43](https://github.com/tristanjohnson849/react-controlled-animations/blob/2b16b7f/src/hooks/useAnimatedTransitionState.ts#L43)
+[hooks/useAnimatedTransitionState.ts:45](https://github.com/tristanjohnson849/react-controlled-animations/blob/1a5aaaa/src/hooks/useAnimatedTransitionState.ts#L45)
 
 ▸ **default**<`S`, `A`, `E`\>(`initialState`, `initialAnimation?`, `onAnimationEnd?`): [`AnimatedTransitionState`](../wiki/hooks.useAnimatedTransitionState#animatedtransitionstate)<`S` \| `undefined`, `A`, `E`\>
 
@@ -112,4 +110,4 @@ Hook to useState that animates on transitioning states
 
 #### Defined in
 
-[hooks/useAnimatedTransitionState.ts:48](https://github.com/tristanjohnson849/react-controlled-animations/blob/2b16b7f/src/hooks/useAnimatedTransitionState.ts#L48)
+[hooks/useAnimatedTransitionState.ts:50](https://github.com/tristanjohnson849/react-controlled-animations/blob/1a5aaaa/src/hooks/useAnimatedTransitionState.ts#L50)

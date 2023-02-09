@@ -34,12 +34,14 @@ export type AnimatedTransitionState<S, A extends string, E extends HTMLElement> 
     A | null
 ];
 
-// overloads to infer non-optional return type when initial state is provided
 function useAnimatedTransitionState<
     S = undefined,
     A extends string = string,
     E extends HTMLElement = HTMLElement
 >(): AnimatedTransitionState<S | undefined, A, E>;
+/**
+ * State is always a defined S if an initial state is provided
+ */
 function useAnimatedTransitionState<S, A extends string = string, E extends HTMLElement = HTMLElement>(
     initialState: S,
     initialAnimation?: A | null,

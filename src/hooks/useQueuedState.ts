@@ -23,6 +23,9 @@ export interface QueuedTransitionState<S> {
 }
 
 function useQueuedState<S = undefined>(): QueuedTransitionState<S | undefined>;
+/**
+ * State is always a defined S if an initial state is provided
+ */
 function useQueuedState<S>(initialState: S): QueuedTransitionState<S>;
 
 /**

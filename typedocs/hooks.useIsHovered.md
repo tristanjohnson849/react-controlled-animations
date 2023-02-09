@@ -28,4 +28,4 @@ readonly [`boolean`, `Ref`<`E`\>]
 
 #### Defined in
 
-[hooks/useIsHovered.ts:8](https://github.com/tristanjohnson849/react-controlled-animations/blob/2b16b7f/src/hooks/useIsHovered.ts#L8)
+[hooks/useIsHovered.ts:8](https://github.com/tristanjohnson849/react-controlled-animations/blob/1a5aaaa/src/hooks/useIsHovered.ts#L8)

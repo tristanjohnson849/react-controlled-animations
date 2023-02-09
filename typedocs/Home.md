@@ -15,20 +15,19 @@ This library is a set of hooks and components to enable declarative, controlled 
 
 ## Example usage
 
-```
-const AnimatedTransitionExample: React.FC<{ chosenAnimation: MyAnimations }> = ({ chosenAnimation }) => {
+```typescript
+
+const AnimatedTransitionExample: React.FC<{}> = () => {
     const [
         counter, animatedTransition,
         elementRef, currentAnimation
-    ] = useAnimatedTransitionState<number, MyAnimations, HTMLElement>(0);
+    ] = useAnimatedTransitionState<number, 'flying'|'sliding', HTMLElement>(0);
 
     return (
         <Animated<'flying'|'sliding', "span">
             as="span"
             ref={elementRef}
             style={{
-                width: '100px',
-                height: '100px',
                 fontSize: '48px',
                 margin: '24px',
                 textAlign: 'center',
@@ -59,12 +58,18 @@ const AnimatedTransitionExample: React.FC<{ chosenAnimation: MyAnimations }> = (
         >
             🤓
         </Animated>
-        <div style={{ background: 'white', padding: '16px', fontFamily: '"Helvetica", "Arial", sans-serif',
-                textAlign: 'center',
-                verticalAlign: 'middle', borderRadius: '8px' }}>
+        <div style={{ 
+            textAlign: 'center',
+            verticalAlign: 'middle', 
+        }}>
             <div>Count: {counter}</div>
             <div>Animation: {currentAnimation || "null"}</div>
-            <button onClick={() => animatedTransition(prev => prev + 1, Math.rand() > 0.5 ? 'flying' : 'sliding')}>Increment</button>
+            <button onClick={() => animatedTransition(
+                prev => prev + 1, 
+                Math.random() > 0.5 ? 'flying' : 'sliding'
+            )}>
+                Increment
+            </button>
         </div>
     )
 };
@@ -73,7 +78,11 @@ const AnimatedTransitionExample: React.FC<{ chosenAnimation: MyAnimations }> = (
 Like normal React state, this component keeps a counter that is Incremented by the button. However, setting state for this component animates the transition (here with a random choice between 'flying' and 'sliding'), and the counter state is only updated once the animation is complete or interrupted by another click. This is done through the useAnimatedTransitionState hook and Animated component.
 
 Also check out:
+
 Components
-- ControlledAnimated: like Animated, but is controlled by the currentAnimation prop. This is helpful for synchronizing animations across multiple elements based on one state
-- HoverAnimated: a utility that animates based whether the component is hovered or not (generally very difficult with basic inline styles)
-- useAnimatedToggle: a hook based on useAnimatedTransitionState that allows you to animate transitions on a boolean toggle
+- [ControlledAnimated](https://github.com/tristanjohnson849/react-controlled-animations/wiki/components.ControlledAnimated): like Animated, but is controlled by the currentAnimation prop. This is helpful for synchronizing animations across multiple elements based on one state
+- [HoverAnimated](https://github.com/tristanjohnson849/react-controlled-animations/wiki/components.HoverAnimated): a utility that animates based whether the component is hovered or not (generally very difficult with basic inline styles)
+
+Hooks
+- [useAnimatedToggle](https://github.com/tristanjohnson849/react-controlled-animations/wiki/hooks.useAnimatedToggle): a hook based on useAnimatedTransitionState that allows you to animate transitions on a boolean toggle
+- [useSimpleTransitionState](https://github.com/tristanjohnson849/react-controlled-animations/wiki/hooks.useSimpleTransitionState): a simplified version of useAnimatedTransitionState that assumes a single animation for all transitions

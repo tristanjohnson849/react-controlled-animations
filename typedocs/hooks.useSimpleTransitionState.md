@@ -25,7 +25,7 @@
 
 #### Defined in
 
-[hooks/useSimpleTransitionState.ts:6](https://github.com/tristanjohnson849/react-controlled-animations/blob/2b16b7f/src/hooks/useSimpleTransitionState.ts#L6)
+[hooks/useSimpleTransitionState.ts:6](https://github.com/tristanjohnson849/react-controlled-animations/blob/1a5aaaa/src/hooks/useSimpleTransitionState.ts#L6)
 
 ## Functions
 
@@ -51,34 +51,31 @@ This is a simplified version of useAnimatedTransitionState where only one animat
 
 #### Defined in
 
-[hooks/useSimpleTransitionState.ts:34](https://github.com/tristanjohnson849/react-controlled-animations/blob/2b16b7f/src/hooks/useSimpleTransitionState.ts#L34)
+[hooks/useSimpleTransitionState.ts:34](https://github.com/tristanjohnson849/react-controlled-animations/blob/1a5aaaa/src/hooks/useSimpleTransitionState.ts#L34)
 
 ▸ **default**<`S`, `E`\>(`initialState`, `initialTransitioning?`, `onTransitionEnd?`): [`SimpleTransitionState`](../wiki/hooks.useSimpleTransitionState#simpletransitionstate)<`S`, `E`\>
 
-Hook to useState that animates on transitioning states
-This is a simplified version of useAnimatedTransitionState where only one animation is configured for all transitions and is expected to be named 'transition' in AnimationsByName
+State is always a defined S if an initial state is provided
 
 #### Type parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `S` | `S` | type of state |
-| `E` | extends `HTMLElement`<`E`\> = `HTMLElement` | the Animated HTML element |
+| Name | Type |
+| :------ | :------ |
+| `S` | `S` |
+| `E` | extends `HTMLElement`<`E`\> = `HTMLElement` |
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `initialState` | `S` |  |
-| `initialTransitioning?` | `boolean` | if true, will animate when the togglingElementRef is first set. State will remain as initialState when finished() |
-| `onTransitionEnd?` | () => `void` |  |
+| Name | Type |
+| :------ | :------ |
+| `initialState` | `S` |
+| `initialTransitioning?` | `boolean` |
+| `onTransitionEnd?` | () => `void` |
 
 #### Returns
 
 [`SimpleTransitionState`](../wiki/hooks.useSimpleTransitionState#simpletransitionstate)<`S`, `E`\>
 
-[state, animatedTransitionState, transitioningElementRef, isTransitioning]
-
 #### Defined in
 
-[hooks/useSimpleTransitionState.ts:38](https://github.com/tristanjohnson849/react-controlled-animations/blob/2b16b7f/src/hooks/useSimpleTransitionState.ts#L38)
+[hooks/useSimpleTransitionState.ts:39](https://github.com/tristanjohnson849/react-controlled-animations/blob/1a5aaaa/src/hooks/useSimpleTransitionState.ts#L39)

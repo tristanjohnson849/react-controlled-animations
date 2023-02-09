@@ -35,7 +35,7 @@ Standard Props for an animated element. Includes the HTMLAttributes for the give
 
 #### Defined in
 
-[components/common.ts:60](https://github.com/tristanjohnson849/react-controlled-animations/blob/2b16b7f/src/components/common.ts#L60)
+[components/common.ts:60](https://github.com/tristanjohnson849/react-controlled-animations/blob/1a5aaaa/src/components/common.ts#L60)
 
 ___
 
@@ -48,7 +48,7 @@ Excludes tags that extend React.SVGProps
 
 #### Defined in
 
-[components/common.ts:14](https://github.com/tristanjohnson849/react-controlled-animations/blob/2b16b7f/src/components/common.ts#L14)
+[components/common.ts:14](https://github.com/tristanjohnson849/react-controlled-animations/blob/1a5aaaa/src/components/common.ts#L14)
 
 ___
 
@@ -66,7 +66,7 @@ TagHTMLAttributes<"a"> is equivalent to React.AnchorHTMLAttributes<HTMLAnchorEle
 
 #### Defined in
 
-[components/common.ts:31](https://github.com/tristanjohnson849/react-controlled-animations/blob/2b16b7f/src/components/common.ts#L31)
+[components/common.ts:31](https://github.com/tristanjohnson849/react-controlled-animations/blob/1a5aaaa/src/components/common.ts#L31)
 
 ___
 
@@ -84,7 +84,7 @@ TagHTMLElement<"a"> is equivalent to HTMLAnchorElement
 
 #### Defined in
 
-[components/common.ts:19](https://github.com/tristanjohnson849/react-controlled-animations/blob/2b16b7f/src/components/common.ts#L19)
+[components/common.ts:19](https://github.com/tristanjohnson849/react-controlled-animations/blob/1a5aaaa/src/components/common.ts#L19)
 
 ## Functions
 
@@ -117,7 +117,7 @@ a new ref that manages both given refs as one
 
 #### Defined in
 
-[components/common.ts:83](https://github.com/tristanjohnson849/react-controlled-animations/blob/2b16b7f/src/components/common.ts#L83)
+[components/common.ts:83](https://github.com/tristanjohnson849/react-controlled-animations/blob/1a5aaaa/src/components/common.ts#L83)
 
 ___
 
@@ -146,4 +146,4 @@ Helper to update a ref (either CallbackRef or RefObject) to the given next value
 
 #### Defined in
 
-[components/common.ts:66](https://github.com/tristanjohnson849/react-controlled-animations/blob/2b16b7f/src/components/common.ts#L66)
+[components/common.ts:66](https://github.com/tristanjohnson849/react-controlled-animations/blob/1a5aaaa/src/components/common.ts#L66)

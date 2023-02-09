@@ -1,6 +1,7 @@
 ## react-controlled-animations
 
 - [Home](../wiki/Home)
+- [Exports](../wiki/Exports)
 
 ### Modules
 
