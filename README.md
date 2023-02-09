@@ -18,7 +18,7 @@ This library is a set of hooks and components to enable declarative, controlled 
 
 ```typescript
 
-const AnimatedTransitionExample: React.FC<{ chosenAnimation: MyAnimations }> = ({ chosenAnimation }) => {
+const AnimatedTransitionExample: React.FC<{}> = () => {
     const [
         counter, animatedTransition,
         elementRef, currentAnimation
