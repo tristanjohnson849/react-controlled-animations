@@ -5,6 +5,7 @@
 ### References
 
 - [AnimatedProps](../wiki/index#animatedprops)
+- [AnimatedRef](../wiki/index#animatedref)
 - [AnimatedToggleState](../wiki/index#animatedtogglestate)
 - [AnimatedTransitionState](../wiki/index#animatedtransitionstate)
 - [AnimationInput](../wiki/index#animationinput)
@@ -22,6 +23,7 @@
 - [TagHTMLAttributes](../wiki/index#taghtmlattributes)
 - [TagHTMLElement](../wiki/index#taghtmlelement)
 - [ToggleAnimations](../wiki/index#toggleanimations)
+- [isAnimatedRef](../wiki/index#isanimatedref)
 - [mergeRefs](../wiki/index#mergerefs)
 - [normalizedAnimation](../wiki/index#normalizedanimation-1)
 - [setRef](../wiki/index#setref)
@@ -40,184 +42,196 @@
 
 ### AnimatedProps
 
-Re-exports [AnimatedProps](../wiki/lib.components.common#animatedprops)
+Re-exports [AnimatedProps](../wiki/components.common#animatedprops)
+
+___
+
+### AnimatedRef
+
+Re-exports [AnimatedRef](../wiki/hooks.useAnimatedRef.AnimatedRef)
 
 ___
 
 ### AnimatedToggleState
 
-Re-exports [AnimatedToggleState](../wiki/lib.hooks.useAnimatedToggle#animatedtogglestate)
+Re-exports [AnimatedToggleState](../wiki/hooks.useAnimatedToggle#animatedtogglestate)
 
 ___
 
 ### AnimatedTransitionState
 
-Re-exports [AnimatedTransitionState](../wiki/lib.hooks.useAnimatedTransitionState#animatedtransitionstate)
+Re-exports [AnimatedTransitionState](../wiki/hooks.useAnimatedTransitionState#animatedtransitionstate)
 
 ___
 
 ### AnimationInput
 
-Re-exports [AnimationInput](../wiki/lib.AnimationInput#animationinput)
+Re-exports [AnimationInput](../wiki/AnimationInput#animationinput)
 
 ___
 
 ### AnimationOptions
 
-Re-exports [AnimationOptions](../wiki/lib.AnimationInput#animationoptions)
+Re-exports [AnimationOptions](../wiki/AnimationInput#animationoptions)
 
 ___
 
 ### AnimationsByName
 
-Re-exports [AnimationsByName](../wiki/lib.AnimationInput#animationsbyname)
+Re-exports [AnimationsByName](../wiki/AnimationInput#animationsbyname)
 
 ___
 
 ### ControlledAnimated
 
-Renames and re-exports [default](../wiki/lib.components.ControlledAnimated#default)
+Renames and re-exports [default](../wiki/components.ControlledAnimated#default)
 
 ___
 
 ### ControlledAnimatedProps
 
-Re-exports [ControlledAnimatedProps](../wiki/lib.components.ControlledAnimated#controlledanimatedprops)
+Re-exports [ControlledAnimatedProps](../wiki/components.ControlledAnimated#controlledanimatedprops)
 
 ___
 
 ### HTMLIntrinsics
 
-Re-exports [HTMLIntrinsics](../wiki/lib.components.common#htmlintrinsics)
+Re-exports [HTMLIntrinsics](../wiki/components.common#htmlintrinsics)
 
 ___
 
 ### HoverAnimated
 
-Renames and re-exports [default](../wiki/lib.components.HoverAnimated#default)
+Renames and re-exports [default](../wiki/components.HoverAnimated#default)
 
 ___
 
 ### HoverAnimations
 
-Re-exports [HoverAnimations](../wiki/lib.components.HoverAnimated#hoveranimations)
+Re-exports [HoverAnimations](../wiki/components.HoverAnimated#hoveranimations)
 
 ___
 
 ### NonHTMLAnimatedProps
 
-Re-exports [NonHTMLAnimatedProps](../wiki/lib.components.common.NonHTMLAnimatedProps)
+Re-exports [NonHTMLAnimatedProps](../wiki/components.common.NonHTMLAnimatedProps)
 
 ___
 
 ### NormalizedAnimation
 
-Re-exports [NormalizedAnimation](../wiki/lib.AnimationInput.NormalizedAnimation)
+Re-exports [NormalizedAnimation](../wiki/AnimationInput.NormalizedAnimation)
 
 ___
 
 ### QueuedTransitionState
 
-Re-exports [QueuedTransitionState](../wiki/lib.hooks.useQueuedState.QueuedTransitionState)
+Re-exports [QueuedTransitionState](../wiki/hooks.useQueuedState.QueuedTransitionState)
 
 ___
 
 ### SimpleTransitionState
 
-Re-exports [SimpleTransitionState](../wiki/lib.hooks.useSimpleTransitionState#simpletransitionstate)
+Re-exports [SimpleTransitionState](../wiki/hooks.useSimpleTransitionState#simpletransitionstate)
 
 ___
 
 ### TagHTMLAttributes
 
-Re-exports [TagHTMLAttributes](../wiki/lib.components.common#taghtmlattributes)
+Re-exports [TagHTMLAttributes](../wiki/components.common#taghtmlattributes)
 
 ___
 
 ### TagHTMLElement
 
-Re-exports [TagHTMLElement](../wiki/lib.components.common#taghtmlelement)
+Re-exports [TagHTMLElement](../wiki/components.common#taghtmlelement)
 
 ___
 
 ### ToggleAnimations
 
-Re-exports [ToggleAnimations](../wiki/lib.hooks.useAnimatedToggle#toggleanimations)
+Re-exports [ToggleAnimations](../wiki/hooks.useAnimatedToggle#toggleanimations)
+
+___
+
+### isAnimatedRef
+
+Re-exports [isAnimatedRef](../wiki/hooks.useAnimatedRef#isanimatedref)
 
 ___
 
 ### mergeRefs
 
-Re-exports [mergeRefs](../wiki/lib.components.common#mergerefs)
+Re-exports [mergeRefs](../wiki/components.common#mergerefs)
 
 ___
 
 ### normalizedAnimation
 
-Re-exports [normalizedAnimation](../wiki/lib.AnimationInput#normalizedanimation)
+Re-exports [normalizedAnimation](../wiki/AnimationInput#normalizedanimation)
 
 ___
 
 ### setRef
 
-Re-exports [setRef](../wiki/lib.components.common#setref)
+Re-exports [setRef](../wiki/components.common#setref)
 
 ___
 
 ### toPersistedAnimation
 
-Re-exports [toPersistedAnimation](../wiki/lib.animationInputMappers#topersistedanimation)
+Re-exports [toPersistedAnimation](../wiki/animationInputMappers#topersistedanimation)
 
 ___
 
 ### toSimpleTransitionAnimations
 
-Re-exports [toSimpleTransitionAnimations](../wiki/lib.animationInputMappers#tosimpletransitionanimations)
+Re-exports [toSimpleTransitionAnimations](../wiki/animationInputMappers#tosimpletransitionanimations)
 
 ___
 
 ### toToggleAnimations
 
-Re-exports [toToggleAnimations](../wiki/lib.animationInputMappers#totoggleanimations)
+Re-exports [toToggleAnimations](../wiki/animationInputMappers#totoggleanimations)
 
 ___
 
 ### toTransitionAnimation
 
-Re-exports [toTransitionAnimation](../wiki/lib.animationInputMappers#totransitionanimation)
+Re-exports [toTransitionAnimation](../wiki/animationInputMappers#totransitionanimation)
 
 ___
 
 ### useAnimatedToggle
 
-Renames and re-exports [default](../wiki/lib.hooks.useAnimatedToggle#default)
+Renames and re-exports [default](../wiki/hooks.useAnimatedToggle#default)
 
 ___
 
 ### useAnimatedTransitionState
 
-Renames and re-exports [default](../wiki/lib.hooks.useAnimatedTransitionState#default)
+Renames and re-exports [default](../wiki/hooks.useAnimatedTransitionState#default)
 
 ___
 
 ### useAnimatingRef
 
-Renames and re-exports [default](../wiki/lib.hooks.useAnimatingRef#default)
+Renames and re-exports [default](../wiki/hooks.useAnimatedRef#default)
 
 ___
 
 ### useIsHovered
 
-Renames and re-exports [default](../wiki/lib.hooks.useIsHovered#default)
+Renames and re-exports [default](../wiki/hooks.useIsHovered#default)
 
 ___
 
 ### useQueuedState
 
-Renames and re-exports [default](../wiki/lib.hooks.useQueuedState#default)
+Renames and re-exports [default](../wiki/hooks.useQueuedState#default)
 
 ___
 
 ### useSimpleTransitionState
 
-Renames and re-exports [default](../wiki/lib.hooks.useSimpleTransitionState#default)
+Renames and re-exports [default](../wiki/hooks.useSimpleTransitionState#default)
