@@ -15,8 +15,13 @@ export interface AnimatedRef<E> {
  * @param ref React Ref that is possibly Animated
  * @returns
  */
-export function isAnimatedRef<E>(ref: Ref<E>): ref is AnimatedRef<E> {
-    return typeof ref === 'object' && 'refType' in ref && ref.refType === 'animated';
+export function isAnimatedRef<E>(ref: Ref<E> | null | undefined): ref is AnimatedRef<E> {
+    return (
+        !!ref && 
+        typeof ref === 'object' && 
+        'refType' in ref && 
+        ref.refType === 'animated'
+    );
 }
 
 /**
