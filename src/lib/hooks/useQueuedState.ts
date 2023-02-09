@@ -1,4 +1,4 @@
-import { SetStateAction, useState } from 'react';
+import { SetStateAction, useEffect, useState } from 'react';
 
 /**
  * State that supports queueing transitioning
@@ -38,6 +38,7 @@ function useQueuedState<S>(initialState?: S): QueuedTransitionState<S | undefine
         current: initialState,
         actionQueue: [],
     });
+    const [isTransitioningAll, setTransitioningAll] = useState(false)
 
     const transition = () =>
         setQueuedState(({ current, actionQueue }: InternalQueuedState<S | undefined>) => {
@@ -51,6 +52,15 @@ function useQueuedState<S>(initialState?: S): QueuedTransitionState<S | undefine
             };
         });
 
+    useEffect(() => {
+        if (isTransitioningAll) {
+            for (let i = 0; i < queuedState.actionQueue.length; i++) {
+                transition();
+            }
+            setTransitioningAll(false);
+        }
+    }, [isTransitioningAll])
+
     return {
         current: queuedState.current as S,
         enqueue: (newAction: SetStateAction<S | undefined>) =>
@@ -59,10 +69,10 @@ function useQueuedState<S>(initialState?: S): QueuedTransitionState<S | undefine
                 actionQueue: [...actionQueue, newAction],
             })),
         transition,
+        // can't just transition based on queuedState here since react may queue setStates (i.e. enqueues)
+        // have to set a flag to transition on next render
         transitionAll: () => {
-            for (let i = 0; i < queuedState.actionQueue.length; i++) {
-                transition();
-            }
+            setTransitioningAll(true);
         },
     };
 }
