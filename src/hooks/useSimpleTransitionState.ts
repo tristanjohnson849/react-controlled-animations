@@ -31,8 +31,10 @@ export type SimpleTransitionState<S, E extends HTMLElement> = readonly [
     boolean
 ];
 
-function useSimpleTransitionState<S = undefined, E extends HTMLElement = HTMLElement>()
-    : SimpleTransitionState<S | undefined, E>;
+function useSimpleTransitionState<S = undefined, E extends HTMLElement = HTMLElement>(): SimpleTransitionState<
+    S | undefined,
+    E
+>;
 /**
  * State is always a defined S if an initial state is provided
  */
