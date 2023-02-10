@@ -35,4 +35,4 @@ This component requires an AnimatedRef prop to manage the animations on the tag 
 
 #### Defined in
 
-[components/Animated.tsx:38](https://github.com/tristanjohnson849/react-controlled-animations/blob/ea03579/src/components/Animated.tsx#L38)
+[components/Animated.tsx:38](https://github.com/tristanjohnson849/react-controlled-animations/blob/35474ce/src/components/Animated.tsx#L38)

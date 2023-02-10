@@ -26,7 +26,7 @@
 
 #### Defined in
 
-[hooks/useAnimatedTransitionState.ts:11](https://github.com/tristanjohnson849/react-controlled-animations/blob/ea03579/src/hooks/useAnimatedTransitionState.ts#L11)
+[hooks/useAnimatedTransitionState.ts:11](https://github.com/tristanjohnson849/react-controlled-animations/blob/35474ce/src/hooks/useAnimatedTransitionState.ts#L11)
 
 ## Functions
 
@@ -52,7 +52,7 @@ Hook to useState that animates on transitioning states
 
 #### Defined in
 
-[hooks/useAnimatedTransitionState.ts:37](https://github.com/tristanjohnson849/react-controlled-animations/blob/ea03579/src/hooks/useAnimatedTransitionState.ts#L37)
+[hooks/useAnimatedTransitionState.ts:37](https://github.com/tristanjohnson849/react-controlled-animations/blob/35474ce/src/hooks/useAnimatedTransitionState.ts#L37)
 
 ▸ **default**<`S`, `A`, `E`\>(`initialState`, `initialAnimation?`, `onAnimationEnd?`): [`AnimatedTransitionState`](../wiki/hooks.useAnimatedTransitionState#animatedtransitionstate)<`S`, `A`, `E`\>
 
@@ -80,7 +80,7 @@ State is always a defined S if an initial state is provided
 
 #### Defined in
 
-[hooks/useAnimatedTransitionState.ts:45](https://github.com/tristanjohnson849/react-controlled-animations/blob/ea03579/src/hooks/useAnimatedTransitionState.ts#L45)
+[hooks/useAnimatedTransitionState.ts:45](https://github.com/tristanjohnson849/react-controlled-animations/blob/35474ce/src/hooks/useAnimatedTransitionState.ts#L45)
 
 ▸ **default**<`S`, `A`, `E`\>(`initialState`, `initialAnimation?`, `onAnimationEnd?`): [`AnimatedTransitionState`](../wiki/hooks.useAnimatedTransitionState#animatedtransitionstate)<`S` \| `undefined`, `A`, `E`\>
 
@@ -110,4 +110,4 @@ Hook to useState that animates on transitioning states
 
 #### Defined in
 
-[hooks/useAnimatedTransitionState.ts:50](https://github.com/tristanjohnson849/react-controlled-animations/blob/ea03579/src/hooks/useAnimatedTransitionState.ts#L50)
+[hooks/useAnimatedTransitionState.ts:50](https://github.com/tristanjohnson849/react-controlled-animations/blob/35474ce/src/hooks/useAnimatedTransitionState.ts#L50)
