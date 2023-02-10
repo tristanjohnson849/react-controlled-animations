@@ -28,7 +28,7 @@ The mapping of animationName A to an AnimationInput
 
 #### Defined in
 
-[components/common.ts:52](https://github.com/tristanjohnson849/react-controlled-animations/blob/1a5aaaa/src/components/common.ts#L52)
+[components/common.ts:52](https://github.com/tristanjohnson849/react-controlled-animations/blob/ea03579/src/components/common.ts#L52)
 
 ___
 
@@ -40,4 +40,4 @@ The given tag that this Animated element delegates to
 
 #### Defined in
 
-[components/common.ts:47](https://github.com/tristanjohnson849/react-controlled-animations/blob/1a5aaaa/src/components/common.ts#L47)
+[components/common.ts:47](https://github.com/tristanjohnson849/react-controlled-animations/blob/ea03579/src/components/common.ts#L47)

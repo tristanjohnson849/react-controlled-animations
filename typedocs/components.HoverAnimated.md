@@ -18,7 +18,7 @@
 
 #### Defined in
 
-[components/HoverAnimated.tsx:6](https://github.com/tristanjohnson849/react-controlled-animations/blob/1a5aaaa/src/components/HoverAnimated.tsx#L6)
+[components/HoverAnimated.tsx:6](https://github.com/tristanjohnson849/react-controlled-animations/blob/ea03579/src/components/HoverAnimated.tsx#L6)
 
 ## Functions
 
@@ -48,4 +48,4 @@ May accept a ref to forward to the HTML tag delegate
 
 #### Defined in
 
-[components/HoverAnimated.tsx:29](https://github.com/tristanjohnson849/react-controlled-animations/blob/1a5aaaa/src/components/HoverAnimated.tsx#L29)
+[components/HoverAnimated.tsx:29](https://github.com/tristanjohnson849/react-controlled-animations/blob/ea03579/src/components/HoverAnimated.tsx#L29)

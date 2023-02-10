@@ -24,7 +24,7 @@
 
 #### Defined in
 
-[AnimationInput.ts:10](https://github.com/tristanjohnson849/react-controlled-animations/blob/1a5aaaa/src/AnimationInput.ts#L10)
+[AnimationInput.ts:10](https://github.com/tristanjohnson849/react-controlled-animations/blob/ea03579/src/AnimationInput.ts#L10)
 
 ___
 
@@ -34,7 +34,7 @@ ___
 
 #### Defined in
 
-[AnimationInput.ts:1](https://github.com/tristanjohnson849/react-controlled-animations/blob/1a5aaaa/src/AnimationInput.ts#L1)
+[AnimationInput.ts:1](https://github.com/tristanjohnson849/react-controlled-animations/blob/ea03579/src/AnimationInput.ts#L1)
 
 ___
 
@@ -50,7 +50,7 @@ ___
 
 #### Defined in
 
-[AnimationInput.ts:29](https://github.com/tristanjohnson849/react-controlled-animations/blob/1a5aaaa/src/AnimationInput.ts#L29)
+[AnimationInput.ts:29](https://github.com/tristanjohnson849/react-controlled-animations/blob/ea03579/src/AnimationInput.ts#L29)
 
 ## Functions
 
@@ -70,4 +70,4 @@ ___
 
 #### Defined in
 
-[AnimationInput.ts:18](https://github.com/tristanjohnson849/react-controlled-animations/blob/1a5aaaa/src/AnimationInput.ts#L18)
+[AnimationInput.ts:18](https://github.com/tristanjohnson849/react-controlled-animations/blob/ea03579/src/AnimationInput.ts#L18)
