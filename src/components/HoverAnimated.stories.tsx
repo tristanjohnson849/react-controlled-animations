@@ -58,7 +58,7 @@ const HoveringExample = () => {
 
 export default {
     component: HoveringExample,
-    title: 'HoveringExample',
+    title: 'Components/HoveringExample',
     parameters: {
         componentSource: {
           url: 'https://raw.githubusercontent.com/tristanjohnson849/react-controlled-animations/main/src/components/HoverAnimated.stories.tsx',
@@ -67,7 +67,4 @@ export default {
     },
 };
 
-const Template = args => <HoveringExample {...args} />;
-
-export const Default = Template.bind({});
-Default.args = {};
+export const Primary: React.FC<{}> = () => <HoveringExample />;

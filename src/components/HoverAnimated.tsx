@@ -1,7 +1,7 @@
 import React from "react";
 import { HTMLIntrinsics, mergeRefs, TagHTMLElement, AnimatedProps } from "./common";
 import ControlledAnimated from "./ControlledAnimated";
-import useIsHovering from "../hooks/useIsHovered";
+import useIsHovered from "../hooks/useIsHovered";
 
 export type HoverAnimations = 'hovering'|'notHovering';
 
@@ -9,11 +9,11 @@ function hoverAnimated<A extends string = never, T extends HTMLIntrinsics = "div
     props: AnimatedProps<HoverAnimations | A, T>,
     ref?: React.ForwardedRef<TagHTMLElement<T>>
 ): React.ReactElement<any, any> {
-    const [hovering, hoverRef] = useIsHovering();
+    const [hovered, hoverRef] = useIsHovered();
 
     return (
        <ControlledAnimated<HoverAnimations | A, T>
-            currentAnimation={hovering ? "hovering" : "notHovering"}
+            currentAnimation={hovered ? "hovering" : "notHovering"}
             ref={mergeRefs(ref, hoverRef as React.ForwardedRef<TagHTMLElement<T>>)}
             {...props}
        />

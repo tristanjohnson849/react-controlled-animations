@@ -1,43 +1,38 @@
-import React from 'react';
-import { useAnimatedTransitionState } from '../hooks';
-import { ControlledAnimated } from '.';
+import React, { CSSProperties } from 'react';
 import { toTransitionAnimation } from '../animationInputMappers';
-import Animated from './Animated';
+import Animated from '../components/Animated';
+import useAnimatedTransitionState from './useAnimatedTransitionState';
+
 
 const allAnimations = ['flying', 'jumping', 'sliding'] as const;
 type MyAnimations = typeof allAnimations[number];
 
+const textStyle: CSSProperties = {
+    background: 'white', 
+    padding: '16px', 
+    fontFamily: '"Helvetica", "Arial", sans-serif',
+    textAlign: 'center',
+    verticalAlign: 'middle', 
+    borderRadius: '8px'
+};
+
 const DURATION = 2000;
 
-const ControlledAnimatedExample: React.FC<{ chosenAnimation: MyAnimations }> = ({ chosenAnimation }) => {
+const AnimatedTransitionStateExample: React.FC<{ chosenAnimation: MyAnimations}> = ({ chosenAnimation }) => {
     const [
         moveCounter, animatedTransition,
         elementRef, currentAnimation
-    ] = useAnimatedTransitionState<number, MyAnimations, HTMLDivElement>(0);
-
+    ] = useAnimatedTransitionState<number, 'jumping' | 'flying' | 'sliding', HTMLDivElement>(0);
     return (
-        <ControlledAnimated<'movingBackground'>
-            style={{
-                width: '100vw',
-                height: '100vh',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                flexDirection: 'column',
-                background: 'linear-gradient(90deg, rgba(0,212,255,1) 0%, rgba(66,99,214,1) 50%, rgba(0,212,255,1) 100%)',
-            }}
-            currentAnimation={currentAnimation ? 'movingBackground' : null}
-            animations={{
-                movingBackground: {
-                    keyframes: [
-                        { backgroundPosition: 0 },
-                        { backgroundPosition: '-100vw' },
-                    ],
-                    options: { duration: DURATION, easing: 'ease-in-out' }
-                }
-            }}
-        >
-            <Animated<MyAnimations>
+        <div style={{ 
+            width: '100vw',
+            height: '100vh',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            flexDirection: 'column',
+        }}>
+            <Animated<'jumping' | 'flying' | 'sliding'>
                 ref={elementRef}
                 style={{
                     width: '100px',
@@ -63,15 +58,13 @@ const ControlledAnimatedExample: React.FC<{ chosenAnimation: MyAnimations }> = (
                     jumping: toTransitionAnimation({
                         keyframes: [
                             { translate: 0, scale: 1 },
-                            { translate: 0, scale: 1, offset: 0.1 },
-                            { scale: '1.1 0.9', translate: 0, offset: 0.15 },
-                            { scale: '0.9 1.1', translate: 0, offset: 0.2 },
-                            { scale: '0.9 1.1', translate: '0 -18vh', offset: 0.35 },
-                            { scale: '0.9 1.1', translate: '0 -20vh', offset: 0.4 },
+                            { scale: '1.1 0.9', translate: 0, offset: 0.05 },
+                            { scale: '0.9 1.1', translate: 0, offset: 0.1 },
                             { scale: '0.9 1.1', translate: '0 -18vh', offset: 0.45 },
-                            { scale: '0.9 1.1', translate: 0, offset: 0.6 },
-                            { scale: '1.1 0.9', translate: 0, offset: 0.65 },
-                            { scale: 1, translate: 0, offset: 0.7 },
+                            { scale: '0.9 1.1', translate: '0 -20vh', offset: 0.5 },
+                            { scale: '0.9 1.1', translate: '0 -18vh', offset: 0.55 },
+                            { scale: '0.9 1.1', translate: 0, offset: 0.9 },
+                            { scale: '1.1 0.9', translate: 0, offset: 0.95 },
                             { scale: 1, translate: 0 },
                         ],
                         options: { duration: DURATION, easing: 'ease-in-out' }
@@ -85,32 +78,36 @@ const ControlledAnimatedExample: React.FC<{ chosenAnimation: MyAnimations }> = (
                         options: { duration: DURATION, easing: 'ease-in-out' }
                     }),
                 }}
-            >
-                🤓
+                >
+            🤓
             </Animated>
-            <div style={{ background: 'white', padding: '16px', fontFamily: '"Helvetica", "Arial", sans-serif',
-                    textAlign: 'center',
-                    verticalAlign: 'middle', borderRadius: '8px' }}>
+            <div style={textStyle}>
                 <div>Moves: {moveCounter}</div>
                 <div>Animation: {currentAnimation || "null"}</div>
                 <button onClick={() => animatedTransition(prev => prev + 1, chosenAnimation)}>Move</button>
             </div>
-        </ControlledAnimated>
+            <div style={{maxWidth: '600px', ...textStyle}}>
+                The useAnimatedTransitionState hook lets you easily animate React state changes. 
+                Notice that the Move counter is only updated once the animation completes, and that continued clicks on the 'Move' button still count towards the counter.
+            </div>
+        </div>
     )
-};
+}
+
 
 export default {
-    component: ControlledAnimatedExample,
-    title: 'Components/ControlledAnimatedExample',
-    parameters: {
-        componentSource: {
-            url: 'https://raw.githubusercontent.com/tristanjohnson849/react-controlled-animations/main/src/components/ControlledAnimated.stories.tsx',
-            language: 'javascript',
-        }
-    }
+    component: AnimatedTransitionStateExample,
+    title: 'Hooks/AnimatedTransitionStateExample',
+    // parameters: {
+    //     componentSource: {
+    //         url: 'https://raw.githubusercontent.com/tristanjohnson849/react-controlled-animations/main/src/components/ControlledAnimated.stories.tsx',
+    //         language: 'javascript',
+    //     }
+    // }
 };
 
-const Template = args => <ControlledAnimatedExample {...args} />;
+const Template = args => <AnimatedTransitionStateExample {...args} />;
+
 
 export const Flying = Template.bind({});
 Flying.args = {
