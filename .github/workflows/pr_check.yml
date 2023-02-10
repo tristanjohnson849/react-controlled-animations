@@ -3,7 +3,7 @@ on:
   pull_request
 
 jobs:
-  build-and-deploy:
+  check-pr-valid:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
