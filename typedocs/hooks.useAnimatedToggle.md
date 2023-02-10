@@ -25,7 +25,7 @@
 
 #### Defined in
 
-[hooks/useAnimatedToggle.ts:11](https://github.com/tristanjohnson849/react-controlled-animations/blob/35474ce/src/hooks/useAnimatedToggle.ts#L11)
+[hooks/useAnimatedToggle.ts:11](https://github.com/tristanjohnson849/react-controlled-animations/blob/5534f41/src/hooks/useAnimatedToggle.ts#L11)
 
 ___
 
@@ -35,7 +35,7 @@ ___
 
 #### Defined in
 
-[hooks/useAnimatedToggle.ts:6](https://github.com/tristanjohnson849/react-controlled-animations/blob/35474ce/src/hooks/useAnimatedToggle.ts#L6)
+[hooks/useAnimatedToggle.ts:6](https://github.com/tristanjohnson849/react-controlled-animations/blob/5534f41/src/hooks/useAnimatedToggle.ts#L6)
 
 ## Functions
 
@@ -66,4 +66,4 @@ Hook to create a boolean toggle state that animates when toggled
 
 #### Defined in
 
-[hooks/useAnimatedToggle.ts:38](https://github.com/tristanjohnson849/react-controlled-animations/blob/35474ce/src/hooks/useAnimatedToggle.ts#L38)
+[hooks/useAnimatedToggle.ts:38](https://github.com/tristanjohnson849/react-controlled-animations/blob/5534f41/src/hooks/useAnimatedToggle.ts#L38)
