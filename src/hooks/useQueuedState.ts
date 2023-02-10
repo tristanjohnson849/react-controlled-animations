@@ -41,28 +41,7 @@ function useQueuedState<S>(initialState?: S): QueuedTransitionState<S | undefine
         current: initialState,
         actionQueue: [],
     });
-    const [isTransitioningAll, setTransitioningAll] = useState(false);
-
-    const transition = () =>
-        setQueuedState(({ current, actionQueue }: InternalQueuedState<S | undefined>) => {
-            if (actionQueue.length <= 0) {
-                return { current, actionQueue };
-            }
-            const [action, ...remaining] = actionQueue;
-            return {
-                current: isFunctionAction(action) ? action(current) : action,
-                actionQueue: remaining,
-            };
-        });
-
-    useEffect(() => {
-        if (isTransitioningAll) {
-            for (let i = 0; i < queuedState.actionQueue.length; i++) {
-                transition();
-            }
-            setTransitioningAll(false);
-        }
-    }, [isTransitioningAll]);
+    const transition = () => setQueuedState((prevState) => transitionNActions(prevState, 1));
 
     return {
         current: queuedState.current as S,
@@ -72,13 +51,26 @@ function useQueuedState<S>(initialState?: S): QueuedTransitionState<S | undefine
                 actionQueue: [...actionQueue, newAction],
             })),
         transition,
-        // can't just transition based on queuedState here since react may queue setStates (i.e. enqueues)
-        // have to set a flag to transition on next render
-        transitionAll: () => {
-            setTransitioningAll(true);
-        },
+        transitionAll: () => 
+            setQueuedState((prevState) => transitionNActions(
+                prevState, 
+                prevState.actionQueue.length
+            )),
     };
 }
+
+const transitionNActions = <S>({ current, actionQueue }: InternalQueuedState<S>, n: number): InternalQueuedState<S> => {
+    const next = actionQueue.slice(0, n).reduce<S>(
+        (next, action) => dispatch(action, next), 
+        current
+    );
+    
+    return { current: next, actionQueue: actionQueue.slice(n) };
+}
+
+const dispatch = <S>(action: SetStateAction<S>, state: S): S => isFunctionAction(action) 
+    ? action(state) 
+    : action;
 
 type InternalQueuedState<T> = {
     readonly current: T;
