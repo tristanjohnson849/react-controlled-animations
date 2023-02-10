@@ -30,7 +30,7 @@
     "cov:send": "run-s cov:lcov && codecov",
     "cov:check": "nyc report && nyc check-coverage --lines 100 --functions 100 --branches 100",
     "doc": "typedoc --options typedoc.js",
-    "doc:wiki": "typedoc --theme github-wiki --options typedoc.js && cp -r build/docs/* typedocs/",
+    "doc:wiki": "typedoc --theme github-wiki --options typedoc.js --out typedocs/",
     "version": "standard-version",
     "prepare-release": "run-s test cov:check version doc fail-on-uncommitted",
     "fail-on-uncommitted": "git diff-index --quiet HEAD -- || echo \"You have uncommitted changes:\" && git status && exit 1",
