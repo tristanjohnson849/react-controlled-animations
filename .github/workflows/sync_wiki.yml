@@ -8,7 +8,7 @@ permissions:
   contents: write
   
 jobs:
-  sync_docs:
+  sync-docs:
     name: Sync Wiki
     runs-on: ubuntu-latest
     steps:
