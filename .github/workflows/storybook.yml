@@ -1,6 +1,8 @@
-name: Build and Deploy
+name: Build and Deploy Storybook to GH Pages
 on: 
-  -  push
+  push:
+    branches:
+      - main
 
 permissions:
   contents: write
