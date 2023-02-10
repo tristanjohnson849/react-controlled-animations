@@ -13,5 +13,5 @@ jobs:
       - name: Install
         run: npm install
       - name: Check
-        run: npm run check
+        run: npm run check && npm run fail-on-uncommitted
         
