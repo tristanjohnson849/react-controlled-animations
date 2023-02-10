@@ -7,7 +7,7 @@
 CSS animations are hard to control, and even more so when you want your animations tied to the state of your React components. 
 The [Web Animations API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Animations_API) makes it easier to control animations through javascript, but the API is designed to be used imperatively with DOM elements, violating React's declarative (one-way-data-flow) paradigm.
 
-This library is a set of hooks and components to enable declarative, controlled Web Animations API animations React components.
+This library is a set of hooks and components to enable declarative, controlled Web Animations API animations in React components.
 
 
 [Storybook Examples](https://tristanjohnson849.github.io/react-controlled-animations/)
