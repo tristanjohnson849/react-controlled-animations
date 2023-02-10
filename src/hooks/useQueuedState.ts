@@ -1,4 +1,4 @@
-import { SetStateAction, useEffect, useState } from 'react';
+import { SetStateAction, useState } from 'react';
 
 /**
  * State that supports queueing transitioning
@@ -51,26 +51,17 @@ function useQueuedState<S>(initialState?: S): QueuedTransitionState<S | undefine
                 actionQueue: [...actionQueue, newAction],
             })),
         transition,
-        transitionAll: () => 
-            setQueuedState((prevState) => transitionNActions(
-                prevState, 
-                prevState.actionQueue.length
-            )),
+        transitionAll: () => setQueuedState((prevState) => transitionNActions(prevState, prevState.actionQueue.length)),
     };
 }
 
 const transitionNActions = <S>({ current, actionQueue }: InternalQueuedState<S>, n: number): InternalQueuedState<S> => {
-    const next = actionQueue.slice(0, n).reduce<S>(
-        (next, action) => dispatch(action, next), 
-        current
-    );
-    
-    return { current: next, actionQueue: actionQueue.slice(n) };
-}
+    const next = actionQueue.slice(0, n).reduce<S>((next, action) => dispatch(action, next), current);
 
-const dispatch = <S>(action: SetStateAction<S>, state: S): S => isFunctionAction(action) 
-    ? action(state) 
-    : action;
+    return { current: next, actionQueue: actionQueue.slice(n) };
+};
+
+const dispatch = <S>(action: SetStateAction<S>, state: S): S => (isFunctionAction(action) ? action(state) : action);
 
 type InternalQueuedState<T> = {
     readonly current: T;
