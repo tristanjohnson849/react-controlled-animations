@@ -23,7 +23,7 @@ function hoverAnimated<A extends string = never, T extends HTMLIntrinsics = "div
 /**
  * An Animated component that will track hover (via mouseenter/mouseleave listeners) and change animations to the corresponding hover state
  * May accept a ref to forward to the HTML tag delegate
- * @typeParam A the additional animation names; default = never makes the default animation names exactly {@link HoverAnimations}
+ * @typeParam A the additional animation names; default = never makes the default animation names exactly {@link components.HoverAnimations}
  * @typeParam T the HTML Tag delegate
  */
 const HoverAnimated = React.forwardRef(hoverAnimated) as <A extends string = never, T extends HTMLIntrinsics = "div">(

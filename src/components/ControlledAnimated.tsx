@@ -14,7 +14,7 @@ export type ControlledAnimatedProps<A extends string, T extends HTMLIntrinsics =
     /**
      * Callback to be called when the animation is finished() or is interrupted by a new animationName
      * @param completedAnimationName the animation state that is ending
-     * @param webAnimation the {@link Animation} that is ending or null if the animation could not be started
+     * @param webAnimation the Web API Animation that is ending or null if the animation could not be started
      */
     onAnimationEnd?: (completedAnimationName: A, webAnimation: Animation | null) => void;
 } & AnimatedProps<A, T>;
@@ -61,7 +61,7 @@ const controlledAnimated = <A extends string, T extends HTMLIntrinsics = "div">(
 /**
  * An Animated component that is controlled by the currentAnimation prop
  * The component may be changed to a different HTML tag delegate via the as prop
- * May accept a ref to forward to the HTML tag delegate, though there is no need to pass an AnimatedRef (see @link Animated)
+ * May accept a ref to forward to the HTML tag delegate, though there is no need to pass an AnimatedRef (see @link components.Animated)
  * 
  * This component is useful for synchronizing animations with other animated elements
  * @typeParam A the accepted animation names

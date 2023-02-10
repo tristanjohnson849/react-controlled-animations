@@ -22,7 +22,7 @@ export function isAnimatedRef<E>(ref: Ref<E> | null | undefined): ref is Animate
 /**
  * Low-level hook to useRef that will animate the ref'd HTML element with the given currentAnimation name
  *
- * Expects the AnimationsByName<A> to be serialized as a JSON string in the data-animations attribute on the element - see {@link ControlledAnimated!}
+ * Expects the AnimationsByName<A> to be serialized as a JSON string in the data-animations attribute on the element - see {@link components.ControlledAnimated}
  *
  * Note: will interrupt and play a new animation if the animations stored at data-animations change and the Component using this hook is rerendered
  *
