@@ -34,7 +34,7 @@
     "version": "standard-version",
     "prepare-release": "run-s test cov:check version doc fail-on-uncommitted",
     "fail-on-uncommitted": "git diff-index --quiet HEAD -- || echo \"You have uncommitted changes:\" && git status && exit 1",
-    "prepublish": "npm run prepare-release",
+    "prepublishOnly": "npm run prepare-release",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook  -o stories-build"
   },
