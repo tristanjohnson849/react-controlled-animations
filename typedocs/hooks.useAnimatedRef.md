@@ -19,7 +19,7 @@
 
 Low-level hook to useRef that will animate the ref'd HTML element with the given currentAnimation name
 
-Expects the AnimationsByName<A> to be serialized as a JSON string in the data-animations attribute on the element - see ControlledAnimated!
+Expects the AnimationsByName<A> to be serialized as a JSON string in the data-animations attribute on the element - see [ControlledAnimated](../wiki/components#controlledanimated)
 
 Note: will interrupt and play a new animation if the animations stored at data-animations change and the Component using this hook is rerendered
 
@@ -45,7 +45,7 @@ react Ref to be assigned to the Animated element
 
 #### Defined in
 
-[hooks/useAnimatedRef.ts:34](https://github.com/tristanjohnson849/react-controlled-animations/blob/35474ce/src/hooks/useAnimatedRef.ts#L34)
+[hooks/useAnimatedRef.ts:34](https://github.com/tristanjohnson849/react-controlled-animations/blob/5534f41/src/hooks/useAnimatedRef.ts#L34)
 
 ___
 
@@ -71,4 +71,4 @@ ref is AnimatedRef<E\>
 
 #### Defined in
 
-[hooks/useAnimatedRef.ts:18](https://github.com/tristanjohnson849/react-controlled-animations/blob/35474ce/src/hooks/useAnimatedRef.ts#L18)
+[hooks/useAnimatedRef.ts:18](https://github.com/tristanjohnson849/react-controlled-animations/blob/5534f41/src/hooks/useAnimatedRef.ts#L18)
