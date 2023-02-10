@@ -13,5 +13,11 @@ jobs:
       - name: Install
         run: npm install
       - name: Check
-        run: npm run check && npm run fail-on-uncommitted
+        run: npm run check
+      - name: Check for uncommitted changes
+        id: check-changes
+        uses: mskri/check-uncommitted-changes-action@v1.0.1
+      - name: Fail on uncommitted changes
+        if: steps.check-changes.outputs.changes != ''
+        run: exit 1
         
