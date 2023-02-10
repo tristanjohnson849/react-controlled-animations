@@ -98,12 +98,12 @@ const AnimatedTransitionStateExample: React.FC<{ chosenAnimation: MyAnimations}>
 export default {
     component: AnimatedTransitionStateExample,
     title: 'Hooks/AnimatedTransitionStateExample',
-    // parameters: {
-    //     componentSource: {
-    //         url: 'https://raw.githubusercontent.com/tristanjohnson849/react-controlled-animations/main/src/components/ControlledAnimated.stories.tsx',
-    //         language: 'javascript',
-    //     }
-    // }
+    parameters: {
+        componentSource: {
+            url: 'https://raw.githubusercontent.com/tristanjohnson849/react-controlled-animations/main/src/hooks/AnimatedTransitionState.stories.tsx',
+            language: 'javascript',
+        }
+    }
 };
 
 const Template = args => <AnimatedTransitionStateExample {...args} />;
