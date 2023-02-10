@@ -1,5 +1,10 @@
+name: Sync Typedocs to Wiki
 on:
   - push
+  
+permissions:
+  contents: write
+  
 jobs:
   sync_docs:
     name: Sync Wiki
