@@ -1,29 +1,31 @@
-import { Ref, useEffect, useRef, useState } from 'react';
+import { Ref, useCallback, useEffect, useRef, useState } from 'react';
 
 /**
  * Hook to capture the hovering state of a ref'd HTMLElement
  *
+ * Caveat: if ref is pointed at a new element, isHovered will be the last hoverState of the previous element until a mouseOver/Out event happens on the new element
+ * 
  * @returns [isHovered, elementRef]
  */
-function useIsHovered<E extends HTMLElement = HTMLElement>(): readonly [boolean, Ref<E>] {
-    const [value, setValue] = useState(false);
+function useIsHovered<E extends HTMLElement = HTMLElement>(): readonly [boolean | undefined, Ref<E>] {
+    const [isHovered, setIsHovered] = useState<boolean | undefined>(undefined);
     const ref = useRef<E>(null);
-    const handleMouseOver = () => setValue(true);
-    const handleMouseOut = () => setValue(false);
+    const hovered = useCallback(() => setIsHovered(true), []);
+    const notHovered = useCallback(() => setIsHovered(false), []);
+
     useEffect(() => {
         const el = ref.current;
         if (el) {
-            el.addEventListener('mouseover', handleMouseOver);
-            el.addEventListener('mouseout', handleMouseOut);
+            el.addEventListener('mouseover', hovered);
+            el.addEventListener('mouseout', notHovered);
             return () => {
-                el.removeEventListener('mouseover', handleMouseOver);
-                el.removeEventListener('mouseout', handleMouseOut);
+                el.removeEventListener('mouseover', hovered);
+                el.removeEventListener('mouseout', notHovered);
             };
         }
-        return undefined;
     }, [ref.current]); // Recall only if ref changes
 
-    return [value, ref];
+    return [isHovered, ref];
 }
 
 export default useIsHovered;
