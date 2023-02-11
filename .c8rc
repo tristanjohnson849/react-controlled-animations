@@ -1,0 +1,10 @@
+{
+    "src": "src",
+    "extension": ["js", "jsx", "ts", "tsx"],
+    "all": true,
+    "exclude-after-remap": true,
+    "statements": 50,
+    "lines": 50,
+    "functions": 80, 
+    "branches": 80
+}

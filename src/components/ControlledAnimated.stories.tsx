@@ -1,6 +1,6 @@
 import React from 'react';
-import { useAnimatedTransitionState } from '../hooks';
-import { ControlledAnimated } from '.';
+import useAnimatedTransitionState from '../hooks/useAnimatedTransitionState';
+import ControlledAnimated from './ControlledAnimated';
 import { toTransitionAnimation } from '../animationInputMappers';
 import Animated from './Animated';
 
