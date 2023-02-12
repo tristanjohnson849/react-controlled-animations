@@ -13,16 +13,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout wiki-sync branch
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           ref: 'wiki-sync'
       - name: Local Merge main
-        run: git merge origin/main
+        run: git merge origin/main --no-edit 
       - name: Build typedocs
         run: | 
           npm install
           npm run doc:wiki
-      - name: Commit typedocs
+      - name: Commit and push Typedocs
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: 'Updating typedocs'
