@@ -16,6 +16,7 @@ function hoverAnimated<A extends string = never, T extends HTMLIntrinsics = "div
     const [hovered, hoverRef] = useIsHovered();
 
     return (
+        // @ts-ignore
        <ControlledAnimated<HoverAnimations | A, T>
             currentAnimation={currentAnimation || (hovered ? "hovering" : "notHovering")}
             ref={mergeRefs(ref, hoverRef as React.ForwardedRef<TagHTMLElement<T>>)}
