@@ -1,5 +1,5 @@
-export { default as useAnimatedToggle } from './useAnimatedToggle';
-export * from './useAnimatedToggle';
+export { default as useAnimatedToggle } from './useTransitioningToggle';
+export * from './useTransitioningToggle';
 export { default as useTransitioningState } from './useTransitioningState';
 export * from './useTransitioningState';
 export { default as useAnimatingRef } from './useAnimatedRef';
