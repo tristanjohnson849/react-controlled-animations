@@ -1,24 +1,15 @@
 import { render, RenderResult } from "@testing-library/react";
-import { ExecutionContext } from "ava";
 
-export interface Renderer {
-    render: (el: React.ReactElement<any, any>) => RenderResult;
-}
-
-const isolatedRender = (document: Document, t: ExecutionContext, el: React.ReactElement<any, any>): RenderResult => {
+export const isolatedRender = (el: React.ReactElement<any, any>): RenderResult => {
     const container = document.createElement('div');
-    container.id = t.title;
+    container.id = expect.getState().currentTestName;
 
     return render(el, { container });
 }
 
-// test.beforeEach
-export const configureRenderContext = (document: Document) => (t: ExecutionContext<Renderer>) => 
-    t.context.render = (el: React.ReactElement<any, any>) => isolatedRender(document, t, el);
-
 // test.afterEach
-export const isolatedCleanup = (document: Document) => (t: ExecutionContext) => {
-    const container = document.getElementById(t.title);
+export const isolatedCleanup = () => {
+    const container = document.getElementById(expect.getState().currentTestName);
     if (container) {
         document.removeChild(container);
     }
