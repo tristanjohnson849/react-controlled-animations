@@ -53,7 +53,6 @@ function useAnimatedRef<A extends string = string, E extends HTMLElement = HTMLE
             const webAnimation = runAnimation(
                 elementRef.current,
                 keyframes,
-<<<<<<< Updated upstream
                 options,
                 (anim) => onAnimationEnd && onAnimationEnd(currentAnimation, anim),
                 () => {
@@ -66,27 +65,6 @@ function useAnimatedRef<A extends string = string, E extends HTMLElement = HTMLE
 
             if (webAnimation !== null) {
                 return () => cleanupAnimation(webAnimation);
-=======
-                options: { ...options },
-            } = normalizedAnimation(animations[currentAnimation]);
-
-            let webAnimation: Animation;
-            try {
-                webAnimation = elementRef.current.animate(keyframes, options as KeyframeAnimationOptions);
-            } catch (err) {
-                if (process.env.NODE_ENV !== 'production') {
-                    const selector = elementRef.current.id || elementRef.current.className || null;
-                    console.error(
-                        `Failed to animate ${elementRef.current}${
-                            selector ? `[${selector}]` : ''
-                        }(${currentAnimation}).\nCheck your animations: ${serializedAnimations}.\n`,
-                        err
-                    );
-                }
-
-                onAnimationEnd && onAnimationEnd(currentAnimation, null);
-                return;
->>>>>>> Stashed changes
             }
         }
     }, [elementRef.current, currentAnimation, serializedAnimations]);
