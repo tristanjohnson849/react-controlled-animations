@@ -52,7 +52,7 @@ function useAnimatedRef<A extends string = string, E extends HTMLElement = HTMLE
                 keyframes,
                 options: { ...options },
             } = normalizedAnimation(animations[currentAnimation]);
-            
+
             let webAnimation: Animation;
             try {
                 webAnimation = elementRef.current.animate(keyframes, options as KeyframeAnimationOptions);
@@ -60,12 +60,13 @@ function useAnimatedRef<A extends string = string, E extends HTMLElement = HTMLE
                 if (process.env.NODE_ENV !== 'production') {
                     const selector = elementRef.current.id || elementRef.current.className || null;
                     console.error(
-                        `Failed to animate ${elementRef.current}${selector ? `[${selector}]` : ''
+                        `Failed to animate ${elementRef.current}${
+                            selector ? `[${selector}]` : ''
                         }(${currentAnimation}).\nCheck your animations: ${serializedAnimations}.\n`,
                         err
                     );
                 }
-                
+
                 onAnimationEnd && onAnimationEnd(currentAnimation, null);
                 return;
             }
