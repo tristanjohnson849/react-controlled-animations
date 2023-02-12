@@ -12,12 +12,17 @@ jobs:
     name: Update Typedocs
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout wiki-sync branch
+      - name: Merge main to wiki-sync
+        uses: devmasx/merge-branch@master
+        with:
+          type: now
+          from_branch: main
+          target_branch: wiki-sync
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Checkout wiki-sync
         uses: actions/checkout@v3
         with:
           ref: 'wiki-sync'
-      - name: Local Merge main
-        run: git merge origin/main --no-edit 
       - name: Build typedocs
         run: | 
           npm install
