@@ -1,6 +1,6 @@
 import React, { CSSProperties } from 'react';
 import { toTransitionAnimation } from '../animationInputMappers';
-import Animated from '../components/Animated';
+import ControlledAnimated from '../components/ControlledAnimated';
 import useTransitioningState from './useTransitioningState';
 
 
@@ -18,11 +18,13 @@ const textStyle: CSSProperties = {
 
 const DURATION = 2000;
 
-const AnimatedTransitionStateExample: React.FC<{ chosenAnimation: MyAnimations}> = ({ chosenAnimation }) => {
+const UseTransitioningState: React.FC<{ chosenAnimation: MyAnimations}> = ({ chosenAnimation }) => {
     const [
-        moveCounter, animatedTransition,
-        elementRef, currentAnimation
-    ] = useTransitioningState<number, 'jumping' | 'flying' | 'sliding', HTMLDivElement>(0);
+        moveCounter,
+        startTransition,
+        endTransition,
+        currentTransition
+    ] = useTransitioningState<number, 'jumping' | 'flying' | 'sliding'>(0);
     return (
         <div style={{ 
             width: '100vw',
@@ -32,8 +34,9 @@ const AnimatedTransitionStateExample: React.FC<{ chosenAnimation: MyAnimations}>
             justifyContent: 'center',
             flexDirection: 'column',
         }}>
-            <Animated<'jumping' | 'flying' | 'sliding'>
-                ref={elementRef}
+            <ControlledAnimated<'jumping' | 'flying' | 'sliding'>
+                currentAnimation={currentTransition}
+                onAnimationEnd={endTransition}
                 style={{
                     width: '100px',
                     height: '100px',
@@ -80,11 +83,11 @@ const AnimatedTransitionStateExample: React.FC<{ chosenAnimation: MyAnimations}>
                 }}
                 >
             🤓
-            </Animated>
+            </ControlledAnimated>
             <div style={textStyle}>
                 <div>Moves: {moveCounter}</div>
-                <div>Animation: {currentAnimation || "null"}</div>
-                <button onClick={() => animatedTransition(prev => prev + 1, chosenAnimation)}>Move</button>
+                <div>Animation: {currentTransition || "null"}</div>
+                <button onClick={() => startTransition(prev => prev + 1, chosenAnimation)}>Move</button>
             </div>
             <div style={{maxWidth: '600px', ...textStyle}}>
                 The useAnimatedTransitionState hook lets you easily animate React state changes. 
@@ -96,8 +99,8 @@ const AnimatedTransitionStateExample: React.FC<{ chosenAnimation: MyAnimations}>
 
 
 export default {
-    component: AnimatedTransitionStateExample,
-    title: 'Hooks/AnimatedTransitionStateExample',
+    component: UseTransitioningState,
+    title: 'Hooks/UseTransitioningState',
     parameters: {
         componentSource: {
             url: 'https://raw.githubusercontent.com/tristanjohnson849/react-controlled-animations/main/src/hooks/AnimatedTransitionState.stories.tsx',
@@ -106,7 +109,7 @@ export default {
     }
 };
 
-const Template = args => <AnimatedTransitionStateExample {...args} />;
+const Template = args => <UseTransitioningState {...args} />;
 
 
 export const Flying = Template.bind({});
