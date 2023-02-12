@@ -34,7 +34,7 @@ export function isAnimatedRef<E>(ref: Ref<E> | null | undefined): ref is Animate
 function useAnimatedRef<A extends string = string, E extends HTMLElement = HTMLElement>(
     currentAnimation: A | null,
     animations: AnimationsByName<A>,
-    onAnimationEnd: (completedAnimationName: A | null, webAnimation: Animation | null) => void = () => {}
+    onAnimationEnd?: (completedAnimationName: A | null, webAnimation: Animation | null) => void
 ): AnimatedRef<E> {
     const elementRef = useRef<E>(null) as AnimatedRef<E>;
     elementRef.refType = 'animated';
@@ -48,23 +48,22 @@ function useAnimatedRef<A extends string = string, E extends HTMLElement = HTMLE
                 onAnimationEnd && onAnimationEnd(currentAnimation, null);
                 return undefined;
             }
-            const {
+            const { keyframes, options } = normalizedAnimation(animations[currentAnimation]);
+
+            const webAnimation = runAnimation(
+                elementRef.current,
                 keyframes,
                 options,
-            } = normalizedAnimation(animations[currentAnimation]);
-            
-            const webAnimation = runAnimation(
-                elementRef.current, 
-                keyframes, 
-                options, 
-                (anim) => onAnimationEnd(currentAnimation, anim),
+                (anim) => onAnimationEnd && onAnimationEnd(currentAnimation, anim),
                 () => {
                     const selector = elementRef.current.id || elementRef.current.className || null;
-                    return `Failed to animate ${currentAnimation} on ${elementRef.current.tagName}${selector ? `[${selector}]` : ''}.\nCheck your animations: ${serializedAnimations}.\n`
+                    return `Failed to animate ${currentAnimation} on ${elementRef.current.tagName}${
+                        selector ? `[${selector}]` : ''
+                    }.\nCheck your animations: ${serializedAnimations}.\n`;
                 }
             );
 
-            if (webAnimation !== null) {                
+            if (webAnimation !== null) {
                 return () => cleanupAnimation(webAnimation);
             }
         }
@@ -75,11 +74,10 @@ function useAnimatedRef<A extends string = string, E extends HTMLElement = HTMLE
 
 export default useAnimatedRef;
 
-
 const runAnimation = <E extends HTMLElement>(
-    element: E, 
-    keyframes: Keyframe[], 
-    options: AnimationOptions, 
+    element: E,
+    keyframes: Keyframe[],
+    options: AnimationOptions,
     onAnimationEnd: (webAnimation: Animation | null) => void,
     errorMessage: (err: Error) => string
 ) => {
@@ -94,22 +92,22 @@ const runAnimation = <E extends HTMLElement>(
             }
             onAnimationEnd && onAnimationEnd(webAnimation);
         };
-        return webAnimation
+        return webAnimation;
     } catch (err) {
         if (process.env.NODE_ENV !== 'production') {
             console.error(errorMessage(err), err);
         }
-        
+
         onAnimationEnd && onAnimationEnd(null);
         return null;
     }
-}
+};
 
 const cleanupAnimation = (webAnimation: Animation) => {
     if (webAnimation.playState !== 'finished') {
         // simulate finish without actually calling finish() for infinite animations
         webAnimation.onfinish(null);
-        
+
         // cancel to remove animation
         webAnimation.cancel();
     }
