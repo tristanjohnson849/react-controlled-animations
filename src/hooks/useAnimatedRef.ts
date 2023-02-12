@@ -43,48 +43,47 @@ function useAnimatedRef<A extends string = string, E extends HTMLElement = HTMLE
 
     // if we have a ref and an currentAnimation, animate the ref with the currentAnimation
     useEffect(() => {
-        if (elementRef.current !== null) {
+        if (elementRef.current !== null && currentAnimation !== null) {
+            if (!animations || !animations[currentAnimation]) {
+                onAnimationEnd && onAnimationEnd(currentAnimation, null);
+                return undefined;
+            }
+            const {
+                keyframes,
+                options: { ...options },
+            } = normalizedAnimation(animations[currentAnimation]);
+            
+            let webAnimation: Animation;
             try {
-                if (currentAnimation !== null) {
-                    if (!animations || !animations[currentAnimation]) {
-                        onAnimationEnd && onAnimationEnd(currentAnimation, null);
-                        return undefined;
-                    }
-                    const {
-                        keyframes,
-                        options: { ...options },
-                    } = normalizedAnimation(animations[currentAnimation]);
-
-                    const webAnimation = elementRef.current.animate(keyframes, options as KeyframeAnimationOptions);
-
-                    const end = () => {
-                        try {
-                            webAnimation.commitStyles();
-                        } catch (e) {
-                            // element may have been unmounted
-                        }
-                        onAnimationEnd && onAnimationEnd(currentAnimation, webAnimation);
-                    };
-                    webAnimation.onfinish = end;
-                    return () => {
-                        if (webAnimation.playState !== 'finished') {
-                            end();
-                        }
-                    };
-                }
+                webAnimation = elementRef.current.animate(keyframes, options as KeyframeAnimationOptions);
             } catch (err) {
                 if (process.env.NODE_ENV !== 'production') {
                     const selector = elementRef.current.id || elementRef.current.className || null;
                     console.error(
-                        `Failed to animate ${elementRef.current}${
-                            selector ? `[${selector}]` : ''
+                        `Failed to animate ${elementRef.current}${selector ? `[${selector}]` : ''
                         }(${currentAnimation}).\nCheck your animations: ${serializedAnimations}.\n`,
                         err
                     );
                 }
+                
+                onAnimationEnd && onAnimationEnd(currentAnimation, null);
+                return;
             }
+            const end = () => {
+                try {
+                    webAnimation.commitStyles();
+                } catch (e) {
+                    // element may have been unmounted
+                }
+                onAnimationEnd && onAnimationEnd(currentAnimation, webAnimation);
+            };
+            webAnimation.onfinish = end;
+            return () => {
+                if (webAnimation.playState !== 'finished') {
+                    end();
+                }
+            };
         }
-        return undefined;
     }, [elementRef.current, currentAnimation, serializedAnimations]);
 
     return elementRef;
