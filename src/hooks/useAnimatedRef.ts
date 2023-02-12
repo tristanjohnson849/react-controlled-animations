@@ -1,6 +1,6 @@
 import { Ref, useEffect, useRef } from 'react';
 
-import { AnimationsByName, normalizedAnimation } from '../AnimationInput';
+import { AnimationOptions, AnimationsByName, normalizedAnimation } from '../AnimationInput';
 
 /**
  * A React.Ref that declares itself as an AnimatedRef
@@ -34,7 +34,7 @@ export function isAnimatedRef<E>(ref: Ref<E> | null | undefined): ref is Animate
 function useAnimatedRef<A extends string = string, E extends HTMLElement = HTMLElement>(
     currentAnimation: A | null,
     animations: AnimationsByName<A>,
-    onAnimationEnd?: (completedAnimationName: A, webAnimation: Animation | null) => void
+    onAnimationEnd: (completedAnimationName: A | null, webAnimation: Animation | null) => void = () => {}
 ): AnimatedRef<E> {
     const elementRef = useRef<E>(null) as AnimatedRef<E>;
     elementRef.refType = 'animated';
@@ -43,46 +43,30 @@ function useAnimatedRef<A extends string = string, E extends HTMLElement = HTMLE
 
     // if we have a ref and an currentAnimation, animate the ref with the currentAnimation
     useEffect(() => {
-        if (elementRef.current !== null && currentAnimation !== null) {
-            if (!animations || !animations[currentAnimation]) {
+        if (elementRef.current !== null) {
+            if (!currentAnimation || !animations || !animations[currentAnimation]) {
                 onAnimationEnd && onAnimationEnd(currentAnimation, null);
                 return undefined;
             }
             const {
                 keyframes,
-                options: { ...options },
+                options,
             } = normalizedAnimation(animations[currentAnimation]);
             
-            let webAnimation: Animation;
-            try {
-                webAnimation = elementRef.current.animate(keyframes, options as KeyframeAnimationOptions);
-            } catch (err) {
-                if (process.env.NODE_ENV !== 'production') {
+            const webAnimation = runAnimation(
+                elementRef.current, 
+                keyframes, 
+                options, 
+                (anim) => onAnimationEnd(currentAnimation, anim),
+                () => {
                     const selector = elementRef.current.id || elementRef.current.className || null;
-                    console.error(
-                        `Failed to animate ${elementRef.current}${selector ? `[${selector}]` : ''
-                        }(${currentAnimation}).\nCheck your animations: ${serializedAnimations}.\n`,
-                        err
-                    );
+                    return `Failed to animate ${currentAnimation} on ${elementRef.current.tagName}${selector ? `[${selector}]` : ''}.\nCheck your animations: ${serializedAnimations}.\n`
                 }
-                
-                onAnimationEnd && onAnimationEnd(currentAnimation, null);
-                return;
+            );
+
+            if (webAnimation !== null) {                
+                return () => cleanupAnimation(webAnimation);
             }
-            const end = () => {
-                try {
-                    webAnimation.commitStyles();
-                } catch (e) {
-                    // element may have been unmounted
-                }
-                onAnimationEnd && onAnimationEnd(currentAnimation, webAnimation);
-            };
-            webAnimation.onfinish = end;
-            return () => {
-                if (webAnimation.playState !== 'finished') {
-                    end();
-                }
-            };
         }
     }, [elementRef.current, currentAnimation, serializedAnimations]);
 
@@ -90,3 +74,43 @@ function useAnimatedRef<A extends string = string, E extends HTMLElement = HTMLE
 }
 
 export default useAnimatedRef;
+
+
+const runAnimation = <E extends HTMLElement>(
+    element: E, 
+    keyframes: Keyframe[], 
+    options: AnimationOptions, 
+    onAnimationEnd: (webAnimation: Animation | null) => void,
+    errorMessage: (err: Error) => string
+) => {
+    try {
+        const webAnimation = element.animate(keyframes, options as KeyframeAnimationOptions);
+
+        webAnimation.onfinish = () => {
+            try {
+                webAnimation.commitStyles();
+            } catch (e) {
+                // element may have been unmounted
+            }
+            onAnimationEnd && onAnimationEnd(webAnimation);
+        };
+        return webAnimation
+    } catch (err) {
+        if (process.env.NODE_ENV !== 'production') {
+            console.error(errorMessage(err), err);
+        }
+        
+        onAnimationEnd && onAnimationEnd(null);
+        return null;
+    }
+}
+
+const cleanupAnimation = (webAnimation: Animation) => {
+    if (webAnimation.playState !== 'finished') {
+        // simulate finish without actually calling finish() for infinite animations
+        webAnimation.onfinish(null);
+        
+        // cancel to remove animation
+        webAnimation.cancel();
+    }
+};
