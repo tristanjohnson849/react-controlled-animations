@@ -34,10 +34,7 @@ export type TransitioningToggleState = readonly [
  *
  * @return [isToggled, toggleCallback, togglingElementRef, currentAnimation]
  */
-function useTransitioningToggle(
-    initialState = false,
-    initialTransitioning: boolean = false
-): TransitioningToggleState {
+function useTransitioningToggle(initialState = false, initialTransitioning = false): TransitioningToggleState {
     const [isToggled, startTransition, endTransition, isTransitioning] = useTransitioningState<
         boolean,
         ToggleTransitions
@@ -51,6 +48,6 @@ function useTransitioningToggle(
     return [isToggled, startToggling, endTransition, currentTransition];
 }
 
-const nextTransition = (isToggled: boolean): ToggleTransitions => isToggled ? 'togglingOff' : 'togglingOn';
+const nextTransition = (isToggled: boolean): ToggleTransitions => (isToggled ? 'togglingOff' : 'togglingOn');
 
 export default useTransitioningToggle;

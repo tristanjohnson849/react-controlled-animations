@@ -1,13 +1,10 @@
-import { render, RenderResult } from "@testing-library/react";
-import React from "react";
+import { render, RenderResult } from '@testing-library/react';
+import React from 'react';
 
-export const isolatedRender = (el: React.ReactElement<any, any>): RenderResult => {
-    const { container } = render(React.createElement(
-        "div", 
-        { id: expect.getState().currentTestName }
-    ));
+export const isolatedRender = (el: React.ReactElement): RenderResult => {
+    const { container } = render(React.createElement('div', { id: expect.getState().currentTestName }));
     return render(el, { container });
-}
+};
 
 // test.afterEach
 export const isolatedCleanup = () => {
@@ -15,4 +12,4 @@ export const isolatedCleanup = () => {
     if (container) {
         document.removeChild(container);
     }
-}
+};
