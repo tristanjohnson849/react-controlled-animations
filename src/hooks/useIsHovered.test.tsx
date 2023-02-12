@@ -1,42 +1,14 @@
-import test, { ExecutionContext } from 'ava';
-
-import 'global-jsdom/register';
-
 import {
-    render,
-    fireEvent,
     cleanup,
-    RenderResult
+    fireEvent,
 } from '@testing-library/react';
 
 import useIsHovered from './useIsHovered';
 import React from 'react';
+import { isolatedCleanup, isolatedRender } from '../testUtils';
 
-
-const isolatedRender = (t: ExecutionContext, el: React.ReactElement<any, any>): RenderResult => {
-    const container = document.createElement('div');
-    container.id = t.title;
-
-    return render(el, { container });
-}
-
-const isolatedCleanup = (t: ExecutionContext) => {
-    cleanup();
-
-    const container = document.getElementById(t.title);
-    if (container) {
-        document.removeChild(container);
-    }
-}
-
-interface Renderer {
-    render: (el: React.ReactElement<any, any>) => RenderResult;
-}
-
-test.beforeEach((t: ExecutionContext<Renderer>) => 
-    t.context.render = (el: React.ReactElement<any, any>) => isolatedRender(t, el)
-);
-test.afterEach(isolatedCleanup);
+afterEach(isolatedCleanup);
+afterAll(cleanup);
 
 const HoverCapture = () => {
     const [isHovered, ref] = useIsHovered<HTMLDivElement>();
@@ -50,48 +22,41 @@ const HoverCapture = () => {
     );
 }
 
-test('initial state is undefined', (t: ExecutionContext<Renderer>) => {
-    const { getByTestId } = t.context.render(<HoverCapture />);
+test('initial state is undefined', () => {
+    const { getByTestId } = isolatedRender(<HoverCapture />);
 
     const capture = getByTestId('hoverCapture');
 
-    t.is(capture.innerHTML, 'undefined');
-    cleanup();
+    expect(capture.innerHTML).toBe('undefined');
 });
 
-test('mouseover results in true', (t: ExecutionContext<Renderer>) => {
-    const { getByTestId } = t.context.render(<HoverCapture />);
+test('mouseover results in true', () => {
+    const { getByTestId } = isolatedRender(<HoverCapture />);
 
     const capture = getByTestId('hoverCapture');
     fireEvent.mouseOver(capture);
 
-    t.is(capture.innerHTML, 'true');
-    cleanup();
-
+    expect(capture.innerHTML).toBe('true');
 });
 
 
-test('mouseover mouseout results in false', (t: ExecutionContext<Renderer>) => {
-    const { getByTestId } = t.context.render(<HoverCapture />);
+test('mouseover mouseout results in false', () => {
+    const { getByTestId } = isolatedRender(<HoverCapture />);
 
     const capture = getByTestId('hoverCapture');
     fireEvent.mouseOver(capture);
     fireEvent.mouseOut(capture);
 
-    t.is(capture.innerHTML, 'false');
-    cleanup();
-
+    expect(capture.innerHTML).toBe('false');
 });
 
-test('mouseover mouseout mouseover results in true', (t: ExecutionContext<Renderer>) => {
-    const { getByTestId } = t.context.render(<HoverCapture />);
+test('mouseover mouseout mouseover results in true', () => {
+    const { getByTestId } = isolatedRender(<HoverCapture />);
 
     const capture = getByTestId('hoverCapture');
     fireEvent.mouseOver(capture);
     fireEvent.mouseOut(capture);
     fireEvent.mouseOver(capture);
 
-    t.is(capture.innerHTML, 'true');
-    cleanup();
-
+    expect(capture.innerHTML).toBe('true');
 });

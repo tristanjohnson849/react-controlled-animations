@@ -5,17 +5,22 @@ import useIsHovered from "../hooks/useIsHovered";
 
 export type HoverAnimations = 'hovering'|'notHovering';
 
+type HoverAnimatedProps<A extends string, T extends HTMLIntrinsics> = { 
+    currentAnimation?: A | null 
+} & AnimatedProps<HoverAnimations | A, T>;
+
 function hoverAnimated<A extends string = never, T extends HTMLIntrinsics = "div">(
-    props: AnimatedProps<HoverAnimations | A, T>,
+    { currentAnimation, ...rest}: HoverAnimatedProps<A, T>,
     ref?: React.ForwardedRef<TagHTMLElement<T>>
 ): React.ReactElement<any, any> {
     const [hovered, hoverRef] = useIsHovered();
 
     return (
+        // @ts-ignore
        <ControlledAnimated<HoverAnimations | A, T>
-            currentAnimation={hovered ? "hovering" : "notHovering"}
+            currentAnimation={currentAnimation || (hovered ? "hovering" : "notHovering")}
             ref={mergeRefs(ref, hoverRef as React.ForwardedRef<TagHTMLElement<T>>)}
-            {...props}
+            {...rest}
        />
     );
 };

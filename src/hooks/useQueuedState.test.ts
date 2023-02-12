@@ -1,29 +1,28 @@
 import { act, renderHook } from '@testing-library/react-hooks';
-import test from 'ava';
 
 import useQueuedState from './useQueuedState';
 
 const render = <S>(initialState?: S) => renderHook(() => useQueuedState<S>(initialState));
 
-test('initialState=defined => get defined state', (t) => {
+test('initialState=defined => get defined state', () => {
     const { result } = render('hello');
-    t.is(result.current.current, 'hello');
+    expect(result.current.current).toBe('hello');
 });
 
-test('initialState=undefined => get undefined state', (t) => {
+test('initialState=undefined => get undefined state', () => {
     const { result } = render();
-    t.is(result.current.current, undefined);
+    expect(result.current.current).toBe(undefined);
 });
 
-test('enqueues=once => state is unchanged', (t) => {
+test('enqueues=once => state is unchanged', () => {
     const { result } = render(1);
     act(() => {
         result.current.enqueue(2);
     });
-    t.is(result.current.current, 1);
+    expect(result.current.current).toBe(1);
 });
 
-test('enqueues=acrossRenders => state is unchanged', (t) => {
+test('enqueues=acrossRenders => state is unchanged', () => {
     const { result } = render(1);
     act(() => {
         result.current.enqueue(2);
@@ -31,10 +30,10 @@ test('enqueues=acrossRenders => state is unchanged', (t) => {
     act(() => {
         result.current.enqueue(3);
     });
-    t.is(result.current.current, 1);
+    expect(result.current.current).toBe(1);
 });
 
-test('enqueues=once transition => state is queued value', (t) => {
+test('enqueues=once transition => state is queued value', () => {
     const { result } = render(1);
     act(() => {
         result.current.enqueue(2);
@@ -42,10 +41,10 @@ test('enqueues=once transition => state is queued value', (t) => {
     act(() => {
         result.current.transition();
     });
-    t.is(result.current.current, 2);
+    expect(result.current.current).toBe(2);
 });
 
-test('enqueues=oneRender actionType=value transition => state is first queued value', (t) => {
+test('enqueues=oneRender actionType=value transition => state is first queued value', () => {
     const { result } = render(1);
     act(() => {
         result.current.enqueue(2);
@@ -54,10 +53,10 @@ test('enqueues=oneRender actionType=value transition => state is first queued va
     act(() => {
         result.current.transition();
     });
-    t.is(result.current.current, 2);
+    expect(result.current.current).toBe(2);
 });
 
-test('enqueues=oneRender actionType=callback transition => state is first queued value', (t) => {
+test('enqueues=oneRender actionType=callback transition => state is first queued value', () => {
     const { result } = render(1);
     act(() => {
         result.current.enqueue((prev) => prev + 1);
@@ -66,10 +65,10 @@ test('enqueues=oneRender actionType=callback transition => state is first queued
     act(() => {
         result.current.transition();
     });
-    t.is(result.current.current, 2);
+    expect(result.current.current).toBe(2);
 });
 
-test('enqueues=acrossRenders actionType=value transition => state is first queued value', (t) => {
+test('enqueues=acrossRenders actionType=value transition => state is first queued value', () => {
     const { result } = render(1);
     act(() => {
         result.current.enqueue(2);
@@ -80,10 +79,10 @@ test('enqueues=acrossRenders actionType=value transition => state is first queue
     act(() => {
         result.current.transition();
     });
-    t.is(result.current.current, 2);
+    expect(result.current.current).toBe(2);
 });
 
-test('enqueues=acrossRenders actionType=callback transition => state is first queued value', (t) => {
+test('enqueues=acrossRenders actionType=callback transition => state is first queued value', () => {
     const { result } = render(1);
     act(() => {
         result.current.enqueue((prev) => prev + 1);
@@ -94,10 +93,10 @@ test('enqueues=acrossRenders actionType=callback transition => state is first qu
     act(() => {
         result.current.transition();
     });
-    t.is(result.current.current, 2);
+    expect(result.current.current).toBe(2);
 });
 
-test('enqueues=oneRender actionType=both transitionAll  => state is last queued value', (t) => {
+test('enqueues=oneRender actionType=both transitionAll  => state is last queued value', () => {
     const { result } = render(1);
     act(() => {
         result.current.enqueue(2);
@@ -106,10 +105,10 @@ test('enqueues=oneRender actionType=both transitionAll  => state is last queued 
     act(() => {
         result.current.transitionAll();
     });
-    t.is(result.current.current, 4);
+    expect(result.current.current).toBe(4);
 });
 
-test('enqueues=acrossRenders actionType=both transitionAll => state is last queued value', (t) => {
+test('enqueues=acrossRenders actionType=both transitionAll => state is last queued value', () => {
     const { result } = render(1);
     act(() => {
         result.current.enqueue(2);
@@ -120,27 +119,27 @@ test('enqueues=acrossRenders actionType=both transitionAll => state is last queu
     act(() => {
         result.current.transitionAll();
     });
-    t.is(result.current.current, 4);
+    expect(result.current.current).toBe(4);
 });
 
-test('transition empty => state is unchanged', (t) => {
+test('transition empty => state is unchanged', () => {
     const { result } = render(1);
     act(() => {
         result.current.transition();
     });
-    t.is(result.current.current, 1);
+    expect(result.current.current).toBe(1);
 });
 
-test('transitionAll empty => state is unchanged', (t) => {
+test('transitionAll empty => state is unchanged', () => {
     const { result } = render(1);
     act(() => {
         result.current.transitionAll();
     });
-    t.is(result.current.current, 1);
+    expect(result.current.current).toBe(1);
 });
 
 // test that callbacks called from outdated owners (likely refs) are still valid
-test('outdated enqueue => state is unchanged', (t) => {
+test('outdated enqueue => state is unchanged', () => {
     const { result } = render(1);
     const outdated = result.current;
     act(() => {
@@ -149,10 +148,10 @@ test('outdated enqueue => state is unchanged', (t) => {
     act(() => {
         outdated.enqueue(3);
     });
-    t.is(result.current.current, 1);
+    expect(result.current.current).toBe(1);
 });
 
-test('enqueue, enqueue, store ref, transition, outdated transition => state is second queued value', (t) => {
+test('enqueue, enqueue, store ref, transition, outdated transition => state is second queued value', () => {
     const { result } = render(1);
     act(() => {
         result.current.enqueue(2);
@@ -165,10 +164,10 @@ test('enqueue, enqueue, store ref, transition, outdated transition => state is s
     act(() => {
         outdated.transition();
     });
-    t.is(result.current.current, 3);
+    expect(result.current.current).toBe(3);
 });
 
-test('enqueue, store ref, enqueue, transitionAll => state is last queued value', (t) => {
+test('enqueue, store ref, enqueue, transitionAll => state is last queued value', () => {
     const { result } = render(1);
     act(() => {
         result.current.enqueue(2);
@@ -180,5 +179,5 @@ test('enqueue, store ref, enqueue, transitionAll => state is last queued value',
     act(() => {
         outdated.transitionAll();
     });
-    t.is(result.current.current, 3);
+    expect(result.current.current).toBe(3);
 });
