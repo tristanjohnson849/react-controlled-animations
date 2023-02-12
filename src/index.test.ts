@@ -1,10 +1,8 @@
-import test from 'ava';
-
 import * as index from './index';
 
-test('all modules exported', (t) => {
-    t.truthy(index.hooks);
-    t.truthy(index.components);
-    t.truthy(index.AnimationInput);
-    t.truthy(index.animationInputMappers);
+test('all modules exported', () => {
+    expect(index.hooks).toBeTruthy();
+    expect(index.components).toBeTruthy();
+    expect(index.AnimationInput).toBeTruthy();
+    expect(index.animationInputMappers).toBeTruthy();
 });
