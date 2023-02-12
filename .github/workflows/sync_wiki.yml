@@ -1,0 +1,20 @@
+name: Sync Typedocs to Wiki
+on: 
+  push:
+    branches:
+      - wiki-sync
+      
+permissions:
+  contents: write
+  
+jobs:
+  sync-wiki:
+    name: Sync Wiki
+    runs-on: ubuntu-latest
+    steps:
+      - uses: kai-tub/external-repo-sync-action@v1
+        with:
+          source-directory: './typedocs'
+          branch: 'wiki-sync'
+        env:
+          GH_ACCESS_TOKEN: ${{ secrets.GH_ACCESS_TOKEN }}
