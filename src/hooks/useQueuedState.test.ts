@@ -10,12 +10,12 @@ test('initialState=defined => get defined state', (t) => {
     t.is(result.current.current, 'hello');
 });
 
-test('initialState=undefined=> get undefined state', (t) => {
+test('initialState=undefined => get undefined state', (t) => {
     const { result } = render();
     t.is(result.current.current, undefined);
 });
 
-test('enqueues=one => state is unchanged', (t) => {
+test('enqueues=once => state is unchanged', (t) => {
     const { result } = render(1);
     act(() => {
         result.current.enqueue(2);
@@ -34,7 +34,7 @@ test('enqueues=acrossRenders => state is unchanged', (t) => {
     t.is(result.current.current, 1);
 });
 
-test('enqueues=one transition => state is queued value', (t) => {
+test('enqueues=once transition => state is queued value', (t) => {
     const { result } = render(1);
     act(() => {
         result.current.enqueue(2);

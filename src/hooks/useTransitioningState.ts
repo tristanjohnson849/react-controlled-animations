@@ -60,7 +60,7 @@ function useTransitioningState<S, T>(
     const queuedState = useQueuedState(initialState);
     const [transition, setTransition] = useState(initialTransition);
 
-    const onTransitionEnd = () => {
+    const endTransition = () => {
         setTransition(null);
         queuedState.transitionAll();
     };
@@ -71,7 +71,7 @@ function useTransitioningState<S, T>(
         queuedState.enqueue(nextState);
     };
 
-    return [queuedState.current, startTransition, onTransitionEnd, transition];
+    return [queuedState.current, startTransition, endTransition, transition];
 }
 
 export default useTransitioningState;
