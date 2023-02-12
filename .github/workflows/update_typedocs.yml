@@ -9,19 +9,15 @@ permissions:
   
 jobs:
   update-typedocs:
-    name: Sync Wiki
+    name: Update Typedocs
     runs-on: ubuntu-latest
     steps:
       - name: Checkout wiki-sync branch
         uses: actions/checkout@v2
         with:
           ref: 'wiki-sync'
-      - uses: devmasx/merge-branch@master
-        with:
-          type: now
-          from_branch: main
-          target_branch: wiki-sync
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Local Merge main
+        run: git merge main
       - name: Build typedocs
         run: | 
           npm install
