@@ -12,28 +12,26 @@
     "build": "run-p build:*",
     "build:main": "tsc -p tsconfig.json",
     "build:module": "tsc -p tsconfig.module.json",
+    "check": "run-s fix build test cov:check",
     "fix": "run-s fix:*",
     "fix:prettier": "prettier \"src/**/*.ts\" --write",
     "fix:lint": "eslint src --ext .ts --fix",
-    "test": "run-s build test:*",
+    "test": "run-s build test:unit",
     "test:lint": "eslint src --ext .ts",
     "test:prettier": "prettier \"src/**/*.ts\" --list-different",
-    "test:unit": "nyc --silent ava",
-    "check-cli": "run-s test diff-integration-tests check-integration-tests",
-    "check-integration-tests": "run-s check-integration-test:*",
-    "diff-integration-tests": "mkdir -p diff && rm -rf diff/test && cp -r test diff/test && rm -rf diff/test/test-*/.git && cd diff && git init --quiet && git add -A && git commit --quiet --no-verify --allow-empty -m 'WIP' && echo '\\n\\nCommitted most recent integration test output in the \"diff\" directory. Review the changes with \"cd diff && git diff HEAD\" or your preferred git diff viewer.'",
+    "test:unit": "c8 ava",
+    "test:cov-report": "npm run test:unit && (npm run cov:html; npm run cov:check; open-cli coverage/index.html)",
     "watch:build": "tsc -p tsconfig.json -w",
-    "watch:test": "nyc --silent ava --watch",
-    "cov": "run-s build test:unit cov:html cov:lcov && open-cli coverage/index.html",
-    "cov:html": "nyc report --reporter=html",
-    "cov:lcov": "nyc report --reporter=lcov",
+    "watch:test": "c8 ava --watch",
+    "cov": "run-s cov:*",
+    "cov:html": "c8 report --reporter=html",
+    "cov:lcov": "c8 report --reporter=lcov",
     "cov:send": "run-s cov:lcov && codecov",
-    "cov:check": "nyc report && nyc check-coverage --lines 100 --functions 100 --branches 100",
+    "cov:check": "c8 report && c8 check-coverage",
     "doc": "typedoc --options typedoc.js",
     "doc:wiki": "typedoc --theme github-wiki --options typedoc.js --out typedocs/",
     "version": "standard-version",
-    "prepare-release": "run-s test cov:check version doc fail-on-uncommitted",
-    "fail-on-uncommitted": "git diff-index --quiet HEAD -- || echo \"You have uncommitted changes:\" && git status && exit 1",
+    "prepare-release": "run-s check version doc",
     "prepublishOnly": "npm run prepare-release",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook  -o stories-build"
@@ -48,7 +46,6 @@
   "devDependencies": {
     "@ava/typescript": "^3.0.1",
     "@babel/core": "^7.20.12",
-    "@istanbuljs/nyc-config-typescript": "^1.0.2",
     "@storybook/addon-actions": "^6.5.16",
     "@storybook/addon-essentials": "^6.4.22",
     "@storybook/addon-interactions": "^6.5.16",
@@ -57,6 +54,8 @@
     "@storybook/manager-webpack4": "^6.5.16",
     "@storybook/react": "^6.1.21",
     "@storybook/testing-library": "^0.0.13",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/react-hooks": "^8.0.1",
     "@types/eslint": "^8.21.0",
     "@types/gh-pages": "^3.2.1",
     "@types/prettier": "^2.7.2",
@@ -67,6 +66,7 @@
     "@typescript-eslint/parser": "^5.51.0",
     "ava": "^5.2.0",
     "babel-loader": "^8.3.0",
+    "c8": "^7.12.0",
     "codecov": "^3.8.2",
     "cspell": "^6.22.0",
     "cz-conventional-changelog": "^3.3.0",
@@ -77,14 +77,17 @@
     "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-storybook": "^0.6.10",
     "gh-pages": "^5.0.0",
+    "global-jsdom": "^8.7.0",
+    "jsdom": "^21.1.0",
     "npm-run-all": "^4.1.5",
-    "nyc": "^15.1.0",
     "open-cli": "^7.1.0",
     "prettier": "^2.8.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-test-renderer": "^18.2.0",
     "standard-version": "^9.5.0",
     "storybook-source-code-addon": "^1.2.0",
+    "ts-mockito": "^2.6.1",
     "ts-node": "^10.9.1",
     "typedoc": "^0.23.24",
     "typedoc-github-wiki-theme": "^1.0.1",
@@ -94,23 +97,26 @@
   "files": [
     "build/main",
     "build/module",
-    "!**/*.spec.*",
+    "!**/*.test.*",
     "!**/*.json",
     "CHANGELOG.md",
     "LICENSE",
     "README.md"
   ],
   "ava": {
-    "failFast": true,
-    "timeout": "60s",
-    "typescript": {
-      "rewritePaths": {
-        "src/": "build/main/"
-      }
-    },
     "files": [
-      "!build/module/**"
-    ]
+      "src/**/*.test.ts(x)?"
+    ],
+    "require": [
+      "ts-node/register"
+    ],
+    "extensions": [
+      "ts",
+      "tsx"
+    ],
+    "failFast": false,
+    "timeout": "60s",
+    "verbose": true
   },
   "config": {
     "commitizen": {
@@ -121,11 +127,5 @@
     "singleQuote": true,
     "tabWidth": 4,
     "printWidth": 120
-  },
-  "nyc": {
-    "extends": "@istanbuljs/nyc-config-typescript",
-    "exclude": [
-      "**/*.spec.js"
-    ]
   }
 }

@@ -5,7 +5,7 @@ import {
     normalizedAnimation,
     NormalizedAnimation,
 } from './AnimationInput';
-import { ToggleAnimations } from './hooks/useAnimatedToggle';
+import { ToggleTransitions } from './hooks/useTransitioningToggle';
 
 /**
  * Returns an edited animation that runs it's last keyframe infinitely (until interrupted)
@@ -65,7 +65,7 @@ export const toTransitionAnimation = (animation: AnimationInput): NormalizedAnim
  *
  * @param toPersist the AnimationInput to get a persisted version of
  */
-export const toToggleAnimations = (togglingOn: AnimationInput): AnimationsByName<ToggleAnimations> => {
+export const toToggleAnimations = (togglingOn: AnimationInput): AnimationsByName<ToggleTransitions> => {
     const { keyframes, options } = toTransitionAnimation(togglingOn);
     return {
         togglingOn: { keyframes, options },

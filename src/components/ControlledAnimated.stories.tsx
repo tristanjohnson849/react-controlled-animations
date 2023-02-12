@@ -1,8 +1,7 @@
 import React from 'react';
-import { useAnimatedTransitionState } from '../hooks';
-import { ControlledAnimated } from '.';
+import useTransitioningState from '../hooks/useTransitioningState';
+import ControlledAnimated from './ControlledAnimated';
 import { toTransitionAnimation } from '../animationInputMappers';
-import Animated from './Animated';
 
 const allAnimations = ['flying', 'jumping', 'sliding'] as const;
 type MyAnimations = typeof allAnimations[number];
@@ -11,21 +10,14 @@ const DURATION = 2000;
 
 const ControlledAnimatedExample: React.FC<{ chosenAnimation: MyAnimations }> = ({ chosenAnimation }) => {
     const [
-        moveCounter, animatedTransition,
-        elementRef, currentAnimation
-    ] = useAnimatedTransitionState<number, MyAnimations, HTMLDivElement>(0);
+        moveCounter,
+        startTransition,
+        endTransition,
+        currentAnimation
+    ] = useTransitioningState<number, MyAnimations>(0);
 
     return (
         <ControlledAnimated<'movingBackground'>
-            style={{
-                width: '100vw',
-                height: '100vh',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                flexDirection: 'column',
-                background: 'linear-gradient(90deg, rgba(0,212,255,1) 0%, rgba(66,99,214,1) 50%, rgba(0,212,255,1) 100%)',
-            }}
             currentAnimation={currentAnimation ? 'movingBackground' : null}
             animations={{
                 movingBackground: {
@@ -36,17 +28,19 @@ const ControlledAnimatedExample: React.FC<{ chosenAnimation: MyAnimations }> = (
                     options: { duration: DURATION, easing: 'ease-in-out' }
                 }
             }}
+            style={{
+                width: '100vw',
+                height: '100vh',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                flexDirection: 'column',
+                background: 'linear-gradient(90deg, rgba(0,212,255,1) 0%, rgba(66,99,214,1) 50%, rgba(0,212,255,1) 100%)',
+            }}
         >
-            <Animated<MyAnimations>
-                ref={elementRef}
-                style={{
-                    width: '100px',
-                    height: '100px',
-                    fontSize: '48px',
-                    margin: '24px',
-                    textAlign: 'center',
-                    verticalAlign: 'middle'
-                }}
+            <ControlledAnimated<MyAnimations>
+                currentAnimation={currentAnimation}
+                onAnimationEnd={endTransition}
                 animations={{
                     flying: toTransitionAnimation({
                         keyframes: [
@@ -85,15 +79,25 @@ const ControlledAnimatedExample: React.FC<{ chosenAnimation: MyAnimations }> = (
                         options: { duration: DURATION, easing: 'ease-in-out' }
                     }),
                 }}
+                style={{
+                    width: '100px',
+                    height: '100px',
+                    fontSize: '48px',
+                    margin: '24px',
+                    textAlign: 'center',
+                    verticalAlign: 'middle'
+                }}
             >
                 🤓
-            </Animated>
-            <div style={{ background: 'white', padding: '16px', fontFamily: '"Helvetica", "Arial", sans-serif',
-                    textAlign: 'center',
-                    verticalAlign: 'middle', borderRadius: '8px' }}>
+            </ControlledAnimated>
+            <div style={{
+                background: 'white', padding: '16px', fontFamily: '"Helvetica", "Arial", sans-serif',
+                textAlign: 'center',
+                verticalAlign: 'middle', borderRadius: '8px'
+            }}>
                 <div>Moves: {moveCounter}</div>
                 <div>Animation: {currentAnimation || "null"}</div>
-                <button onClick={() => animatedTransition(prev => prev + 1, chosenAnimation)}>Move</button>
+                <button onClick={() => startTransition(prev => prev + 1, chosenAnimation)}>Move</button>
             </div>
         </ControlledAnimated>
     )

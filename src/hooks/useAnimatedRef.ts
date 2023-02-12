@@ -33,17 +33,18 @@ export function isAnimatedRef<E>(ref: Ref<E> | null | undefined): ref is Animate
  */
 function useAnimatedRef<A extends string = string, E extends HTMLElement = HTMLElement>(
     currentAnimation: A | null,
+    animations: AnimationsByName<A>,
     onAnimationEnd?: (completedAnimationName: A, webAnimation: Animation | null) => void
 ): AnimatedRef<E> {
     const elementRef = useRef<E>(null) as AnimatedRef<E>;
     elementRef.refType = 'animated';
 
-    const animationsAttr = elementRef.current?.getAttribute('data-animations') || '{}';
+    const serializedAnimations = JSON.stringify(animations);
+
     // if we have a ref and an currentAnimation, animate the ref with the currentAnimation
     useEffect(() => {
         if (elementRef.current !== null) {
             try {
-                const animations = JSON.parse(animationsAttr) as unknown as AnimationsByName<A>;
                 if (currentAnimation !== null) {
                     if (!animations || !animations[currentAnimation]) {
                         onAnimationEnd && onAnimationEnd(currentAnimation, null);
@@ -77,14 +78,14 @@ function useAnimatedRef<A extends string = string, E extends HTMLElement = HTMLE
                     console.error(
                         `Failed to animate ${elementRef.current}${
                             selector ? `[${selector}]` : ''
-                        }(${currentAnimation}).\nCheck your animations: ${animationsAttr}.\n`,
+                        }(${currentAnimation}).\nCheck your animations: ${serializedAnimations}.\n`,
                         err
                     );
                 }
             }
         }
         return undefined;
-    }, [elementRef.current, currentAnimation, animationsAttr]);
+    }, [elementRef.current, currentAnimation, serializedAnimations]);
 
     return elementRef;
 }

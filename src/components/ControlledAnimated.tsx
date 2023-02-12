@@ -1,6 +1,5 @@
 import React, { RefAttributes, ForwardedRef } from 'react';
 import useAnimatingRef, { isAnimatedRef } from '../hooks/useAnimatedRef';
-import Animated from './Animated';
 import {AnimatedProps, HTMLIntrinsics, TagHTMLElement, mergeRefs } from "./common";
 
 
@@ -26,16 +25,19 @@ const controlledAnimated = <A extends string, T extends HTMLIntrinsics = "div">(
     props: ControlledAnimatedProps<A, T>,
     ref?: ForwardedRef<TagHTMLElement<T>>
 ): React.ReactElement<any, any> => {
+
     const {
+        as: Tag = "div",
+        animations,
         currentAnimation,
         onAnimationEnd,
-        ...animatedProps
+        ...tagProps
     } = props;
-
 
     const animatingRef = useAnimatingRef<A, HTMLElement>(
         currentAnimation,
-        onAnimationEnd
+        animations,
+        onAnimationEnd,
     );
 
     // ignore local ref if we were forwarded an AnimatedRef, animations will be managed by the forwarded ref
@@ -47,15 +49,15 @@ const controlledAnimated = <A extends string, T extends HTMLIntrinsics = "div">(
             // @ts-ignore
             animatingRef
         );
-
-    return (
-        // @ts-ignore
-        <Animated<A, T>
-            // @ts-ignore
-            ref={elementRef}
-            {...animatedProps}
-        />
-    );
+    
+        return (
+            // @ts-ignore 
+            <Tag
+                // @ts-ignore 
+                ref={ref}
+                {...tagProps}
+            />
+        );
 };
 
 /**
