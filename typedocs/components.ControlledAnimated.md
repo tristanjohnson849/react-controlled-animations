@@ -25,7 +25,7 @@
 
 #### Defined in
 
-[components/ControlledAnimated.tsx:6](https://github.com/tristanjohnson849/react-controlled-animations/blob/7201a09/src/components/ControlledAnimated.tsx#L6)
+[components/ControlledAnimated.tsx:6](https://github.com/tristanjohnson849/react-controlled-animations/blob/2fcbb59/src/components/ControlledAnimated.tsx#L6)
 
 ## Functions
 
@@ -62,4 +62,4 @@ This component is useful for synchronizing animations with other animated elemen
 
 #### Defined in
 
-[components/ControlledAnimated.tsx:72](https://github.com/tristanjohnson849/react-controlled-animations/blob/7201a09/src/components/ControlledAnimated.tsx#L72)
+[components/ControlledAnimated.tsx:72](https://github.com/tristanjohnson849/react-controlled-animations/blob/2fcbb59/src/components/ControlledAnimated.tsx#L72)

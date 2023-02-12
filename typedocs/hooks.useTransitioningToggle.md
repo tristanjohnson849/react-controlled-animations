@@ -19,7 +19,7 @@
 
 #### Defined in
 
-[hooks/useTransitioningToggle.ts:5](https://github.com/tristanjohnson849/react-controlled-animations/blob/7201a09/src/hooks/useTransitioningToggle.ts#L5)
+[hooks/useTransitioningToggle.ts:5](https://github.com/tristanjohnson849/react-controlled-animations/blob/2fcbb59/src/hooks/useTransitioningToggle.ts#L5)
 
 ___
 
@@ -33,7 +33,7 @@ the HTMLElement to be Animated
 
 #### Defined in
 
-[hooks/useTransitioningToggle.ts:10](https://github.com/tristanjohnson849/react-controlled-animations/blob/7201a09/src/hooks/useTransitioningToggle.ts#L10)
+[hooks/useTransitioningToggle.ts:10](https://github.com/tristanjohnson849/react-controlled-animations/blob/2fcbb59/src/hooks/useTransitioningToggle.ts#L10)
 
 ## Functions
 
@@ -58,4 +58,4 @@ Hook to create a boolean toggle state that animates when toggled
 
 #### Defined in
 
-[hooks/useTransitioningToggle.ts:37](https://github.com/tristanjohnson849/react-controlled-animations/blob/7201a09/src/hooks/useTransitioningToggle.ts#L37)
+[hooks/useTransitioningToggle.ts:37](https://github.com/tristanjohnson849/react-controlled-animations/blob/2fcbb59/src/hooks/useTransitioningToggle.ts#L37)

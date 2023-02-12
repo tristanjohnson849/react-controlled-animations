@@ -25,7 +25,7 @@
 
 #### Defined in
 
-[hooks/useTransitioningState.ts:9](https://github.com/tristanjohnson849/react-controlled-animations/blob/7201a09/src/hooks/useTransitioningState.ts#L9)
+[hooks/useTransitioningState.ts:9](https://github.com/tristanjohnson849/react-controlled-animations/blob/2fcbb59/src/hooks/useTransitioningState.ts#L9)
 
 ## Functions
 
@@ -50,7 +50,7 @@ Hook to useState that animates on transitioning states
 
 #### Defined in
 
-[hooks/useTransitioningState.ts:35](https://github.com/tristanjohnson849/react-controlled-animations/blob/7201a09/src/hooks/useTransitioningState.ts#L35)
+[hooks/useTransitioningState.ts:35](https://github.com/tristanjohnson849/react-controlled-animations/blob/2fcbb59/src/hooks/useTransitioningState.ts#L35)
 
 ▸ **default**<`S`, `T`\>(`initialState`, `initialTransition?`): [`TransitioningState`](../wiki/hooks.useTransitioningState#transitioningstate)<`S`, `T`\>
 
@@ -76,7 +76,7 @@ State is always a defined S if an initial state is provided
 
 #### Defined in
 
-[hooks/useTransitioningState.ts:39](https://github.com/tristanjohnson849/react-controlled-animations/blob/7201a09/src/hooks/useTransitioningState.ts#L39)
+[hooks/useTransitioningState.ts:39](https://github.com/tristanjohnson849/react-controlled-animations/blob/2fcbb59/src/hooks/useTransitioningState.ts#L39)
 
 ▸ **default**<`S`, `T`\>(`initialState`, `initialTransition?`): [`TransitioningState`](../wiki/hooks.useTransitioningState#transitioningstate)<`S` \| `undefined`, `T`\>
 
@@ -104,4 +104,4 @@ Hook to useState that animates on transitioning states
 
 #### Defined in
 
-[hooks/useTransitioningState.ts:40](https://github.com/tristanjohnson849/react-controlled-animations/blob/7201a09/src/hooks/useTransitioningState.ts#L40)
+[hooks/useTransitioningState.ts:40](https://github.com/tristanjohnson849/react-controlled-animations/blob/2fcbb59/src/hooks/useTransitioningState.ts#L40)

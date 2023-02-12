@@ -17,7 +17,7 @@
 
 #### Defined in
 
-[AnimationInput.ts:6](https://github.com/tristanjohnson849/react-controlled-animations/blob/7201a09/src/AnimationInput.ts#L6)
+[AnimationInput.ts:6](https://github.com/tristanjohnson849/react-controlled-animations/blob/2fcbb59/src/AnimationInput.ts#L6)
 
 ___
 
@@ -27,4 +27,4 @@ ___
 
 #### Defined in
 
-[AnimationInput.ts:7](https://github.com/tristanjohnson849/react-controlled-animations/blob/7201a09/src/AnimationInput.ts#L7)
+[AnimationInput.ts:7](https://github.com/tristanjohnson849/react-controlled-animations/blob/2fcbb59/src/AnimationInput.ts#L7)
