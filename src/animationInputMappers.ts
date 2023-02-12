@@ -5,7 +5,7 @@ import {
     normalizedAnimation,
     NormalizedAnimation,
 } from './AnimationInput';
-import { ToggleTransitions } from './hooks/useAnimatedToggle';
+import { ToggleTransitions } from './hooks/useTransitioningToggle';
 
 /**
  * Returns an edited animation that runs it's last keyframe infinitely (until interrupted)
