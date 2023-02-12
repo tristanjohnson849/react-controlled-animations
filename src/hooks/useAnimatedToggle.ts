@@ -1,14 +1,13 @@
 import { useCallback } from 'react';
 
-import { AnimatedRef } from './useAnimatedRef';
-import useAnimatedTransitionState from './useAnimatedTransitionState';
+import useTransitioningState from './useTransitioningState';
 
-export type ToggleAnimations = 'togglingOn' | 'togglingOff';
+export type ToggleTransitions = 'togglingOn' | 'togglingOff';
 
 /**
  * @typeParam E the HTMLElement to be Animated
  */
-export type AnimatedToggleState<E extends HTMLElement> = readonly [
+export type TransitioningToggleState = readonly [
     /**
      * isToggled
      */
@@ -20,37 +19,36 @@ export type AnimatedToggleState<E extends HTMLElement> = readonly [
     /**
      * togglingElementRef AnimatedRef to be passed to the Animated HTML element
      */
-    AnimatedRef<E>,
+    () => void,
     /**
      * currentanimationName, null if not currently transitioning
      */
-    ToggleAnimations | null
+    ToggleTransitions | null
 ];
 
 /**
  * Hook to create a boolean toggle state that animates when toggled
  * @typeParam E the Animated HTMLElement
  * @param initialState
- * @param initialanimationName if provided, will toggle away from initialState when the togglingElementRef is first set
+ * @param initialTransitioning if provided, will toggle away from initialState when the togglingElementRef is first set
  *
  * @return [isToggled, toggleCallback, togglingElementRef, currentAnimation]
  */
-function useAnimatedTransitionToggle<E extends HTMLElement>(
+function useTransitioningToggle(
     initialState = false,
-    initialanimationName: ToggleAnimations | null = null
-): AnimatedToggleState<E> {
-    const [isToggled, animatedSetState, elementRef, isTransitioning] = useAnimatedTransitionState<
+    initialTransitioning: ToggleTransitions | null = null
+): TransitioningToggleState {
+    const [isToggled, startTransition, endTransition, isTransitioning] = useTransitioningState<
         boolean,
-        ToggleAnimations,
-        E
-    >(initialState, initialanimationName);
+        ToggleTransitions
+    >(initialState, initialTransitioning);
 
-    const nextAnimation = isToggled ? 'togglingOff' : 'togglingOn';
+    const nextTransition = isToggled ? 'togglingOff' : 'togglingOn';
 
-    const animateToggle = useCallback(() => animatedSetState((prev) => !prev, nextAnimation), [nextAnimation]);
+    const startToggling = useCallback(() => startTransition((prev) => !prev, nextTransition), [nextTransition]);
 
-    const currentAnimation = isTransitioning !== null ? nextAnimation : null;
-    return [isToggled, animateToggle, elementRef, currentAnimation];
+    const currentTransition = isTransitioning !== null ? nextTransition : null;
+    return [isToggled, startToggling, endTransition, currentTransition];
 }
 
-export default useAnimatedTransitionToggle;
+export default useTransitioningToggle;

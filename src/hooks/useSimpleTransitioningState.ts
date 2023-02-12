@@ -1,9 +1,8 @@
 import { SetStateAction } from 'react';
 
-import { AnimatedRef } from './useAnimatedRef';
-import useAnimatedTransitionState from './useAnimatedTransitionState';
+import useTransitioningState from './useTransitioningState';
 
-export type SimpleTransitionState<S, E extends HTMLElement> = readonly [
+export type SimpleTransitioningState<S> = readonly [
     /**
      * state
      */
@@ -18,11 +17,11 @@ export type SimpleTransitionState<S, E extends HTMLElement> = readonly [
      * @param nextState a React setState action for this state
      * @param animate flag to animate the transition, or skip animation if false
      */
-    (nextState: SetStateAction<S>, animate?: boolean) => void,
+    (nextState: SetStateAction<S>, transition?: boolean) => void,
     /**
-     * elementRef AnimatedRef to be passed to the Animated HTML element
+     * onTransitionEnd callback to be called when the transition is complete
      */
-    AnimatedRef<E>,
+    () => void,
     /**
      * isTransitioning
      *
@@ -31,18 +30,11 @@ export type SimpleTransitionState<S, E extends HTMLElement> = readonly [
     boolean
 ];
 
-function useSimpleTransitionState<S = undefined, E extends HTMLElement = HTMLElement>(): SimpleTransitionState<
-    S | undefined,
-    E
->;
+function useSimpleTransitioningState<S = undefined>(): SimpleTransitioningState<S | undefined>;
 /**
  * State is always a defined S if an initial state is provided
  */
-function useSimpleTransitionState<S, E extends HTMLElement = HTMLElement>(
-    initialState: S,
-    initialTransitioning?: boolean,
-    onTransitionEnd?: () => void
-): SimpleTransitionState<S, E>;
+function useSimpleTransitioningState<S>(initialState: S, initialTransitioning?: boolean): SimpleTransitioningState<S>;
 
 /**
  * Hook to useState that animates on transitioning states
@@ -56,23 +48,21 @@ function useSimpleTransitionState<S, E extends HTMLElement = HTMLElement>(
  * @param onTransitionEnd
  * @returns [state, animatedTransitionState, transitioningElementRef, isTransitioning]
  */
-function useSimpleTransitionState<S, E extends HTMLElement = HTMLElement>(
+function useSimpleTransitioningState<S>(
     initialState?: S | undefined,
-    initialTransitioning = false,
-    onTransitionEnd?: () => void
-): SimpleTransitionState<S | undefined, E> {
-    const [state, animatedSetState, elementRef, animationName] = useAnimatedTransitionState<S, 'transition', E>(
+    initialTransitioning = false
+): SimpleTransitioningState<S | undefined> {
+    const [state, startTransition, endTransition, currentTransition] = useTransitioningState<S, 'transitioning'>(
         initialState,
-        initialTransitioning ? 'transition' : null,
-        onTransitionEnd
+        initialTransitioning ? 'transitioning' : null
     );
 
     return [
         state,
-        (action, animate = true) => animatedSetState(action, animate ? 'transition' : null),
-        elementRef,
-        animationName !== null,
+        (action, shouldTransition = true) => startTransition(action, shouldTransition ? 'transitioning' : null),
+        endTransition,
+        currentTransition !== null,
     ];
 }
 
-export default useSimpleTransitionState;
+export default useSimpleTransitioningState;

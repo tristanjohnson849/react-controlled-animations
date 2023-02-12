@@ -1,7 +1,7 @@
 import React, { CSSProperties } from 'react';
 import { toTransitionAnimation } from '../animationInputMappers';
 import Animated from '../components/Animated';
-import useAnimatedTransitionState from './useAnimatedTransitionState';
+import useTransitioningState from './useTransitioningState';
 
 
 const allAnimations = ['flying', 'jumping', 'sliding'] as const;
@@ -22,7 +22,7 @@ const AnimatedTransitionStateExample: React.FC<{ chosenAnimation: MyAnimations}>
     const [
         moveCounter, animatedTransition,
         elementRef, currentAnimation
-    ] = useAnimatedTransitionState<number, 'jumping' | 'flying' | 'sliding', HTMLDivElement>(0);
+    ] = useTransitioningState<number, 'jumping' | 'flying' | 'sliding', HTMLDivElement>(0);
     return (
         <div style={{ 
             width: '100vw',
