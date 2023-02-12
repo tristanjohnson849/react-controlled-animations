@@ -17,7 +17,7 @@ jobs:
         with:
           ref: 'wiki-sync'
       - name: Local Merge main
-        run: git merge main
+        run: git merge origin/main
       - name: Build typedocs
         run: | 
           npm install
