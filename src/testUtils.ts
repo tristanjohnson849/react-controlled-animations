@@ -1,9 +1,11 @@
 import { render, RenderResult } from "@testing-library/react";
+import React from "react";
 
 export const isolatedRender = (el: React.ReactElement<any, any>): RenderResult => {
-    const container = document.createElement('div');
-    container.id = expect.getState().currentTestName;
-
+    const { container } = render(React.createElement(
+        "div", 
+        { id: expect.getState().currentTestName }
+    ));
     return render(el, { container });
 }
 

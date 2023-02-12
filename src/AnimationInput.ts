@@ -15,9 +15,11 @@ export type AnimationInput =
           options: number | AnimationOptions;
       };
 
+export const DEFAULT_DURATION = 1000;
+
 export const normalizedAnimation = (animation: AnimationInput): NormalizedAnimation => {
     if (Array.isArray(animation)) {
-        return { keyframes: animation, options: {} };
+        return { keyframes: animation, options: { duration: DEFAULT_DURATION } };
     }
     const { keyframes, options } = animation;
 
