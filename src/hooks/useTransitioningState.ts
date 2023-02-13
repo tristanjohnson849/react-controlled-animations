@@ -60,22 +60,21 @@ function useTransitioningState<S = undefined, T = unknown>(
     const queuedState = useQueuedState(initialState);
     const [transition, setTransition] = useState(initialTransition);
 
-    const endTransition = (completedTransition?: T | null) => {
-        if (!completedTransition) {
-            setTransition(null);
-        } else {
-            // if we've interrupted the transition with a new one keep it, otherwise transition is null
-            setTransition((prev) => (prev === completedTransition ? null : prev));
-        }
+    const endTransition = () => {
+        setTransition(null);
         queuedState.transitionAll();
     };
 
     // when setting state, set the next animation
     const startTransition = (nextState: SetStateAction<S | undefined>, nextTransition: T | null) => {
-        // interrupt current if exists
-        endTransition(nextTransition);
-
         queuedState.enqueue(nextState);
+
+        // cancel transition if given null. Otherwise just setTransition
+        if (!nextTransition) {
+            endTransition();
+        } else {
+            setTransition(nextTransition);
+        }
     };
 
     return [queuedState.current, startTransition, endTransition, transition];
