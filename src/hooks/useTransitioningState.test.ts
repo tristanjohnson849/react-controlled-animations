@@ -295,3 +295,11 @@ test('startTransition on defined startTransition on same transition diff state t
 });
 
 // test out of date callbacks transition correctly
+
+test('startTransition, out of date startTransition => second transition, endTransition => aggregate state', () => {
+
+});
+
+test('startTransition, startTransition same transition, out of date endTransition => aggregate state', () => {
+
+});
