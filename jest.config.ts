@@ -5,6 +5,7 @@ const config: Config.InitialOptions = {
   verbose: true,
   transform: {
     '^.+\\.tsx?$': 'ts-jest',
+    "^.+\\.jsx?$": "babel-jest",
   },
   testEnvironment: "jsdom",
   silent: false,
