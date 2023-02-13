@@ -36,8 +36,8 @@ function useTransitioningState<S = undefined, T = unknown>(): TransitioningState
 /**
  * State is always a defined S if an initial state is provided
  */
-function useTransitioningState<S, T>(initialState: S, initialTransition?: T | null): TransitioningState<S, T>;
-function useTransitioningState<S, T>(
+function useTransitioningState<S, T = unknown>(initialState: S, initialTransition?: T | null): TransitioningState<S, T>;
+function useTransitioningState<S, T = unknown>(
     initialState: S | undefined,
     initialTransition?: T | null
 ): TransitioningState<S | undefined, T>;
@@ -53,7 +53,7 @@ function useTransitioningState<S, T>(
  * @param onTransitionEnd
  * @returns [state, animatedStateTransition, elementRef, currentAnimation]
  */
-function useTransitioningState<S, T>(
+function useTransitioningState<S = undefined, T = unknown>(
     initialState?: S,
     initialTransition: T | null = null
 ): TransitioningState<S | undefined, T> {
@@ -61,8 +61,12 @@ function useTransitioningState<S, T>(
     const [transition, setTransition] = useState(initialTransition);
 
     const endTransition = (completedTransition?: T | null) => {
-        // if we've interrupted the transition with a new one keep it, otherwise transition is null
-        setTransition((prev) => (prev === completedTransition ? null : prev));
+        if (!completedTransition) {
+            setTransition(null);
+        } else {
+            // if we've interrupted the transition with a new one keep it, otherwise transition is null
+            setTransition((prev) => (prev === completedTransition ? null : prev));
+        }
         queuedState.transitionAll();
     };
 
