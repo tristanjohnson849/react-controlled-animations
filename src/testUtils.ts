@@ -29,7 +29,7 @@ export function actAndThen<T>(
     if (typeof actBody === 'function') {
         act(() => actBody(currentPointer.current));
     } else {
-        for (const frame of actBody) {
+        for (let frame of actBody) {
             act(() => frame(currentPointer.current));
         }
     }
@@ -43,7 +43,7 @@ export async function actAndThenAsync<T>(
     if (typeof actBody === 'function') {
         await act(async () => await actBody(currentPointer.current));
     } else {
-        for (const frame of actBody) {
+        for (let frame of actBody) {
             await act(async () => await frame(currentPointer.current));
         }
     }
