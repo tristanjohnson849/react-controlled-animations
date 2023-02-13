@@ -60,14 +60,17 @@ function useTransitioningState<S, T>(
     const queuedState = useQueuedState(initialState);
     const [transition, setTransition] = useState(initialTransition);
 
-    const endTransition = () => {
-        setTransition(null);
+    const endTransition = (completedTransition?: T | null) => {
+        // if we've interrupted the transition with a new one keep it, otherwise transition is null
+        setTransition((prev) => (prev === completedTransition ? null : prev));
         queuedState.transitionAll();
     };
 
     // when setting state, set the next animation
     const startTransition = (nextState: SetStateAction<S | undefined>, nextTransition: T | null) => {
-        setTransition(nextTransition);
+        // interrupt current if exists
+        endTransition(nextTransition);
+
         queuedState.enqueue(nextState);
     };
 
