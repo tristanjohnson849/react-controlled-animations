@@ -25,24 +25,20 @@ test('enqueues=once => state is unchanged', () => {
 });
 
 test('enqueues=acrossRenders => state is unchanged', () => {
-    actAndThen(
-        render(1), 
-        [({ enqueue }) => enqueue(2), ({ enqueue }) => enqueue(3)], 
-        ({ current }) => expect(current).toBe(1)
+    actAndThen(render(1), [({ enqueue }) => enqueue(2), ({ enqueue }) => enqueue(3)], ({ current }) =>
+        expect(current).toBe(1)
     );
 });
 
 test('enqueues=once transition => state is queued value', () => {
-    actAndThen(
-        render(1), 
-        [({ enqueue }) => enqueue(2), ({ transition }) => transition()], 
-        ({ current }) => expect(current).toBe(2)
+    actAndThen(render(1), [({ enqueue }) => enqueue(2), ({ transition }) => transition()], ({ current }) =>
+        expect(current).toBe(2)
     );
 });
 
 test('enqueues=oneRender actionType=value transition => state is first queued value', () => {
     actAndThen(
-        render(1), 
+        render(1),
         [
             ({ enqueue }) => {
                 enqueue(2);
@@ -56,7 +52,7 @@ test('enqueues=oneRender actionType=value transition => state is first queued va
 
 test('enqueues=oneRender actionType=callback transition => state is first queued value', () => {
     actAndThen(
-        render(1), 
+        render(1),
         [
             ({ enqueue }) => {
                 enqueue((prev) => prev + 1);
@@ -70,7 +66,7 @@ test('enqueues=oneRender actionType=callback transition => state is first queued
 
 test('enqueues=acrossRenders actionType=value transition => state is first queued value', () => {
     actAndThen(
-        render(1), 
+        render(1),
         [({ enqueue }) => enqueue(2), ({ enqueue }) => enqueue(3), ({ transition }) => transition()],
         ({ current }) => expect(current).toBe(2)
     );
@@ -78,7 +74,7 @@ test('enqueues=acrossRenders actionType=value transition => state is first queue
 
 test('enqueues=acrossRenders actionType=callback transition => state is first queued value', () => {
     actAndThen(
-        render(1), 
+        render(1),
         [
             ({ enqueue }) => enqueue((prev) => prev + 1),
             ({ enqueue }) => enqueue((prev) => prev + 2),
@@ -90,7 +86,7 @@ test('enqueues=acrossRenders actionType=callback transition => state is first qu
 
 test('enqueues=oneRender actionType=both transitionAll  => state is last queued value', () => {
     actAndThen(
-        render(1), 
+        render(1),
         [
             ({ enqueue }) => {
                 enqueue(2);
@@ -104,7 +100,7 @@ test('enqueues=oneRender actionType=both transitionAll  => state is last queued 
 
 test('enqueues=acrossRenders actionType=both transitionAll => state is last queued value', () => {
     actAndThen(
-        render(1), 
+        render(1),
         [
             ({ enqueue }) => enqueue(2),
             ({ enqueue }) => enqueue((prev) => prev * 2),
@@ -116,7 +112,7 @@ test('enqueues=acrossRenders actionType=both transitionAll => state is last queu
 
 test('transition empty => state is unchanged', () => {
     actAndThen(
-        render(1), 
+        render(1),
         ({ transition }) => transition(),
         ({ current }) => expect(current).toBe(1)
     );
@@ -124,7 +120,7 @@ test('transition empty => state is unchanged', () => {
 
 test('transitionAll empty => state is unchanged', () => {
     actAndThen(
-        render(1), 
+        render(1),
         ({ transitionAll }) => transitionAll(),
         ({ current }) => expect(current).toBe(1)
     );

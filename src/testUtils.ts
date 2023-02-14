@@ -30,7 +30,7 @@ export function actAndThen<T>(
     if (typeof actBody === 'function') {
         act(() => actBody(renderResult.current));
     } else {
-        for (let frame of actBody) {
+        for (const frame of actBody) {
             act(() => frame(renderResult.current));
         }
     }
@@ -44,20 +44,19 @@ export async function actAndThenAsync<T>(
     if (typeof actBody === 'function') {
         await act(async () => await actBody(renderResult.current));
     } else {
-        for (let frame of actBody) {
+        for (const frame of actBody) {
             await act(async () => await frame(renderResult.current));
         }
     }
     await expectBody(renderResult.current);
 }
 
-
 export function expectEachExtends<T>(actual: T[], expected: Partial<T>[]) {
     expected.forEach((maybeSubset, i) => {
         const maybeSuperset = actual[i];
         expect(maybeSuperset).toMatchObject(maybeSubset);
     });
-};
+}
 
 export function expectMatchingKeyframes(webAnimation: Animation, expected: Keyframe[]) {
     expectEachExtends((webAnimation.effect as KeyframeEffect).getKeyframes(), expected);

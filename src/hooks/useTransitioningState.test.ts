@@ -269,15 +269,15 @@ test('startTransition on defined startTransition on same transition diff state t
 test('startTransition, out of date startTransition => second transition, endTransition => aggregate state', () => {
     const { result } = renderHook(() => useTransitioningState('initial'));
 
-    const [,firstStartTransition] = result.current;
-    act(() => firstStartTransition(prev => prev + '-new1', 'transition1'));
+    const [, firstStartTransition] = result.current;
+    act(() => firstStartTransition((prev) => prev + '-new1', 'transition1'));
     // callback is from previous value
-    act(() => firstStartTransition(prev => prev + '-new2', 'transition2'));
+    act(() => firstStartTransition((prev) => prev + '-new2', 'transition2'));
 
-    const [,,updatedEndTransition] = result.current;
+    const [, , updatedEndTransition] = result.current;
     act(() => updatedEndTransition());
 
-    const [endingState,,,endingTransition] = result.current;
+    const [endingState, , , endingTransition] = result.current;
 
     expect(endingState).toBe('initial-new1-new2');
     expect(endingTransition).toBe(null);
@@ -286,16 +286,16 @@ test('startTransition, out of date startTransition => second transition, endTran
 test('startTransition, startTransition same transition, out of date endTransition => aggregate state', () => {
     const { result } = renderHook(() => useTransitioningState('initial'));
 
-    const [,startTransition1] = result.current;
+    const [, startTransition1] = result.current;
 
-    act(() => startTransition1(prev => prev + '-new1', 'transition'))
-    const [,startTransition2,outdatedEndTransition] = result.current;
+    act(() => startTransition1((prev) => prev + '-new1', 'transition'));
+    const [, startTransition2, outdatedEndTransition] = result.current;
 
-    act(() => startTransition2(prev => prev + '-new2', 'transition'))
+    act(() => startTransition2((prev) => prev + '-new2', 'transition'));
 
     act(() => outdatedEndTransition());
-    
-    const [endingState,,,endingTransition] = result.current;
+
+    const [endingState, , , endingTransition] = result.current;
 
     expect(endingState).toBe('initial-new1-new2');
     expect(endingTransition).toBe(null);

@@ -21,13 +21,11 @@ function useAnimatedRef<A extends string = string, E extends HTMLElement = HTMLE
 ): RefObject<E> {
     const elementRef = useRef<E>(null);
 
-    const serializedAnimation = currentAnimation 
-        && animations 
-        && animations[currentAnimation] 
-        && JSON.stringify(animations[currentAnimation]);
+    const serializedAnimation =
+        currentAnimation && animations && animations[currentAnimation] && JSON.stringify(animations[currentAnimation]);
 
     useDebugValue(`${currentAnimation}: ${serializedAnimation}`);
-    
+
     // if we have a ref and an currentAnimation, animate the ref with the currentAnimation
     useEffect(() => {
         if (elementRef.current !== null) {
@@ -36,7 +34,7 @@ function useAnimatedRef<A extends string = string, E extends HTMLElement = HTMLE
                 return undefined;
             }
             const { keyframes, options } = normalizedAnimation(animations[currentAnimation]);
-            
+
             const webAnimation = runAnimation(
                 elementRef.current,
                 keyframes,
@@ -48,8 +46,8 @@ function useAnimatedRef<A extends string = string, E extends HTMLElement = HTMLE
                         selector ? `[${selector}]` : ''
                     }.\nCheck your animations: ${serializedAnimation}.\n`;
                 }
-                );
-                
+            );
+
             if (webAnimation !== null) {
                 return () => cleanupAnimation(webAnimation);
             }
