@@ -4,10 +4,11 @@ import type {Config} from '@jest/types';
 const config: Config.InitialOptions = {
   verbose: true,
   transform: {
-    '^.+\\.(j|t)sx?$': 'esbuild-jest',
+    '^.+\\.tsx?$': 'esbuild-jest',
   },
   testEnvironment: "jsdom",
   silent: false,
   setupFilesAfterEnv: ['./jestSetup.ts'],
+  testMatch: ["<rootDir>/src/**/*.test.ts(x)?"]
 };
 export default config;
