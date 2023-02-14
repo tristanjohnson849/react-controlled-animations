@@ -83,7 +83,7 @@ export function setRef<E>(ref: React.ForwardedRef<E> | undefined, next: E | null
 export function mergeRefs<E>(
     ref1: React.ForwardedRef<E> | undefined,
     ref2: React.ForwardedRef<E> | undefined
-): React.ForwardedRef<E> {
+): (value: E | null) => void {
     return (value: E | null) => {
         setRef(ref1, value);
         setRef(ref2, value);

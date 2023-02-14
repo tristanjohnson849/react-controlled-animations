@@ -1,23 +1,6 @@
-import { Ref, useEffect, useRef } from 'react';
+import { RefObject, useDebugValue, useEffect, useRef } from 'react';
 
 import { AnimationOptions, AnimationsByName, normalizedAnimation } from '../AnimationInput';
-
-/**
- * A React.Ref that declares itself as an AnimatedRef
- */
-export interface AnimatedRef<E> {
-    current: E | null;
-    refType: 'animated';
-}
-
-/**
- *
- * @param ref React Ref that is possibly Animated
- * @returns
- */
-export function isAnimatedRef<E>(ref: Ref<E> | null | undefined): ref is AnimatedRef<E> {
-    return !!ref && typeof ref === 'object' && 'refType' in ref && ref.refType === 'animated';
-}
 
 /**
  * Low-level hook to useRef that will animate the ref'd HTML element with the given currentAnimation name
@@ -35,21 +18,23 @@ function useAnimatedRef<A extends string = string, E extends HTMLElement = HTMLE
     currentAnimation: A | null,
     animations: AnimationsByName<A>,
     onAnimationEnd?: (completedAnimationName: A | null, webAnimation: Animation | null) => void
-): AnimatedRef<E> {
-    const elementRef = useRef<E>(null) as AnimatedRef<E>;
-    elementRef.refType = 'animated';
+): RefObject<E> {
+    const elementRef = useRef<E>(null);
 
-    const serializedAnimations = JSON.stringify(animations);
+    const serializedAnimation = currentAnimation && animations[currentAnimation] && JSON.stringify(animations[currentAnimation]);
 
+    useDebugValue(`${currentAnimation}: ${serializedAnimation}`);
+    
     // if we have a ref and an currentAnimation, animate the ref with the currentAnimation
     useEffect(() => {
         if (elementRef.current !== null) {
+            console.log('Animating', currentAnimation, serializedAnimation);
             if (!currentAnimation || !animations || !animations[currentAnimation]) {
                 onAnimationEnd && onAnimationEnd(currentAnimation, null);
                 return undefined;
             }
             const { keyframes, options } = normalizedAnimation(animations[currentAnimation]);
-
+            
             const webAnimation = runAnimation(
                 elementRef.current,
                 keyframes,
@@ -59,15 +44,15 @@ function useAnimatedRef<A extends string = string, E extends HTMLElement = HTMLE
                     const selector = elementRef.current.id || elementRef.current.className || null;
                     return `Failed to animate ${currentAnimation} on ${elementRef.current.tagName}${
                         selector ? `[${selector}]` : ''
-                    }.\nCheck your animations: ${serializedAnimations}.\n`;
+                    }.\nCheck your animations: ${serializedAnimation}.\n`;
                 }
-            );
-
+                );
+                
             if (webAnimation !== null) {
                 return () => cleanupAnimation(webAnimation);
             }
         }
-    }, [elementRef.current, currentAnimation, serializedAnimations]);
+    }, [elementRef.current, currentAnimation, serializedAnimation]);
 
     return elementRef;
 }
