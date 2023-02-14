@@ -247,3 +247,99 @@ test('animation interrupts commits style, calls onAnimationEnd, play new animati
     expect(onEnd).toHaveBeenCalledWith('B', animationB);
     expect(spy).toHaveBeenCalled();
 });
+
+test('change current animation definition plays new animation definition', async () => {
+    const onEnd = jest.fn();
+
+    const duration = 100;
+    const animationInputA1: AnimationInput = { 
+        keyframes: [ {opacity: 1 }, { opacity: 0 }, { opacity: 0.5 } ],
+        options: { duration }
+    };
+    const animationInputA2: AnimationInput = { 
+        keyframes: [ {translate: 0 }, { translate: '100%' }, { translate: '50%' } ],
+        options: { duration }
+    };
+
+    const { getByText, rerender } = isolatedRender(<Animated
+        A={animationInputA1}
+        onAnimationEnd={onEnd}
+    />); 
+    
+    act(() => {
+        getByText('A').click();
+    })
+
+    const animator = getByText('Animator');
+    const animationA = animator.getAnimations()[0];
+    expectMatchingKeyframes(animationA, animationInputA1.keyframes);
+
+    const spy = jest.spyOn(animationA, 'commitStyles');
+    await animationA.ready;
+
+    rerender(<Animated
+        A={animationInputA2}
+        onAnimationEnd={onEnd}
+    />)
+
+    const animationA2 = animator.getAnimations()[0];
+    expectMatchingKeyframes(animationA2, animationInputA2.keyframes);
+
+    expect(onEnd).toHaveBeenCalledWith('A', animationA);
+    expect(spy).toHaveBeenCalled();
+
+    await act(async () => {
+        await animationA2.finished;
+    });
+
+    expect(onEnd).toHaveBeenCalledWith('A', animationA2);
+    expect(spy).toHaveBeenCalled();
+});
+
+test('change other animation definition does not interrupt current animation', async () => {
+    const onEnd = jest.fn();
+
+    const duration = 500;
+    const animationInputA: AnimationInput = { 
+        keyframes: [ {opacity: 1 }, { opacity: 0 }, { opacity: 0.5 } ],
+        options: { duration }
+    };
+
+    const animationInputB1: AnimationInput = { 
+        keyframes: [ {translate: 0 }, { translate: '100%' }, { translate: '50%' } ],
+        options: { duration }
+    };
+    const animationInputB2: AnimationInput = { 
+        keyframes: [ {rotate: 0 }, { rotate: '180deg' }, { rotate: 0 } ],
+        options: { duration }
+    };
+
+    const { getByText, rerender } = isolatedRender(<Animated
+        A={animationInputA}
+        B={animationInputB1}
+        onAnimationEnd={onEnd}
+    />); 
+    
+    act(() => {
+        getByText('A').click();
+    })
+
+    const animator = getByText('Animator');
+    const animationA = animator.getAnimations()[0];
+    expectMatchingKeyframes(animationA, animationInputA.keyframes);
+
+
+    await animationA.ready;
+
+    console.log('rerendering');
+
+    rerender(<Animated
+        A={animationInputA}
+        B={animationInputB2}
+        onAnimationEnd={onEnd}
+    />)
+
+    expectMatchingKeyframes(animator.getAnimations()[0], animationInputA.keyframes);
+
+    expect(onEnd).not.toHaveBeenCalledWith('A', expect.any(Animation));
+});
