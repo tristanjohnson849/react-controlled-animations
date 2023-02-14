@@ -20,32 +20,45 @@ export interface CurrentPointer<T> {
 
 /**
  * Helper to run testing-library-react's `act` and work with the result
+ * Assumes a mutable "current" pointer will be updated by each act() (e.g. RenderHookResult)
  */
 export function actAndThen<T>(
-    currentPointer: CurrentPointer<T>,
+    renderResult: CurrentPointer<T>,
     actBody: ((current: T) => void) | Array<(current: T) => void>,
-    then: (updated: T) => void
+    expectBody: (updated: T) => void
 ) {
     if (typeof actBody === 'function') {
-        act(() => actBody(currentPointer.current));
+        act(() => actBody(renderResult.current));
     } else {
         for (let frame of actBody) {
-            act(() => frame(currentPointer.current));
+            act(() => frame(renderResult.current));
         }
     }
-    then(currentPointer.current);
+    expectBody(renderResult.current);
 }
 export async function actAndThenAsync<T>(
-    currentPointer: CurrentPointer<T>,
+    renderResult: CurrentPointer<T>,
     actBody: ((current: T) => Promise<void>) | Array<(current: T) => Promise<void>>,
-    then: (updated: T) => Promise<void>
+    expectBody: (updated: T) => Promise<void>
 ) {
     if (typeof actBody === 'function') {
-        await act(async () => await actBody(currentPointer.current));
+        await act(async () => await actBody(renderResult.current));
     } else {
         for (let frame of actBody) {
-            await act(async () => await frame(currentPointer.current));
+            await act(async () => await frame(renderResult.current));
         }
     }
-    await then(currentPointer.current);
+    await expectBody(renderResult.current);
+}
+
+
+export function expectEachExtends<T>(actual: T[], expected: Partial<T>[]) {
+    expected.forEach((maybeSubset, i) => {
+        const maybeSuperset = actual[i];
+        expect(maybeSuperset).toMatchObject(maybeSubset);
+    });
+};
+
+export function expectMatchingKeyframes(webAnimation: Animation, expected: Keyframe[]) {
+    expectEachExtends((webAnimation.effect as KeyframeEffect).getKeyframes(), expected);
 }

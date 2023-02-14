@@ -1,4 +1,4 @@
-import { Ref, useCallback, useEffect, useRef, useState } from 'react';
+import { RefObject, useCallback, useEffect, useRef, useState } from 'react';
 
 /**
  * Hook to capture the hovering state of a ref'd HTMLElement
@@ -7,7 +7,7 @@ import { Ref, useCallback, useEffect, useRef, useState } from 'react';
  *
  * @returns [isHovered, elementRef]
  */
-function useIsHovered<E extends HTMLElement = HTMLElement>(): readonly [boolean | undefined, Ref<E>] {
+function useIsHovered<E extends HTMLElement = HTMLElement>(): readonly [boolean | undefined, RefObject<E>] {
     const [isHovered, setIsHovered] = useState<boolean | undefined>(undefined);
     const ref = useRef<E>(null);
     const hovered = useCallback(() => setIsHovered(true), []);

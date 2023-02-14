@@ -1,7 +1,7 @@
 import React, { CSSProperties } from 'react';
 import { toTransitionAnimation } from '../animationInputMappers';
 import ControlledAnimated from '../components/ControlledAnimated';
-import useTransitioningState from './useTransitioningState';
+import useTransitioningState from '../hooks/useTransitioningState';
 
 
 const allAnimations = ['flying', 'jumping', 'sliding'] as const;
@@ -18,7 +18,7 @@ const textStyle: CSSProperties = {
 
 const DURATION = 2000;
 
-const UseTransitioningState: React.FC<{ chosenAnimation: MyAnimations}> = ({ chosenAnimation }) => {
+const AnimatedStateTransitionsExample: React.FC<{ chosenAnimation: MyAnimations}> = ({ chosenAnimation }) => {
     const [
         moveCounter,
         startTransition,
@@ -99,17 +99,17 @@ const UseTransitioningState: React.FC<{ chosenAnimation: MyAnimations}> = ({ cho
 
 
 export default {
-    component: UseTransitioningState,
-    title: 'Hooks/UseTransitioningState',
+    component: AnimatedStateTransitionsExample,
+    title: 'Hooks/AnimatedStateTransitionsExample',
     parameters: {
         componentSource: {
-            url: 'https://raw.githubusercontent.com/tristanjohnson849/react-controlled-animations/main/src/hooks/AnimatedTransitionState.stories.tsx',
+            url: 'https://raw.githubusercontent.com/tristanjohnson849/react-controlled-animations/main/src/stories/AnimatedStateTransitionsExample.stories.tsx',
             language: 'javascript',
         }
     }
 };
 
-const Template = args => <UseTransitioningState {...args} />;
+const Template = args => <AnimatedStateTransitionsExample {...args} />;
 
 
 export const Flying = Template.bind({});
