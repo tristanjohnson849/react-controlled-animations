@@ -50,7 +50,7 @@ export interface NonHTMLAnimatedProps<A extends string, T extends HTMLIntrinsics
      * The mapping of animationName A to an AnimationInput
      */
     animations?: AnimationsByName<A>;
-    
+
     /**
      * Callback to be called when the animation is finished() or is interrupted by a new animationName
      * @param completedAnimationName the animation state that is ending
