@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { HTMLIntrinsics, mergeRefs, TagHTMLElement, AnimatedProps } from "./common";
 import ControlledAnimated from "./ControlledAnimated";
 import useIsHovered from "../hooks/useIsHovered";
@@ -10,16 +10,24 @@ type HoverAnimatedProps<A extends string, T extends HTMLIntrinsics> = {
 } & AnimatedProps<HoverAnimations | A, T>;
 
 function hoverAnimated<A extends string = never, T extends HTMLIntrinsics = "div">(
-    { currentAnimation, ...rest}: HoverAnimatedProps<A, T>,
+    { 
+        currentAnimation = null, 
+        ...rest
+    }: HoverAnimatedProps<A, T>,
     ref?: React.ForwardedRef<TagHTMLElement<T>>
 ): React.ReactElement<any, any> {
     const [hovered, hoverRef] = useIsHovered();
+
+    const mergedRef = useCallback(
+        mergeRefs(ref, hoverRef as React.ForwardedRef<TagHTMLElement<T>>), 
+        [ref]
+    );
 
     return (
         // @ts-ignore
        <ControlledAnimated<HoverAnimations | A, T>
             currentAnimation={currentAnimation || (hovered ? "hovering" : "notHovering")}
-            ref={mergeRefs(ref, hoverRef as React.ForwardedRef<TagHTMLElement<T>>)}
+            ref={mergedRef}
             {...rest}
        />
     );
@@ -32,7 +40,7 @@ function hoverAnimated<A extends string = never, T extends HTMLIntrinsics = "div
  * @typeParam T the HTML Tag delegate
  */
 const HoverAnimated = React.forwardRef(hoverAnimated) as <A extends string = never, T extends HTMLIntrinsics = "div">(
-    props: AnimatedProps<HoverAnimations | A, T> & React.RefAttributes<TagHTMLElement<T>>
+    props: HoverAnimatedProps<A, T> & React.RefAttributes<TagHTMLElement<T>>
 ) => React.ReactElement<any, any>;
 
 hoverAnimated.displayName = "HoverAnimated";

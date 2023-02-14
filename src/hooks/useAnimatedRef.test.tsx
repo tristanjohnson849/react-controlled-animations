@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { isolatedCleanup, isolatedRender } from '../testUtils';
+import { expectMatchingKeyframes, isolatedCleanup, isolatedRender } from '../testUtils';
 import useAnimatedRef from './useAnimatedRef';
 import { AnimationInput } from '../AnimationInput';
 
@@ -33,17 +33,6 @@ const Animated = ({ A = [], B = [], onAnimationEnd }: {
             <button onClick={() => setState(null)}>Cancel</button>
         </div>
     );
-}
-
-function expectEachExtends<T>(actual: T[], expected: Partial<T>[]) {
-    expected.forEach((maybeSubset, i) => {
-        const maybeSuperset = actual[i];
-        expect(maybeSuperset).toMatchObject(maybeSubset);
-    });
-};
-
-function expectMatchingKeyframes(webAnimation: Animation, expected: Keyframe[]) {
-    expectEachExtends((webAnimation.effect as KeyframeEffect).getKeyframes(), expected);
 }
 
 test('does not animate with null currentAnimation, calls onAnimationEnd', () => {
@@ -330,8 +319,6 @@ test('change other animation definition does not interrupt current animation', a
 
 
     await animationA.ready;
-
-    console.log('rerendering');
 
     rerender(<Animated
         A={animationInputA}

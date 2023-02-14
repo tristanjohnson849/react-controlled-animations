@@ -21,14 +21,16 @@ function useAnimatedRef<A extends string = string, E extends HTMLElement = HTMLE
 ): RefObject<E> {
     const elementRef = useRef<E>(null);
 
-    const serializedAnimation = currentAnimation && animations[currentAnimation] && JSON.stringify(animations[currentAnimation]);
+    const serializedAnimation = currentAnimation 
+        && animations 
+        && animations[currentAnimation] 
+        && JSON.stringify(animations[currentAnimation]);
 
     useDebugValue(`${currentAnimation}: ${serializedAnimation}`);
     
     // if we have a ref and an currentAnimation, animate the ref with the currentAnimation
     useEffect(() => {
         if (elementRef.current !== null) {
-            console.log('Animating', currentAnimation, serializedAnimation);
             if (!currentAnimation || !animations || !animations[currentAnimation]) {
                 onAnimationEnd && onAnimationEnd(currentAnimation, null);
                 return undefined;

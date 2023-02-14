@@ -40,10 +40,8 @@ test('initialState=defined initialTransition=defined => get defined state, trans
 });
 
 test('initialTransition=defined endTransition => get initial state, transition=null', () => {
-    const { result } = renderHook(() => useTransitioningState('initial', 'initialTransition'));
-
     actAndThen(
-        result,
+        renderHook(() => useTransitioningState('initial', 'initialTransition')).result,
         ([, , endTransition]) => endTransition(),
         ([state, , , transition]) => {
             expect(state).toBe('initial');
@@ -54,10 +52,8 @@ test('initialTransition=defined endTransition => get initial state, transition=n
 
 // active state
 test('transition=null startTransition on null => state=new, transition=null', () => {
-    const { result } = renderHook(() => useTransitioningState('initial'));
-
     actAndThen(
-        result,
+        renderHook(() => useTransitioningState('initial')).result,
         ([, startTransition]) => startTransition('new', null),
         ([state, , , transition]) => {
             expect(state).toBe('new');
@@ -67,10 +63,8 @@ test('transition=null startTransition on null => state=new, transition=null', ()
 });
 
 test('transition=null startTransition on defined => state unchanged, transition=defined', () => {
-    const { result } = renderHook(() => useTransitioningState('initial'));
-
     actAndThen(
-        result,
+        renderHook(() => useTransitioningState('initial')).result,
         ([, startTransition]) => startTransition('new', 'transition'),
         ([state, , , transition]) => {
             expect(state).toBe('initial');
@@ -80,10 +74,8 @@ test('transition=null startTransition on defined => state unchanged, transition=
 });
 
 test('transition=null startTransition on new endTransition same render => state=new, transition=null', () => {
-    const { result } = renderHook(() => useTransitioningState('initial'));
-
     actAndThen(
-        result,
+        renderHook(() => useTransitioningState('initial')).result,
         ([, startTransition, endTransition]) => {
             startTransition('new', 'transition');
             endTransition();
@@ -114,10 +106,8 @@ test('transition=null startTransition on new endTransition across renders => sta
 });
 
 test('transition=null endTransition => no changes', () => {
-    const { result } = renderHook(() => useTransitioningState('initial'));
-
     actAndThen(
-        result,
+        renderHook(() => useTransitioningState('initial')).result,
         ([, , endTransition]) => endTransition(),
         ([state, , , transition]) => {
             expect(state).toBe('initial');
@@ -127,10 +117,8 @@ test('transition=null endTransition => no changes', () => {
 });
 
 test('startTransition on defined startTransition on null same render => state=last, transition=null', () => {
-    const { result } = renderHook(() => useTransitioningState('initial'));
-
     actAndThen(
-        result,
+        renderHook(() => useTransitioningState('initial')).result,
         ([, startTransition]) => {
             startTransition('new1', 'transition');
             startTransition('new2', null);
@@ -143,10 +131,8 @@ test('startTransition on defined startTransition on null same render => state=la
 });
 
 test('transition=defined startTransition on null same render=> state=new, transition=null', () => {
-    const { result } = renderHook(() => useTransitioningState('initial'));
-
     actAndThen(
-        result,
+        renderHook(() => useTransitioningState('initial')).result,
         [
             ([, startTransition]) => startTransition('new1', 'transition'),
             ([, startTransition]) => startTransition('new2', null),
@@ -159,10 +145,8 @@ test('transition=defined startTransition on null same render=> state=new, transi
 });
 
 test('startTransition on defined startTransition on new defined same render => state=initial, transition=last', () => {
-    const { result } = renderHook(() => useTransitioningState('initial'));
-
     actAndThen(
-        result,
+        renderHook(() => useTransitioningState('initial')).result,
         ([, startTransition]) => {
             startTransition('new1', 'transition1');
             startTransition('new2', 'transition2');
@@ -175,10 +159,8 @@ test('startTransition on defined startTransition on new defined same render => s
 });
 
 test('startTransition on defined startTransition on new defined across renders => state=initial, transition=last', () => {
-    const { result } = renderHook(() => useTransitioningState('initial'));
-
     actAndThen(
-        result,
+        renderHook(() => useTransitioningState('initial')).result,
         [
             ([, startTransition]) => startTransition('new1', 'transition1'),
             ([, startTransition]) => startTransition('new2', 'transition2'),
@@ -191,10 +173,8 @@ test('startTransition on defined startTransition on new defined across renders =
 });
 
 test('startTransition on defined startTransition on same transition diff state same render => no changes', () => {
-    const { result } = renderHook(() => useTransitioningState('initial'));
-
     actAndThen(
-        result,
+        renderHook(() => useTransitioningState('initial')).result,
         ([, startTransition]) => {
             startTransition('new1', 'transition');
             startTransition('new2', 'transition');
@@ -207,10 +187,8 @@ test('startTransition on defined startTransition on same transition diff state s
 });
 
 test('startTransition on defined startTransition on same transition diff state across renders => no changes', () => {
-    const { result } = renderHook(() => useTransitioningState('initial'));
-
     actAndThen(
-        result,
+        renderHook(() => useTransitioningState('initial')).result,
         [
             ([, startTransition]) => startTransition('new1', 'transition'),
             ([, startTransition]) => startTransition('new2', 'transition'),
@@ -223,10 +201,8 @@ test('startTransition on defined startTransition on same transition diff state a
 });
 
 test('startTransition on defined startTransition on same transition diff state type=value endTransition same render => state=last', () => {
-    const { result } = renderHook(() => useTransitioningState('initial'));
-
     actAndThen(
-        result,
+        renderHook(() => useTransitioningState('initial')).result,
         ([, startTransition, endTransition]) => {
             startTransition('new1', 'transition');
             startTransition('new2', 'transition');
@@ -240,10 +216,8 @@ test('startTransition on defined startTransition on same transition diff state t
 });
 
 test('startTransition on defined startTransition on same transition diff state type=value endTransition across renders => state=last', () => {
-    const { result } = renderHook(() => useTransitioningState('initial'));
-
     actAndThen(
-        result,
+        renderHook(() => useTransitioningState('initial')).result,
         [
             ([, startTransition]) => startTransition('new1', 'transition'),
             ([, startTransition, endTransition]) => {
@@ -259,10 +233,8 @@ test('startTransition on defined startTransition on same transition diff state t
 });
 
 test('startTransition on defined startTransition on same transition diff state type=callback endTransition same render=> state=aggregate', () => {
-    const { result } = renderHook(() => useTransitioningState('initial'));
-
     actAndThen(
-        result,
+        renderHook(() => useTransitioningState('initial')).result,
         ([, startTransition, endTransition]) => {
             startTransition((prev) => prev + '-new1', 'transition');
             startTransition((prev) => prev + '-new2', 'transition');
@@ -276,10 +248,8 @@ test('startTransition on defined startTransition on same transition diff state t
 });
 
 test('startTransition on defined startTransition on same transition diff state type=callback endTransition across renders => state=aggregate', () => {
-    const { result } = renderHook(() => useTransitioningState('initial'));
-
     actAndThen(
-        result,
+        renderHook(() => useTransitioningState('initial')).result,
         [
             ([, startTransition]) => startTransition((prev) => prev + '-new1', 'transition'),
             ([, startTransition, endTransition]) => {

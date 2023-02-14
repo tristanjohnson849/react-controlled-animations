@@ -9,13 +9,6 @@ export type ControlledAnimatedProps<A extends string, T extends HTMLIntrinsics =
      * On changing this prop, the ControlledAnimated will interrupt the currentAnimation (if not finished/null) and will begin the new animation (if not null)
      */
     currentAnimation: A | null
-
-    /**
-     * Callback to be called when the animation is finished() or is interrupted by a new animationName
-     * @param completedAnimationName the animation state that is ending
-     * @param webAnimation the Web API Animation that is ending or null if the animation could not be started
-     */
-    onAnimationEnd?: (completedAnimationName: A, webAnimation: Animation | null) => void;
 } & AnimatedProps<A, T>;
 
 // typescript's really not liking the mapping between tags/elements/attributes, but type safety for component props is working except for the ref

@@ -1,6 +1,6 @@
 import React from 'react';
 import useTransitioningState from '../hooks/useTransitioningState';
-import ControlledAnimated from './ControlledAnimated';
+import ControlledAnimated from '../components/ControlledAnimated';
 import { toTransitionAnimation } from '../animationInputMappers';
 
 const allAnimations = ['flying', 'jumping', 'sliding'] as const;
@@ -8,7 +8,7 @@ type MyAnimations = typeof allAnimations[number];
 
 const DURATION = 2000;
 
-const ControlledAnimatedExample: React.FC<{ chosenAnimation: MyAnimations }> = ({ chosenAnimation }) => {
+const SynchronizedAnimationExample: React.FC<{ chosenAnimation: MyAnimations }> = ({ chosenAnimation }) => {
     const [
         moveCounter,
         startTransition,
@@ -104,17 +104,17 @@ const ControlledAnimatedExample: React.FC<{ chosenAnimation: MyAnimations }> = (
 };
 
 export default {
-    component: ControlledAnimatedExample,
-    title: 'Components/ControlledAnimatedExample',
+    component: SynchronizedAnimationExample,
+    title: 'Components/SynchronizedAnimationExample',
     parameters: {
         componentSource: {
-            url: 'https://raw.githubusercontent.com/tristanjohnson849/react-controlled-animations/main/src/components/ControlledAnimated.stories.tsx',
+            url: 'https://raw.githubusercontent.com/tristanjohnson849/react-controlled-animations/main/src/stories/SynchronizedAnimationExample.stories.tsx',
             language: 'javascript',
         }
     }
 };
 
-const Template = args => <ControlledAnimatedExample {...args} />;
+const Template = args => <SynchronizedAnimationExample {...args} />;
 
 export const Flying = Template.bind({});
 Flying.args = {

@@ -4,48 +4,45 @@ import { actAndThen } from '../testUtils';
 
 import useQueuedState from './useQueuedState';
 
-const render = <S>(initialState?: S) => renderHook(() => useQueuedState<S>(initialState));
+const render = <S>(initialState?: S) => renderHook(() => useQueuedState<S>(initialState)).result;
 
 test('initialState=defined => get defined state', () => {
-    const { result } = render('hello');
+    const result = render('hello');
     expect(result.current.current).toBe('hello');
 });
 
 test('initialState=undefined => get undefined state', () => {
-    const { result } = render();
+    const result = render();
     expect(result.current.current).toBe(undefined);
 });
 
 test('enqueues=once => state is unchanged', () => {
-    const { result } = render(1);
-
     actAndThen(
-        result,
+        render(1),
         ({ enqueue }) => enqueue(2),
         ({ current }) => expect(current).toBe(1)
     );
 });
 
 test('enqueues=acrossRenders => state is unchanged', () => {
-    const { result } = render(1);
-
-    actAndThen(result, [({ enqueue }) => enqueue(2), ({ enqueue }) => enqueue(3)], ({ current }) =>
-        expect(current).toBe(1)
+    actAndThen(
+        render(1), 
+        [({ enqueue }) => enqueue(2), ({ enqueue }) => enqueue(3)], 
+        ({ current }) => expect(current).toBe(1)
     );
 });
 
 test('enqueues=once transition => state is queued value', () => {
-    const { result } = render(1);
-    actAndThen(result, [({ enqueue }) => enqueue(2), ({ transition }) => transition()], ({ current }) =>
-        expect(current).toBe(2)
+    actAndThen(
+        render(1), 
+        [({ enqueue }) => enqueue(2), ({ transition }) => transition()], 
+        ({ current }) => expect(current).toBe(2)
     );
 });
 
 test('enqueues=oneRender actionType=value transition => state is first queued value', () => {
-    const { result } = render(1);
-
     actAndThen(
-        result,
+        render(1), 
         [
             ({ enqueue }) => {
                 enqueue(2);
@@ -58,10 +55,8 @@ test('enqueues=oneRender actionType=value transition => state is first queued va
 });
 
 test('enqueues=oneRender actionType=callback transition => state is first queued value', () => {
-    const { result } = render(1);
-
     actAndThen(
-        result,
+        render(1), 
         [
             ({ enqueue }) => {
                 enqueue((prev) => prev + 1);
@@ -74,20 +69,16 @@ test('enqueues=oneRender actionType=callback transition => state is first queued
 });
 
 test('enqueues=acrossRenders actionType=value transition => state is first queued value', () => {
-    const { result } = render(1);
-
     actAndThen(
-        result,
+        render(1), 
         [({ enqueue }) => enqueue(2), ({ enqueue }) => enqueue(3), ({ transition }) => transition()],
         ({ current }) => expect(current).toBe(2)
     );
 });
 
 test('enqueues=acrossRenders actionType=callback transition => state is first queued value', () => {
-    const { result } = render(1);
-
     actAndThen(
-        result,
+        render(1), 
         [
             ({ enqueue }) => enqueue((prev) => prev + 1),
             ({ enqueue }) => enqueue((prev) => prev + 2),
@@ -98,10 +89,8 @@ test('enqueues=acrossRenders actionType=callback transition => state is first qu
 });
 
 test('enqueues=oneRender actionType=both transitionAll  => state is last queued value', () => {
-    const { result } = render(1);
-
     actAndThen(
-        result,
+        render(1), 
         [
             ({ enqueue }) => {
                 enqueue(2);
@@ -114,9 +103,8 @@ test('enqueues=oneRender actionType=both transitionAll  => state is last queued 
 });
 
 test('enqueues=acrossRenders actionType=both transitionAll => state is last queued value', () => {
-    const { result } = render(1);
     actAndThen(
-        result,
+        render(1), 
         [
             ({ enqueue }) => enqueue(2),
             ({ enqueue }) => enqueue((prev) => prev * 2),
@@ -127,18 +115,16 @@ test('enqueues=acrossRenders actionType=both transitionAll => state is last queu
 });
 
 test('transition empty => state is unchanged', () => {
-    const { result } = render(1);
     actAndThen(
-        result,
+        render(1), 
         ({ transition }) => transition(),
         ({ current }) => expect(current).toBe(1)
     );
 });
 
 test('transitionAll empty => state is unchanged', () => {
-    const { result } = render(1);
     actAndThen(
-        result,
+        render(1), 
         ({ transitionAll }) => transitionAll(),
         ({ current }) => expect(current).toBe(1)
     );
@@ -146,7 +132,7 @@ test('transitionAll empty => state is unchanged', () => {
 
 // test that callbacks called from outdated owners (likely refs) are still valid
 test('outdated enqueue => state is unchanged', () => {
-    const { result } = render(1);
+    const result = render(1);
     const outdated = result.current;
     act(() => {
         result.current.enqueue(2);
@@ -158,7 +144,7 @@ test('outdated enqueue => state is unchanged', () => {
 });
 
 test('enqueue, enqueue, store ref, transition, outdated transition => state is second queued value', () => {
-    const { result } = render(1);
+    const result = render(1);
     act(() => {
         result.current.enqueue(2);
         result.current.enqueue(3);
@@ -174,7 +160,7 @@ test('enqueue, enqueue, store ref, transition, outdated transition => state is s
 });
 
 test('enqueue, store ref, enqueue, transitionAll => state is last queued value', () => {
-    const { result } = render(1);
+    const result = render(1);
     act(() => {
         result.current.enqueue(2);
     });
