@@ -1,8 +1,6 @@
 {
-    "src": "src",
+    "src": "src/",
     "extension": ["js", "jsx", "ts", "tsx"],
-    "all": true,
-    "exclude-after-remap": true,
     "statements": 0,
     "lines": 0,
     "functions": 0, 
