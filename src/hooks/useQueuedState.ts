@@ -1,7 +1,8 @@
 import { SetStateAction, useState } from 'react';
 
 /**
- * State that supports queueing transitioning
+ * State that supports asynchronous state transitions
+ * State transitions may be enqueued and then completed in FIFO order via transition or transitionAll
  */
 export interface QueuedTransitionState<S> {
     /**
@@ -9,7 +10,7 @@ export interface QueuedTransitionState<S> {
      */
     readonly current: S;
     /**
-     * enqueue a state transition
+     * enqueue a state transition - either a literal value or a function (prev) => next
      */
     readonly enqueue: (action: SetStateAction<S>) => void;
     /**
@@ -22,7 +23,7 @@ export interface QueuedTransitionState<S> {
     readonly transitionAll: () => void;
 }
 
-function useQueuedState<S = undefined>(): QueuedTransitionState<S | undefined>;
+function useQueuedState<S = unknown>(): QueuedTransitionState<S | undefined>;
 /**
  * State is always a defined S if an initial state is provided
  */
@@ -31,7 +32,7 @@ function useQueuedState<S>(initialState: S): QueuedTransitionState<S>;
 /**
  * Hook to use a QueuedTransitionState
  *
- * Useful for queuing state transitions while waiting for a concurrent event (like an animation completion)
+ * Useful for queuing state transitions while waiting for a concurrent event (like an animation completion) before updating state
  *
  * @param initialState
  * @returns QueuedTransitionState

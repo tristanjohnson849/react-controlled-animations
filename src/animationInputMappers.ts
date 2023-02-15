@@ -14,8 +14,6 @@ import { ToggleTransitions } from './hooks/useTransitioningToggle';
  * The edits are:
  * - set iterations: 'Infinity' on the last Keyframe in the Keyframes list
  * - set fill: 'forwards' on the Animation options
- *
- * @param toPersist the AnimationInput to get a persisted version of
  */
 export const toPersistedAnimation = (toPersist: AnimationInput): NormalizedAnimation => {
     const { keyframes, options } = normalizedAnimation(toPersist);
@@ -46,8 +44,6 @@ export const toPersistedAnimation = (toPersist: AnimationInput): NormalizedAnima
  *
  * The edits are:
  * - set fill: 'forwards' on the Animation options
- *
- * @param toPersist the AnimationInput to get a persisted version of
  */
 export const toTransitionAnimation = (animation: AnimationInput): NormalizedAnimation => {
     const { keyframes, options } = normalizedAnimation(animation);
@@ -62,8 +58,6 @@ export const toTransitionAnimation = (animation: AnimationInput): NormalizedAnim
  *
  * The edits are:
  * - set fill: 'forwards' on the Animation options
- *
- * @param toPersist the AnimationInput to get a persisted version of
  */
 export const toToggleAnimations = (togglingOn: AnimationInput): AnimationsByName<ToggleTransitions> => {
     const { keyframes, options } = toTransitionAnimation(togglingOn);
