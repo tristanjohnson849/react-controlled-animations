@@ -3,15 +3,18 @@ import { RefObject, useDebugValue, useEffect, useRef } from 'react';
 import { AnimationOptions, AnimationsByName, normalizedAnimation } from '../AnimationInput';
 
 /**
- * Low-level hook to useRef that will animate the ref'd HTML element with the given currentAnimation name
- *
- * Expects the AnimationsByName<A> to be serialized as a JSON string in the data-animations attribute on the element - see {@link components.ControlledAnimated}
+ * Low-level hook  that will animate the ref'd HTML element with the given currentAnimation name
  *
  * Note: will interrupt and play a new animation if the animations stored at data-animations change and the Component using this hook is rerendered
  *
  * @typeParam A the accepted animation names
- * @param currentAnimation the animation to be applied to the ref'd element
- * @param onAnimationEnd callback to be called when the animation is finished(), or if the animation is interrupted (currentAnimation changes before finishing)
+ * @typeParam E the type of element to be ref'd
+ * @param currentAnimation On changing to a non-null value, will start the animation at animations[currentAnimation].
+ * If given null, will stop animating the component.
+ * If given a new or null value while the previous aninmation is not finished(),
+ * will commit the current style to the element, call onAnimationEnd, and cancel() the previous animation
+ * @param animations The mapping of animationName to AnimationInput
+ * @param onAnimationEnd callback to be called when the animation is finished(), or if the animation is interrupted by a new currentAnimation
  * @returns react Ref to be assigned to the Animated element
  */
 function useAnimatedRef<A extends string = string, E extends HTMLElement = HTMLElement>(

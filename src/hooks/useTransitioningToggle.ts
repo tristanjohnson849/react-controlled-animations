@@ -5,7 +5,7 @@ import useTransitioningState from './useTransitioningState';
 export type ToggleTransitions = 'togglingOn' | 'togglingOff';
 
 /**
- * @typeParam E the HTMLElement to be Animated
+ * [isToggled, startToggling, endToggling, currentTransition]
  */
 export type TransitioningToggleState = readonly [
     /**
@@ -13,26 +13,35 @@ export type TransitioningToggleState = readonly [
      */
     boolean,
     /**
-     * toggleCallback
+     * startToggling
+     *
+     * Begin inversion of toggle state. Subsequent calls will queue more inversions without interrupting the current transition
+     *
+     * @param isAsync if true, nextState is queued and will not be updated until endTransition is called.
+     * Otherwise, completes all interim toggles including this one and rerenders the using component
+     */
+    (isAsync: boolean) => void,
+    /**
+     * endToggling
+     *
+     * calling completes all queued toggles in order, sets currentTransition to null, and rerenders
      */
     () => void,
     /**
-     * togglingElementRef AnimatedRef to be passed to the Animated HTML element
-     */
-    () => void,
-    /**
-     * currentanimationName, null if not currently transitioning
+     * currentTransition, either togglingOn, togglingOff, or null if not transitioning
      */
     ToggleTransitions | null
 ];
 
 /**
- * Hook to create a boolean toggle state that animates when toggled
- * @typeParam E the Animated HTMLElement
+ * Hook to use a boolean toggle state that supports asynchronous transitions
+ *
+ * Toggle transitions may be queued via startToggling, and all queued toggles are completed by endTransition
+ *
  * @param initialState
  * @param initialTransitioning if true, will toggle away from initialState when the togglingElementRef is first set
  *
- * @return [isToggled, toggleCallback, togglingElementRef, currentAnimation]
+ * @return [isToggled, startToggling, endToggling, currentTransition]: TransitioningToggleState
  */
 function useTransitioningToggle(initialState = false, initialTransitioning = false): TransitioningToggleState {
     const [isToggled, startTransition, endTransition, isTransitioning] = useTransitioningState<

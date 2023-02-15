@@ -3,6 +3,8 @@ import { SetStateAction, useState } from 'react';
 import useQueuedState from './useQueuedState';
 
 /**
+ * [state, startTransition, endTransition, currentTransition]
+ *
  * @typeParam S state type
  * @typeParam T state transition type
  */
@@ -12,18 +14,21 @@ export type TransitioningState<S, T> = readonly [
      */
     S,
     /**
-     * transitionState
+     * startTransition
      *
-     * Analog of setState
+     * Queue the given state transition with the given transition type
      *
-     * When called, will queue a state transition and register the current transition
-     * State will not be updated until onTransitionEnd() is called
-     * @param nextState a React setState action for this state
-     * @param nextanimationName the next animationName or null to skip the animation for this transition
+     * Analog of React setState
+     *
+     * @param nextState a React setState action for this state (either a literal value or function (prev) => next)
+     * @param transition if defined, is set as the currentTransition; nextState is queued and will not be completed until endTransition is called
+     * If null, completes all interim transitions, then the given nextState transition and rerenders the using component
      */
     (nextState: SetStateAction<S>, transition: T | null) => void,
     /**
-     * onTransitionEnd callback to be called when the transition is complete
+     * endTransition
+     *
+     * calling completes all queued transitions in order, sets currentTransition to null, and rerenders
      */
     () => void,
     /**
@@ -43,15 +48,15 @@ function useTransitioningState<S, T = unknown>(
 ): TransitioningState<S | undefined, T>;
 
 /**
- * Hook to useState that animates on transitioning states
+ * Hook to useState that supports asynchronous transitions with distinct transition values
  *
- * @typeParam A the accepted animation names
- * @typeParam E the Animated HTML element
+ * State transitions may be queued via startTransition, and all queued transitions are completed in order by endTransition
+ *
+ * @typeParam T type of transition values
  * @typeParam S type of state
  * @param initialState
- * @param initialAnimation if provided, will animate when the togglingElementRef is first set. State will remain as initialState when finished()
- * @param onTransitionEnd
- * @returns [state, animatedStateTransition, elementRef, currentAnimation]
+ * @param initialTransition if provided, initializes the state with currentTransition as initialTransition
+ * @returns [state, startTransition, endTransition, currentTransition]: TransitioningState<S, T>
  */
 function useTransitioningState<S = undefined, T = unknown>(
     initialState?: S,
@@ -65,7 +70,6 @@ function useTransitioningState<S = undefined, T = unknown>(
         queuedState.transitionAll();
     };
 
-    // when setting state, set the next animation
     const startTransition = (nextState: SetStateAction<S | undefined>, nextTransition: T | null) => {
         queuedState.enqueue(nextState);
 
