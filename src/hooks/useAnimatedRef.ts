@@ -57,8 +57,6 @@ function useAnimatedRef<A extends string = string, E extends HTMLElement = HTMLE
     return elementRef;
 }
 
-export default useAnimatedRef;
-
 const runAnimation = <E extends HTMLElement>(
     element: E,
     keyframes: Keyframe[],
@@ -97,3 +95,5 @@ const cleanupAnimation = (webAnimation: Animation) => {
         webAnimation.cancel();
     }
 };
+
+export default useAnimatedRef;

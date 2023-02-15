@@ -43,6 +43,7 @@ export type TagHTMLAttributes<T extends HTMLIntrinsics> = HTMLAttributes<TagHTML
 export interface NonHTMLAnimatedProps<A extends string, T extends HTMLIntrinsics = 'div'> {
     /**
      * The given tag that this Animated element delegates to
+     * Defaults to "div"
      */
     as?: T;
 
@@ -53,8 +54,8 @@ export interface NonHTMLAnimatedProps<A extends string, T extends HTMLIntrinsics
 
     /**
      * Callback to be called when the animation is finished() or is interrupted by a new animationName
-     * @param completedAnimationName the animation state that is ending
-     * @param webAnimation the Web API Animation that is ending or null if the animation could not be started
+     * @param completedAnimationName the name of the animation that is ending
+     * @param webAnimation the Web API Animation that is ending, or null if the animation was not started
      */
     onAnimationEnd?: (completedAnimationName: A, webAnimation: Animation | null) => void;
 }
