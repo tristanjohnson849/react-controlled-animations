@@ -6,7 +6,9 @@ import { AnimatedProps, HTMLIntrinsics, TagHTMLElement, mergeRefs } from "./comm
 export type ControlledAnimatedProps<A extends string, T extends HTMLIntrinsics = "div"> = {
     /**
      * The currentAnimation that controls this component. 
-     * On changing this prop, the ControlledAnimated will interrupt the currentAnimation (if not finished/null) and will begin the new animation (if not null)
+     * On changing this prop to a non-null value, will start the animation at animations[currentAnimation]
+     * If given null, will stop animating the component
+     * If given a new or null value while the previous aninmation is not finished(), will commit the current style to the element, call onAnimationEnd, and cancel() the previous animation
      */
     currentAnimation: A | null
 } & AnimatedProps<A, T>;
@@ -50,10 +52,10 @@ const controlledAnimated = <A extends string, T extends HTMLIntrinsics = "div">(
 
 /**
  * An Animated component that is controlled by the currentAnimation prop
- * The component may be changed to a different HTML tag delegate via the as prop
- * May accept a ref to forward to the HTML tag delegate, though there is no need to pass an AnimatedRef (see @link components.Animated)
- * 
- * This component is useful for synchronizing animations with other animated elements
+ * The component may use a different HTML tag delegate via the `as` prop
+ * May accept a ref to forward to the HTML tag delegate. 
+ * Note: forwarding a ref returned from {@link hooks.useAnimatedRef} may result in undeterministic behavior
+ *  
  * @typeParam A the accepted animation names
  * @typeParam T the HTML Tag delegate
  */
