@@ -10,7 +10,6 @@ type PickByType<T, Value> = {
  * "a", "abbr", ..., "div", ... "webview"
  * Excludes tags that extend React.SVGProps
  */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type HTMLIntrinsics = keyof PickByType<JSX.IntrinsicElements, React.DetailedHTMLProps<any, any>>;
 
 /**
@@ -18,7 +17,6 @@ export type HTMLIntrinsics = keyof PickByType<JSX.IntrinsicElements, React.Detai
  */
 export type TagHTMLElement<T extends HTMLIntrinsics> = HTMLElement &
     JSX.IntrinsicElements[T] extends React.DetailedHTMLProps<
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     any,
     infer E
 >
@@ -31,7 +29,6 @@ export type TagHTMLElement<T extends HTMLIntrinsics> = HTMLElement &
 export type TagHTMLAttributes<T extends HTMLIntrinsics> = HTMLAttributes<TagHTMLElement<T>> &
     JSX.IntrinsicElements[T] extends React.DetailedHTMLProps<
     infer A,
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     any
 >
     ? A
