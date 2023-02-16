@@ -9,3 +9,4 @@ coverage
 yarn.lock
 stories-build
 .vscode
+tsconfig.tsbuildinfo

@@ -16,10 +16,7 @@ export type HTMLIntrinsics = keyof PickByType<JSX.IntrinsicElements, React.Detai
  * TagHTMLElement<"a"> is equivalent to HTMLAnchorElement
  */
 export type TagHTMLElement<T extends HTMLIntrinsics> = HTMLElement &
-    JSX.IntrinsicElements[T] extends React.DetailedHTMLProps<
-    any,
-    infer E
->
+    JSX.IntrinsicElements[T] extends React.DetailedHTMLProps<any, infer E>
     ? E
     : never;
 
@@ -27,10 +24,7 @@ export type TagHTMLElement<T extends HTMLIntrinsics> = HTMLElement &
  * TagHTMLAttributes<"a"> is equivalent to React.AnchorHTMLAttributes<HTMLAnchorElement>
  */
 export type TagHTMLAttributes<T extends HTMLIntrinsics> = HTMLAttributes<TagHTMLElement<T>> &
-    JSX.IntrinsicElements[T] extends React.DetailedHTMLProps<
-    infer A,
-    any
->
+    JSX.IntrinsicElements[T] extends React.DetailedHTMLProps<infer A, any>
     ? A
     : never;
 
