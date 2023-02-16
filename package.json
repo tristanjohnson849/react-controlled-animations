@@ -2,34 +2,25 @@
   "name": "react-controlled-animations",
   "version": "0.0.1",
   "description": "Utilities for declaratively controlling animations through React hooks",
-  "main": "./build/main/index.js",
-  "typings": "./build/main/index.d.ts",
-  "exports": "./build/module/index.js",
+  "type": "module",
   "repository": "https://github.com/tristanjohnson849/react-controlled-animations",
   "license": "MIT",
   "keywords": [],
   "scripts": {
-    "build": "run-p build:*",
-    "build:main": "tsc -p tsconfig.json",
-    "build:module": "tsc -p tsconfig.module.json",
-    "check": "run-s fix build test cov:check && echo 'All passed'",
+    "build": "tsc -p tsconfig.json",
+    "check": "run-s lint test:cov",
     "fix": "run-s fix:*",
     "fix:prettier": "prettier \"src/**/*.ts\" --write",
     "fix:lint": "eslint src --ext .ts --fix",
     "lint": "eslint src --ext .ts && prettier \"src/**/*.ts\" --list-different",
-    "test": "c8 jest",
-    "test:cov-report": "npm run test && (npm run cov:html; npm run cov:check; open-cli coverage/index.html)",
+    "test": "jest ./src",
+    "test:cov": "jest ./src --collectCoverage=true --coverage",
     "watch:build": "tsc -p tsconfig.json -w",
-    "watch:test": "c8 jest --watch",
-    "cov": "run-s cov:*",
-    "cov:html": "c8 report --reporter=html",
-    "cov:lcov": "c8 report --reporter=lcov",
-    "cov:send": "run-s cov:lcov && codecov",
-    "cov:check": "c8 report && c8 check-coverage",
+    "watch:test": "jest --watch ./src",
     "doc": "typedoc --options typedoc.js",
     "doc:wiki": "typedoc --theme github-wiki --options typedoc.js --out typedocs/",
     "version": "standard-version",
-    "prepare-release": "run-s check version doc",
+    "prepare-release": "run-s build check version doc",
     "prepublishOnly": "npm run prepare-release",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook  -o stories-build"
@@ -65,7 +56,6 @@
     "@typescript-eslint/parser": "^5.51.0",
     "babel-jest": "^29.4.2",
     "babel-loader": "^8.3.0",
-    "c8": "^7.12.0",
     "codecov": "^3.8.2",
     "cspell": "^6.22.0",
     "cz-conventional-changelog": "^3.3.0",
@@ -100,8 +90,10 @@
     "typescript": "^4.9.5"
   },
   "files": [
-    "build/main",
-    "build/module",
+    "build/",
+    "!**/*.test.*",
+    "!**/*.stories.*",
+    "!**/*.json",
     "CHANGELOG.md",
     "LICENSE",
     "README.md",
@@ -111,21 +103,6 @@
     "!**/testUtils.ts",
     "!**/*.json"
   ],
-  "ava": {
-    "files": [
-      "src/**/*.test.ts(x)?"
-    ],
-    "require": [
-      "ts-node/register"
-    ],
-    "extensions": [
-      "ts",
-      "tsx"
-    ],
-    "failFast": false,
-    "timeout": "60s",
-    "verbose": true
-  },
   "config": {
     "commitizen": {
       "path": "cz-conventional-changelog"
