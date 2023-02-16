@@ -1,6 +1,6 @@
 {
   "name": "react-controlled-animations",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Utilities for declaratively controlling animations through React hooks",
   "type": "module",
   "repository": "https://github.com/tristanjohnson849/react-controlled-animations",
@@ -17,8 +17,8 @@
     "test:cov": "jest ./src --collectCoverage=true --coverage",
     "watch:build": "tsc -p tsconfig.json -w",
     "watch:test": "jest --watch ./src",
-    "doc": "typedoc --options typedoc.js",
-    "doc:wiki": "typedoc --theme github-wiki --options typedoc.js --out typedocs/",
+    "doc": "typedoc --options typedoc.cjs",
+    "doc:wiki": "typedoc --theme github-wiki --options typedoc.cjs --out typedocs/",
     "version": "standard-version",
     "prepare-release": "run-s build check version doc",
     "prepublishOnly": "npm run prepare-release",
