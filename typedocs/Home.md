@@ -84,5 +84,5 @@ Components
 - [HoverAnimated](https://github.com/tristanjohnson849/react-controlled-animations/wiki/components.HoverAnimated): a utility that animates based whether the component is hovered or not (generally very difficult with basic inline styles)
 
 Hooks
-- [useAnimatedToggle](https://github.com/tristanjohnson849/react-controlled-animations/wiki/hooks.useAnimatedToggle): a hook based on useAnimatedTransitionState that allows you to animate transitions on a boolean toggle
-- [useSimpleTransitionState](https://github.com/tristanjohnson849/react-controlled-animations/wiki/hooks.useSimpleTransitionState): a simplified version of useAnimatedTransitionState that assumes a single animation for all transitions
+- [useTransitioningToggle](https://github.com/tristanjohnson849/react-controlled-animations/wiki/hooks.useTransitioningToggle): a hook based on useAnimatedTransitionState that allows you to animate transitions on a boolean toggle
+- [useSimpleTransitioningState](https://github.com/tristanjohnson849/react-controlled-animations/wiki/hooks.useSimpleTransitioningState): a simplified version of useAnimatedTransitionState that assumes a single animation for all transitions

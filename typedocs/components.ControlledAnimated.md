@@ -14,7 +14,7 @@
 
 ### ControlledAnimatedProps
 
-Ƭ **ControlledAnimatedProps**<`A`, `T`\>: { `currentAnimation`: `A` \| ``null`` ; `onAnimationEnd?`: (`completedAnimationName`: `A`, `webAnimation`: `Animation` \| ``null``) => `void`  } & [`AnimatedProps`](../wiki/components.common#animatedprops)<`A`, `T`\>
+Ƭ **ControlledAnimatedProps**<`A`, `T`\>: { `currentAnimation`: `A` \| ``null``  } & [`AnimatedProps`](../wiki/components.common#animatedprops)<`A`, `T`\>
 
 #### Type parameters
 
@@ -25,7 +25,7 @@
 
 #### Defined in
 
-[components/ControlledAnimated.tsx:6](https://github.com/tristanjohnson849/react-controlled-animations/blob/2fcbb59/src/components/ControlledAnimated.tsx#L6)
+[components/ControlledAnimated.tsx:6](https://github.com/tristanjohnson849/react-controlled-animations/blob/c950a08/src/components/ControlledAnimated.tsx#L6)
 
 ## Functions
 
@@ -34,14 +34,9 @@
 ▸ **default**<`A`, `T`\>(`props`): `ReactElement`<`any`, `any`\>
 
 An Animated component that is controlled by the currentAnimation prop
-The component may be changed to a different HTML tag delegate via the as prop
-May accept a ref to forward to the HTML tag delegate, though there is no need to pass an AnimatedRef (see
-
-**`Link`**
-
-components.Animated)
-
-This component is useful for synchronizing animations with other animated elements
+The component may use a different HTML tag delegate via the `as` prop
+May accept a ref to forward to the HTML tag delegate. 
+Note: forwarding a ref returned from [useAnimatedRef](../wiki/hooks#useanimatedref) may result in undeterministic behavior
 
 #### Type parameters
 
@@ -54,7 +49,7 @@ This component is useful for synchronizing animations with other animated elemen
 
 | Name | Type |
 | :------ | :------ |
-| `props` | { `currentAnimation`: `A` ; `onAnimationEnd?`: (`completedAnimationName`: `A`, `webAnimation`: `Animation`) => `void`  } & [`NonHTMLAnimatedProps`](../wiki/components.common.NonHTMLAnimatedProps)<`A`, `T`\> & `Omit`<[`TagHTMLAttributes`](../wiki/components.common#taghtmlattributes)<`T`\>, ``"onAnimationEnd"``\> & `RefAttributes`<[`TagHTMLElement`](../wiki/components.common#taghtmlelement)<`T`\>\> |
+| `props` | { `currentAnimation`: `A`  } & [`NonHTMLAnimatedProps`](../wiki/components.common.NonHTMLAnimatedProps)<`A`, `T`\> & `Omit`<[`TagHTMLAttributes`](../wiki/components.common#taghtmlattributes)<`T`\>, ``"onAnimationEnd"``\> & `RefAttributes`<[`TagHTMLElement`](../wiki/components.common#taghtmlelement)<`T`\>\> |
 
 #### Returns
 
@@ -62,4 +57,4 @@ This component is useful for synchronizing animations with other animated elemen
 
 #### Defined in
 
-[components/ControlledAnimated.tsx:72](https://github.com/tristanjohnson849/react-controlled-animations/blob/2fcbb59/src/components/ControlledAnimated.tsx#L72)
+[components/ControlledAnimated.tsx:62](https://github.com/tristanjohnson849/react-controlled-animations/blob/c950a08/src/components/ControlledAnimated.tsx#L62)

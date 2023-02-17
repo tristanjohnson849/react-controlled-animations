@@ -16,6 +16,8 @@
 
 Ƭ **TransitioningState**<`S`, `T`\>: readonly [`S`, (`nextState`: `SetStateAction`<`S`\>, `transition`: `T` \| ``null``) => `void`, () => `void`, `T` \| ``null``]
 
+[state, startTransition, endTransition, currentTransition]
+
 #### Type parameters
 
 | Name | Description |
@@ -25,7 +27,7 @@
 
 #### Defined in
 
-[hooks/useTransitioningState.ts:9](https://github.com/tristanjohnson849/react-controlled-animations/blob/2fcbb59/src/hooks/useTransitioningState.ts#L9)
+[hooks/useTransitioningState.ts:11](https://github.com/tristanjohnson849/react-controlled-animations/blob/c950a08/src/hooks/useTransitioningState.ts#L11)
 
 ## Functions
 
@@ -33,24 +35,26 @@
 
 ▸ **default**<`S`, `T`\>(): [`TransitioningState`](../wiki/hooks.useTransitioningState#transitioningstate)<`S` \| `undefined`, `T`\>
 
-Hook to useState that animates on transitioning states
+Hook to useState that supports asynchronous transitions with distinct transition values
+
+State transitions may be queued via startTransition, and all queued transitions are completed in order by endTransition
 
 #### Type parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `S` | `undefined` | type of state |
-| `T` | `unknown` | - |
+| `T` | `unknown` | type of transition values |
 
 #### Returns
 
 [`TransitioningState`](../wiki/hooks.useTransitioningState#transitioningstate)<`S` \| `undefined`, `T`\>
 
-[state, animatedStateTransition, elementRef, currentAnimation]
+[state, startTransition, endTransition, currentTransition]: TransitioningState<S, T>
 
 #### Defined in
 
-[hooks/useTransitioningState.ts:35](https://github.com/tristanjohnson849/react-controlled-animations/blob/2fcbb59/src/hooks/useTransitioningState.ts#L35)
+[hooks/useTransitioningState.ts:40](https://github.com/tristanjohnson849/react-controlled-animations/blob/c950a08/src/hooks/useTransitioningState.ts#L40)
 
 ▸ **default**<`S`, `T`\>(`initialState`, `initialTransition?`): [`TransitioningState`](../wiki/hooks.useTransitioningState#transitioningstate)<`S`, `T`\>
 
@@ -58,10 +62,10 @@ State is always a defined S if an initial state is provided
 
 #### Type parameters
 
-| Name |
-| :------ |
-| `S` |
-| `T` |
+| Name | Type |
+| :------ | :------ |
+| `S` | `S` |
+| `T` | `unknown` |
 
 #### Parameters
 
@@ -76,32 +80,34 @@ State is always a defined S if an initial state is provided
 
 #### Defined in
 
-[hooks/useTransitioningState.ts:39](https://github.com/tristanjohnson849/react-controlled-animations/blob/2fcbb59/src/hooks/useTransitioningState.ts#L39)
+[hooks/useTransitioningState.ts:44](https://github.com/tristanjohnson849/react-controlled-animations/blob/c950a08/src/hooks/useTransitioningState.ts#L44)
 
 ▸ **default**<`S`, `T`\>(`initialState`, `initialTransition?`): [`TransitioningState`](../wiki/hooks.useTransitioningState#transitioningstate)<`S` \| `undefined`, `T`\>
 
-Hook to useState that animates on transitioning states
+Hook to useState that supports asynchronous transitions with distinct transition values
+
+State transitions may be queued via startTransition, and all queued transitions are completed in order by endTransition
 
 #### Type parameters
 
-| Name | Description |
-| :------ | :------ |
-| `S` | type of state |
-| `T` | - |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `S` | `S` | type of state |
+| `T` | `unknown` | type of transition values |
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `initialState` | `S` |
-| `initialTransition?` | `T` |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `initialState` | `S` |  |
+| `initialTransition?` | `T` | if provided, initializes the state with currentTransition as initialTransition |
 
 #### Returns
 
 [`TransitioningState`](../wiki/hooks.useTransitioningState#transitioningstate)<`S` \| `undefined`, `T`\>
 
-[state, animatedStateTransition, elementRef, currentAnimation]
+[state, startTransition, endTransition, currentTransition]: TransitioningState<S, T>
 
 #### Defined in
 
-[hooks/useTransitioningState.ts:40](https://github.com/tristanjohnson849/react-controlled-animations/blob/2fcbb59/src/hooks/useTransitioningState.ts#L40)
+[hooks/useTransitioningState.ts:45](https://github.com/tristanjohnson849/react-controlled-animations/blob/c950a08/src/hooks/useTransitioningState.ts#L45)

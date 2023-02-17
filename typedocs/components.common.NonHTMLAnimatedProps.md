@@ -17,6 +17,7 @@ AnimatedProps excluding HTML Attributes, exported
 
 - [animations](../wiki/components.common.NonHTMLAnimatedProps#animations)
 - [as](../wiki/components.common.NonHTMLAnimatedProps#as)
+- [onAnimationEnd](../wiki/components.common.NonHTMLAnimatedProps#onanimationend)
 
 ## Properties
 
@@ -28,7 +29,7 @@ The mapping of animationName A to an AnimationInput
 
 #### Defined in
 
-[components/common.ts:52](https://github.com/tristanjohnson849/react-controlled-animations/blob/2fcbb59/src/components/common.ts#L52)
+[components/common.ts:44](https://github.com/tristanjohnson849/react-controlled-animations/blob/c950a08/src/components/common.ts#L44)
 
 ___
 
@@ -37,7 +38,35 @@ ___
 • `Optional` **as**: `T`
 
 The given tag that this Animated element delegates to
+Defaults to "div"
 
 #### Defined in
 
-[components/common.ts:47](https://github.com/tristanjohnson849/react-controlled-animations/blob/2fcbb59/src/components/common.ts#L47)
+[components/common.ts:39](https://github.com/tristanjohnson849/react-controlled-animations/blob/c950a08/src/components/common.ts#L39)
+
+___
+
+### onAnimationEnd
+
+• `Optional` **onAnimationEnd**: (`completedAnimationName`: `A`, `webAnimation`: `Animation`) => `void`
+
+#### Type declaration
+
+▸ (`completedAnimationName`, `webAnimation`): `void`
+
+Callback to be called when the animation is finished() or is interrupted by a new animationName
+
+##### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `completedAnimationName` | `A` | the name of the animation that is ending |
+| `webAnimation` | `Animation` | the Web API Animation that is ending, or null if the animation was not started |
+
+##### Returns
+
+`void`
+
+#### Defined in
+
+[components/common.ts:51](https://github.com/tristanjohnson849/react-controlled-animations/blob/c950a08/src/components/common.ts#L51)

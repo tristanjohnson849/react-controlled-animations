@@ -35,7 +35,7 @@ Standard Props for an animated element. Includes the HTMLAttributes for the give
 
 #### Defined in
 
-[components/common.ts:60](https://github.com/tristanjohnson849/react-controlled-animations/blob/2fcbb59/src/components/common.ts#L60)
+[components/common.ts:59](https://github.com/tristanjohnson849/react-controlled-animations/blob/c950a08/src/components/common.ts#L59)
 
 ___
 
@@ -48,7 +48,7 @@ Excludes tags that extend React.SVGProps
 
 #### Defined in
 
-[components/common.ts:14](https://github.com/tristanjohnson849/react-controlled-animations/blob/2fcbb59/src/components/common.ts#L14)
+[components/common.ts:13](https://github.com/tristanjohnson849/react-controlled-animations/blob/c950a08/src/components/common.ts#L13)
 
 ___
 
@@ -66,7 +66,7 @@ TagHTMLAttributes<"a"> is equivalent to React.AnchorHTMLAttributes<HTMLAnchorEle
 
 #### Defined in
 
-[components/common.ts:31](https://github.com/tristanjohnson849/react-controlled-animations/blob/2fcbb59/src/components/common.ts#L31)
+[components/common.ts:26](https://github.com/tristanjohnson849/react-controlled-animations/blob/c950a08/src/components/common.ts#L26)
 
 ___
 
@@ -84,13 +84,13 @@ TagHTMLElement<"a"> is equivalent to HTMLAnchorElement
 
 #### Defined in
 
-[components/common.ts:19](https://github.com/tristanjohnson849/react-controlled-animations/blob/2fcbb59/src/components/common.ts#L19)
+[components/common.ts:18](https://github.com/tristanjohnson849/react-controlled-animations/blob/c950a08/src/components/common.ts#L18)
 
 ## Functions
 
 ### mergeRefs
 
-▸ **mergeRefs**<`E`\>(`ref1`, `ref2`): `React.ForwardedRef`<`E`\>
+▸ **mergeRefs**<`E`\>(`ref1`, `ref2`): (`value`: `E` \| ``null``) => `void`
 
 Useful for tracking both a forwardedRef and a local ref
 
@@ -111,13 +111,25 @@ If both refs are AnimatedRef, returns the first since AnimatedRefs should be uni
 
 #### Returns
 
-`React.ForwardedRef`<`E`\>
+`fn`
 
 a new ref that manages both given refs as one
 
+▸ (`value`): `void`
+
+##### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `value` | `E` \| ``null`` |
+
+##### Returns
+
+`void`
+
 #### Defined in
 
-[components/common.ts:83](https://github.com/tristanjohnson849/react-controlled-animations/blob/2fcbb59/src/components/common.ts#L83)
+[components/common.ts:82](https://github.com/tristanjohnson849/react-controlled-animations/blob/c950a08/src/components/common.ts#L82)
 
 ___
 
@@ -146,4 +158,4 @@ Helper to update a ref (either CallbackRef or RefObject) to the given next value
 
 #### Defined in
 
-[components/common.ts:66](https://github.com/tristanjohnson849/react-controlled-animations/blob/2fcbb59/src/components/common.ts#L66)
+[components/common.ts:65](https://github.com/tristanjohnson849/react-controlled-animations/blob/c950a08/src/components/common.ts#L65)

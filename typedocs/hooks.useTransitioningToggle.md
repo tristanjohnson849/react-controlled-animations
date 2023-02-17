@@ -19,21 +19,19 @@
 
 #### Defined in
 
-[hooks/useTransitioningToggle.ts:5](https://github.com/tristanjohnson849/react-controlled-animations/blob/2fcbb59/src/hooks/useTransitioningToggle.ts#L5)
+[hooks/useTransitioningToggle.ts:5](https://github.com/tristanjohnson849/react-controlled-animations/blob/c950a08/src/hooks/useTransitioningToggle.ts#L5)
 
 ___
 
 ### TransitioningToggleState
 
-Ƭ **TransitioningToggleState**: readonly [`boolean`, () => `void`, () => `void`, [`ToggleTransitions`](../wiki/hooks.useTransitioningToggle#toggletransitions) \| ``null``]
+Ƭ **TransitioningToggleState**: readonly [`boolean`, (`isAsync`: `boolean`) => `void`, () => `void`, [`ToggleTransitions`](../wiki/hooks.useTransitioningToggle#toggletransitions) \| ``null``]
 
-**`Type Param`**
-
-the HTMLElement to be Animated
+[isToggled, startToggling, endToggling, currentTransition]
 
 #### Defined in
 
-[hooks/useTransitioningToggle.ts:10](https://github.com/tristanjohnson849/react-controlled-animations/blob/2fcbb59/src/hooks/useTransitioningToggle.ts#L10)
+[hooks/useTransitioningToggle.ts:10](https://github.com/tristanjohnson849/react-controlled-animations/blob/c950a08/src/hooks/useTransitioningToggle.ts#L10)
 
 ## Functions
 
@@ -41,7 +39,9 @@ the HTMLElement to be Animated
 
 ▸ **default**(`initialState?`, `initialTransitioning?`): [`TransitioningToggleState`](../wiki/hooks.useTransitioningToggle#transitioningtogglestate)
 
-Hook to create a boolean toggle state that animates when toggled
+Hook to use a boolean toggle state that supports asynchronous transitions
+
+Toggle transitions may be queued via startToggling, and all queued toggles are completed by endTransition
 
 #### Parameters
 
@@ -54,8 +54,8 @@ Hook to create a boolean toggle state that animates when toggled
 
 [`TransitioningToggleState`](../wiki/hooks.useTransitioningToggle#transitioningtogglestate)
 
-[isToggled, toggleCallback, togglingElementRef, currentAnimation]
+[isToggled, startToggling, endToggling, currentTransition]: TransitioningToggleState
 
 #### Defined in
 
-[hooks/useTransitioningToggle.ts:37](https://github.com/tristanjohnson849/react-controlled-animations/blob/2fcbb59/src/hooks/useTransitioningToggle.ts#L37)
+[hooks/useTransitioningToggle.ts:46](https://github.com/tristanjohnson849/react-controlled-animations/blob/c950a08/src/hooks/useTransitioningToggle.ts#L46)

@@ -2,24 +2,17 @@
 
 ## Table of contents
 
-### Interfaces
-
-- [AnimatedRef](../wiki/hooks.useAnimatedRef.AnimatedRef)
-
 ### Functions
 
 - [default](../wiki/hooks.useAnimatedRef#default)
-- [isAnimatedRef](../wiki/hooks.useAnimatedRef#isanimatedref)
 
 ## Functions
 
 ### default
 
-▸ **default**<`A`, `E`\>(`currentAnimation`, `animations`, `onAnimationEnd?`): [`AnimatedRef`](../wiki/hooks.useAnimatedRef.AnimatedRef)<`E`\>
+▸ **default**<`A`, `E`\>(`currentAnimation`, `animations`, `onAnimationEnd?`): `RefObject`<`E`\>
 
-Low-level hook to useRef that will animate the ref'd HTML element with the given currentAnimation name
-
-Expects the AnimationsByName<A> to be serialized as a JSON string in the data-animations attribute on the element - see [ControlledAnimated](../wiki/components#controlledanimated)
+Low-level hook  that will animate the ref'd HTML element with the given currentAnimation name
 
 Note: will interrupt and play a new animation if the animations stored at data-animations change and the Component using this hook is rerendered
 
@@ -28,48 +21,22 @@ Note: will interrupt and play a new animation if the animations stored at data-a
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `A` | extends `string` = `string` | the accepted animation names |
-| `E` | extends `HTMLElement`<`E`\> = `HTMLElement` | - |
+| `E` | extends `HTMLElement`<`E`\> = `HTMLElement` | the type of element to be ref'd |
 
 #### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `currentAnimation` | `A` | the animation to be applied to the ref'd element |
-| `animations` | [`AnimationsByName`](../wiki/AnimationInput#animationsbyname)<`A`\> | - |
-| `onAnimationEnd?` | (`completedAnimationName`: `A`, `webAnimation`: `Animation`) => `void` | callback to be called when the animation is finished(), or if the animation is interrupted (currentAnimation changes before finishing) |
+| `currentAnimation` | `A` | On changing to a non-null value, will start the animation at animations[currentAnimation]. If given null, will stop animating the component. If given a new or null value while the previous aninmation is not finished(), will commit the current style to the element, call onAnimationEnd, and cancel() the previous animation |
+| `animations` | [`AnimationsByName`](../wiki/AnimationInput#animationsbyname)<`A`\> | The mapping of animationName to AnimationInput |
+| `onAnimationEnd?` | (`completedAnimationName`: `A`, `webAnimation`: `Animation`) => `void` | callback to be called when the animation is finished(), or if the animation is interrupted by a new currentAnimation |
 
 #### Returns
 
-[`AnimatedRef`](../wiki/hooks.useAnimatedRef.AnimatedRef)<`E`\>
+`RefObject`<`E`\>
 
 react Ref to be assigned to the Animated element
 
 #### Defined in
 
-[hooks/useAnimatedRef.ts:34](https://github.com/tristanjohnson849/react-controlled-animations/blob/2fcbb59/src/hooks/useAnimatedRef.ts#L34)
-
-___
-
-### isAnimatedRef
-
-▸ **isAnimatedRef**<`E`\>(`ref`): ref is AnimatedRef<E\>
-
-#### Type parameters
-
-| Name |
-| :------ |
-| `E` |
-
-#### Parameters
-
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `ref` | `Ref`<`E`\> | React Ref that is possibly Animated |
-
-#### Returns
-
-ref is AnimatedRef<E\>
-
-#### Defined in
-
-[hooks/useAnimatedRef.ts:18](https://github.com/tristanjohnson849/react-controlled-animations/blob/2fcbb59/src/hooks/useAnimatedRef.ts#L18)
+[hooks/useAnimatedRef.ts:20](https://github.com/tristanjohnson849/react-controlled-animations/blob/c950a08/src/hooks/useAnimatedRef.ts#L20)

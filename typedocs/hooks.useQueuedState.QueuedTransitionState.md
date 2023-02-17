@@ -2,7 +2,8 @@
 
 [hooks/useQueuedState](../wiki/hooks.useQueuedState).QueuedTransitionState
 
-State that supports queueing transitioning
+State that supports asynchronous state transitions
+State transitions may be enqueued and then completed in FIFO order via transition or transitionAll
 
 ## Type parameters
 
@@ -29,7 +30,7 @@ Current state value
 
 #### Defined in
 
-[hooks/useQueuedState.ts:10](https://github.com/tristanjohnson849/react-controlled-animations/blob/2fcbb59/src/hooks/useQueuedState.ts#L10)
+[hooks/useQueuedState.ts:11](https://github.com/tristanjohnson849/react-controlled-animations/blob/c950a08/src/hooks/useQueuedState.ts#L11)
 
 ___
 
@@ -41,7 +42,7 @@ ___
 
 ▸ (`action`): `void`
 
-enqueue a state transition
+enqueue a state transition - either a literal value or a function (prev) => next
 
 ##### Parameters
 
@@ -55,7 +56,7 @@ enqueue a state transition
 
 #### Defined in
 
-[hooks/useQueuedState.ts:14](https://github.com/tristanjohnson849/react-controlled-animations/blob/2fcbb59/src/hooks/useQueuedState.ts#L14)
+[hooks/useQueuedState.ts:15](https://github.com/tristanjohnson849/react-controlled-animations/blob/c950a08/src/hooks/useQueuedState.ts#L15)
 
 ___
 
@@ -75,7 +76,7 @@ process one queued transition
 
 #### Defined in
 
-[hooks/useQueuedState.ts:18](https://github.com/tristanjohnson849/react-controlled-animations/blob/2fcbb59/src/hooks/useQueuedState.ts#L18)
+[hooks/useQueuedState.ts:19](https://github.com/tristanjohnson849/react-controlled-animations/blob/c950a08/src/hooks/useQueuedState.ts#L19)
 
 ___
 
@@ -95,4 +96,4 @@ process all queued transitions
 
 #### Defined in
 
-[hooks/useQueuedState.ts:22](https://github.com/tristanjohnson849/react-controlled-animations/blob/2fcbb59/src/hooks/useQueuedState.ts#L22)
+[hooks/useQueuedState.ts:23](https://github.com/tristanjohnson849/react-controlled-animations/blob/c950a08/src/hooks/useQueuedState.ts#L23)

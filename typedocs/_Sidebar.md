@@ -7,7 +7,6 @@
 
 - [AnimationInput](../wiki/AnimationInput)
 - [animationInputMappers](../wiki/animationInputMappers)
-- [components](../wiki/components)
 - [components/ControlledAnimated](../wiki/components.ControlledAnimated)
 - [components/HoverAnimated](../wiki/components.HoverAnimated)
 - [components/common](../wiki/components.common)
@@ -18,5 +17,5 @@
 - [hooks/useSimpleTransitioningState](../wiki/hooks.useSimpleTransitioningState)
 - [hooks/useTransitioningState](../wiki/hooks.useTransitioningState)
 - [hooks/useTransitioningToggle](../wiki/hooks.useTransitioningToggle)
-- [index](../wiki/index)
+- [stories/SynchronizedAnimationExample](../wiki/stories.SynchronizedAnimationExample)
 - [testUtils](../wiki/testUtils)

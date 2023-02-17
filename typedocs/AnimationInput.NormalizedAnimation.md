@@ -2,6 +2,8 @@
 
 [AnimationInput](../wiki/AnimationInput).NormalizedAnimation
 
+Normalized animation input for internal use, created from AnimationInput
+
 ## Table of contents
 
 ### Properties
@@ -17,7 +19,7 @@
 
 #### Defined in
 
-[AnimationInput.ts:6](https://github.com/tristanjohnson849/react-controlled-animations/blob/2fcbb59/src/AnimationInput.ts#L6)
+[AnimationInput.ts:12](https://github.com/tristanjohnson849/react-controlled-animations/blob/c950a08/src/AnimationInput.ts#L12)
 
 ___
 
@@ -27,4 +29,4 @@ ___
 
 #### Defined in
 
-[AnimationInput.ts:7](https://github.com/tristanjohnson849/react-controlled-animations/blob/2fcbb59/src/AnimationInput.ts#L7)
+[AnimationInput.ts:13](https://github.com/tristanjohnson849/react-controlled-animations/blob/c950a08/src/AnimationInput.ts#L13)

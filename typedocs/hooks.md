@@ -4,27 +4,19 @@
 
 ### References
 
-- [AnimatedRef](../wiki/hooks#animatedref)
 - [QueuedTransitionState](../wiki/hooks#queuedtransitionstate)
 - [SimpleTransitioningState](../wiki/hooks#simpletransitioningstate)
 - [ToggleTransitions](../wiki/hooks#toggletransitions)
 - [TransitioningState](../wiki/hooks#transitioningstate)
 - [TransitioningToggleState](../wiki/hooks#transitioningtogglestate)
-- [isAnimatedRef](../wiki/hooks#isanimatedref)
+- [useAnimatedRef](../wiki/hooks#useanimatedref)
 - [useAnimatedToggle](../wiki/hooks#useanimatedtoggle)
-- [useAnimatingRef](../wiki/hooks#useanimatingref)
 - [useIsHovered](../wiki/hooks#useishovered)
 - [useQueuedState](../wiki/hooks#usequeuedstate)
-- [useSimpleTransitionState](../wiki/hooks#usesimpletransitionstate)
+- [useSimpleTransitioningState](../wiki/hooks#usesimpletransitioningstate)
 - [useTransitioningState](../wiki/hooks#usetransitioningstate)
 
 ## References
-
-### AnimatedRef
-
-Re-exports [AnimatedRef](../wiki/hooks.useAnimatedRef.AnimatedRef)
-
-___
 
 ### QueuedTransitionState
 
@@ -56,21 +48,15 @@ Re-exports [TransitioningToggleState](../wiki/hooks.useTransitioningToggle#trans
 
 ___
 
-### isAnimatedRef
+### useAnimatedRef
 
-Re-exports [isAnimatedRef](../wiki/hooks.useAnimatedRef#isanimatedref)
+Renames and re-exports [default](../wiki/hooks.useAnimatedRef#default)
 
 ___
 
 ### useAnimatedToggle
 
 Renames and re-exports [default](../wiki/hooks.useTransitioningToggle#default)
-
-___
-
-### useAnimatingRef
-
-Renames and re-exports [default](../wiki/hooks.useAnimatedRef#default)
 
 ___
 
@@ -86,7 +72,7 @@ Renames and re-exports [default](../wiki/hooks.useQueuedState#default)
 
 ___
 
-### useSimpleTransitionState
+### useSimpleTransitioningState
 
 Renames and re-exports [default](../wiki/hooks.useSimpleTransitioningState#default)
 

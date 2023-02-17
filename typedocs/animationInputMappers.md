@@ -24,9 +24,9 @@ The edits are:
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `toPersist` | [`AnimationInput`](../wiki/AnimationInput#animationinput) | the AnimationInput to get a persisted version of |
+| Name | Type |
+| :------ | :------ |
+| `toPersist` | [`AnimationInput`](../wiki/AnimationInput#animationinput) |
 
 #### Returns
 
@@ -34,7 +34,7 @@ The edits are:
 
 #### Defined in
 
-[animationInputMappers.ts:20](https://github.com/tristanjohnson849/react-controlled-animations/blob/2fcbb59/src/animationInputMappers.ts#L20)
+[animationInputMappers.ts:18](https://github.com/tristanjohnson849/react-controlled-animations/blob/c950a08/src/animationInputMappers.ts#L18)
 
 ___
 
@@ -44,7 +44,7 @@ ___
 
 Helper to create AnimationsByName for a SimpleTransition animation
 
-See [useSimpleTransitionState](../wiki/hooks#usesimpletransitionstate)
+See [useSimpleTransitioningState](../wiki/hooks#usesimpletransitioningstate)
 
 #### Parameters
 
@@ -58,7 +58,7 @@ See [useSimpleTransitionState](../wiki/hooks#usesimpletransitionstate)
 
 #### Defined in
 
-[animationInputMappers.ts:86](https://github.com/tristanjohnson849/react-controlled-animations/blob/2fcbb59/src/animationInputMappers.ts#L86)
+[animationInputMappers.ts:80](https://github.com/tristanjohnson849/react-controlled-animations/blob/c950a08/src/animationInputMappers.ts#L80)
 
 ___
 
@@ -83,7 +83,7 @@ The edits are:
 
 #### Defined in
 
-[animationInputMappers.ts:68](https://github.com/tristanjohnson849/react-controlled-animations/blob/2fcbb59/src/animationInputMappers.ts#L68)
+[animationInputMappers.ts:62](https://github.com/tristanjohnson849/react-controlled-animations/blob/c950a08/src/animationInputMappers.ts#L62)
 
 ___
 
@@ -109,4 +109,4 @@ The edits are:
 
 #### Defined in
 
-[animationInputMappers.ts:52](https://github.com/tristanjohnson849/react-controlled-animations/blob/2fcbb59/src/animationInputMappers.ts#L52)
+[animationInputMappers.ts:48](https://github.com/tristanjohnson849/react-controlled-animations/blob/c950a08/src/animationInputMappers.ts#L48)

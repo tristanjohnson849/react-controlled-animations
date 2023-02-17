@@ -14,7 +14,9 @@
 
 ### SimpleTransitioningState
 
-Ƭ **SimpleTransitioningState**<`S`\>: readonly [`S`, (`nextState`: `SetStateAction`<`S`\>, `transition?`: `boolean`) => `void`, () => `void`, `boolean`]
+Ƭ **SimpleTransitioningState**<`S`\>: readonly [`S`, (`nextState`: `SetStateAction`<`S`\>, `isAsync?`: `boolean`) => `void`, () => `void`, `boolean`]
+
+[state, startTransition, endTransition, isTransitioning]
 
 #### Type parameters
 
@@ -24,7 +26,7 @@
 
 #### Defined in
 
-[hooks/useSimpleTransitioningState.ts:5](https://github.com/tristanjohnson849/react-controlled-animations/blob/2fcbb59/src/hooks/useSimpleTransitioningState.ts#L5)
+[hooks/useSimpleTransitioningState.ts:8](https://github.com/tristanjohnson849/react-controlled-animations/blob/c950a08/src/hooks/useSimpleTransitioningState.ts#L8)
 
 ## Functions
 
@@ -32,8 +34,9 @@
 
 ▸ **default**<`S`\>(): [`SimpleTransitioningState`](../wiki/hooks.useSimpleTransitioningState#simpletransitioningstate)<`S` \| `undefined`\>
 
-Hook to useState that animates on transitioning states
-This is a simplified version of useAnimatedTransitionState where only one animation is configured for all transitions and is expected to be named 'transition' in AnimationsByName
+Hook to useState that supports asynchronous transitions
+
+State transitions may be queued via startTransition, and all queued transitions are completed in order by endTransition
 
 #### Type parameters
 
@@ -45,11 +48,11 @@ This is a simplified version of useAnimatedTransitionState where only one animat
 
 [`SimpleTransitioningState`](../wiki/hooks.useSimpleTransitioningState#simpletransitioningstate)<`S` \| `undefined`\>
 
-[state, animatedTransitionState, transitioningElementRef, isTransitioning]
+[state, startTransition, endTransition, isTransitioning]: SimpleTransitioningState<S>
 
 #### Defined in
 
-[hooks/useSimpleTransitioningState.ts:33](https://github.com/tristanjohnson849/react-controlled-animations/blob/2fcbb59/src/hooks/useSimpleTransitioningState.ts#L33)
+[hooks/useSimpleTransitioningState.ts:39](https://github.com/tristanjohnson849/react-controlled-animations/blob/c950a08/src/hooks/useSimpleTransitioningState.ts#L39)
 
 ▸ **default**<`S`\>(`initialState`, `initialTransitioning?`): [`SimpleTransitioningState`](../wiki/hooks.useSimpleTransitioningState#simpletransitioningstate)<`S`\>
 
@@ -74,4 +77,4 @@ State is always a defined S if an initial state is provided
 
 #### Defined in
 
-[hooks/useSimpleTransitioningState.ts:37](https://github.com/tristanjohnson849/react-controlled-animations/blob/2fcbb59/src/hooks/useSimpleTransitioningState.ts#L37)
+[hooks/useSimpleTransitioningState.ts:43](https://github.com/tristanjohnson849/react-controlled-animations/blob/c950a08/src/hooks/useSimpleTransitioningState.ts#L43)

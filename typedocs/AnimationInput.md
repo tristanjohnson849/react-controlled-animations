@@ -12,6 +12,10 @@
 - [AnimationOptions](../wiki/AnimationInput#animationoptions)
 - [AnimationsByName](../wiki/AnimationInput#animationsbyname)
 
+### Variables
+
+- [DEFAULT\_DURATION](../wiki/AnimationInput#default_duration)
+
 ### Functions
 
 - [normalizedAnimation](../wiki/AnimationInput#normalizedanimation)
@@ -22,9 +26,15 @@
 
 Ƭ **AnimationInput**: `Keyframe`[] \| [`NormalizedAnimation`](../wiki/AnimationInput.NormalizedAnimation) \| { `keyframes`: `Keyframe`[] ; `options`: `number` \| [`AnimationOptions`](../wiki/AnimationInput#animationoptions)  }
 
+Defines an Web API Animation
+
+May be either
+- an array of [Keyframes](https://developer.mozilla.org/en-US/docs/Web/API/Web_Animations_API/Keyframe_Formats)
+- an object containing a `keyframes` array and animation [options](https://developer.mozilla.org/en-US/docs/Web/API/Element/animate#parameters)
+
 #### Defined in
 
-[AnimationInput.ts:10](https://github.com/tristanjohnson849/react-controlled-animations/blob/2fcbb59/src/AnimationInput.ts#L10)
+[AnimationInput.ts:23](https://github.com/tristanjohnson849/react-controlled-animations/blob/c950a08/src/AnimationInput.ts#L23)
 
 ___
 
@@ -32,9 +42,11 @@ ___
 
 Ƭ **AnimationOptions**: `Omit`<`KeyframeAnimationOptions`, ``"iterations"``\> & { `iterations?`: `number` \| ``"Infinity"``  }
 
+Override dom KeyframeAnimationOptions with [documented types](https://developer.mozilla.org/en-US/docs/Web/API/KeyframeEffect/KeyframeEffect#parameters)
+
 #### Defined in
 
-[AnimationInput.ts:1](https://github.com/tristanjohnson849/react-controlled-animations/blob/2fcbb59/src/AnimationInput.ts#L1)
+[AnimationInput.ts:4](https://github.com/tristanjohnson849/react-controlled-animations/blob/c950a08/src/AnimationInput.ts#L4)
 
 ___
 
@@ -50,24 +62,36 @@ ___
 
 #### Defined in
 
-[AnimationInput.ts:29](https://github.com/tristanjohnson849/react-controlled-animations/blob/2fcbb59/src/AnimationInput.ts#L29)
+[AnimationInput.ts:48](https://github.com/tristanjohnson849/react-controlled-animations/blob/c950a08/src/AnimationInput.ts#L48)
+
+## Variables
+
+### DEFAULT\_DURATION
+
+• `Const` **DEFAULT\_DURATION**: ``1000``
+
+#### Defined in
+
+[AnimationInput.ts:31](https://github.com/tristanjohnson849/react-controlled-animations/blob/c950a08/src/AnimationInput.ts#L31)
 
 ## Functions
 
 ### normalizedAnimation
 
-▸ **normalizedAnimation**(`animation`): [`NormalizedAnimation`](../wiki/AnimationInput.NormalizedAnimation)
+▸ **normalizedAnimation**(`animationInput`): [`NormalizedAnimation`](../wiki/AnimationInput.NormalizedAnimation)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `animation` | [`AnimationInput`](../wiki/AnimationInput#animationinput) |
+| `animationInput` | [`AnimationInput`](../wiki/AnimationInput#animationinput) |
 
 #### Returns
 
 [`NormalizedAnimation`](../wiki/AnimationInput.NormalizedAnimation)
 
+a NormalizedAnimation from the given AnimationInput
+
 #### Defined in
 
-[AnimationInput.ts:18](https://github.com/tristanjohnson849/react-controlled-animations/blob/2fcbb59/src/AnimationInput.ts#L18)
+[AnimationInput.ts:37](https://github.com/tristanjohnson849/react-controlled-animations/blob/c950a08/src/AnimationInput.ts#L37)
