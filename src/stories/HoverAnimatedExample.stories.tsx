@@ -1,9 +1,9 @@
 import React from "react";
 import { toPersistedAnimation } from "../animationInputMappers";
-import HoverAnimated from "./HoverAnimated";
+import HoverAnimated from "../components/HoverAnimated";
 
 
-const HoveringExample = () => {
+const HoverAnimatedExample = () => {
     return (
         <div
             style={{
@@ -57,14 +57,14 @@ const HoveringExample = () => {
 };
 
 export default {
-    component: HoveringExample,
-    title: 'Components/HoveringExample',
+    component: HoverAnimatedExample,
+    title: 'Components/HoverAnimatedExample',
     parameters: {
         componentSource: {
-          url: 'https://raw.githubusercontent.com/tristanjohnson849/react-controlled-animations/main/src/components/HoverAnimated.stories.tsx',
+          url: 'https://raw.githubusercontent.com/tristanjohnson849/react-controlled-animations/main/src/stories/HoverAnimatedExample.stories.tsx',
           language: 'typescript',
         }
     },
 };
 
-export const Primary: React.FC<{}> = () => <HoveringExample />;
+export const Primary: React.FC<{}> = () => <HoverAnimatedExample />;

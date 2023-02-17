@@ -10,18 +10,13 @@ type PickByType<T, Value> = {
  * "a", "abbr", ..., "div", ... "webview"
  * Excludes tags that extend React.SVGProps
  */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type HTMLIntrinsics = keyof PickByType<JSX.IntrinsicElements, React.DetailedHTMLProps<any, any>>;
 
 /**
  * TagHTMLElement<"a"> is equivalent to HTMLAnchorElement
  */
 export type TagHTMLElement<T extends HTMLIntrinsics> = HTMLElement &
-    JSX.IntrinsicElements[T] extends React.DetailedHTMLProps<
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    any,
-    infer E
->
+    JSX.IntrinsicElements[T] extends React.DetailedHTMLProps<any, infer E>
     ? E
     : never;
 
@@ -29,11 +24,7 @@ export type TagHTMLElement<T extends HTMLIntrinsics> = HTMLElement &
  * TagHTMLAttributes<"a"> is equivalent to React.AnchorHTMLAttributes<HTMLAnchorElement>
  */
 export type TagHTMLAttributes<T extends HTMLIntrinsics> = HTMLAttributes<TagHTMLElement<T>> &
-    JSX.IntrinsicElements[T] extends React.DetailedHTMLProps<
-    infer A,
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    any
->
+    JSX.IntrinsicElements[T] extends React.DetailedHTMLProps<infer A, any>
     ? A
     : never;
 
@@ -43,6 +34,7 @@ export type TagHTMLAttributes<T extends HTMLIntrinsics> = HTMLAttributes<TagHTML
 export interface NonHTMLAnimatedProps<A extends string, T extends HTMLIntrinsics = 'div'> {
     /**
      * The given tag that this Animated element delegates to
+     * Defaults to "div"
      */
     as?: T;
 
@@ -50,6 +42,13 @@ export interface NonHTMLAnimatedProps<A extends string, T extends HTMLIntrinsics
      * The mapping of animationName A to an AnimationInput
      */
     animations?: AnimationsByName<A>;
+
+    /**
+     * Callback to be called when the animation is finished() or is interrupted by a new animationName
+     * @param completedAnimationName the name of the animation that is ending
+     * @param webAnimation the Web API Animation that is ending, or null if the animation was not started
+     */
+    onAnimationEnd?: (completedAnimationName: A, webAnimation: Animation | null) => void;
 }
 
 /**
@@ -83,7 +82,7 @@ export function setRef<E>(ref: React.ForwardedRef<E> | undefined, next: E | null
 export function mergeRefs<E>(
     ref1: React.ForwardedRef<E> | undefined,
     ref2: React.ForwardedRef<E> | undefined
-): React.ForwardedRef<E> {
+): (value: E | null) => void {
     return (value: E | null) => {
         setRef(ref1, value);
         setRef(ref2, value);

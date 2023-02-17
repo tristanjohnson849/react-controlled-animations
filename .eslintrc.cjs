@@ -27,6 +27,7 @@ module.exports = {
     "sort-imports": [
       "error",
       { "ignoreDeclarationSort": true, "ignoreCase": true }
-    ]
+    ],
+    "@typescript-eslint/no-explicit-any": 0
   }
 }

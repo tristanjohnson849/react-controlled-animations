@@ -2,30 +2,36 @@ import { SetStateAction } from 'react';
 
 import useTransitioningState from './useTransitioningState';
 
+/**
+ * [state, startTransition, endTransition, isTransitioning]
+ */
 export type SimpleTransitioningState<S> = readonly [
     /**
-     * state
+     * current state value
      */
     S,
     /**
-     * animatedTransitionState
+     * startTransition
      *
-     * Analog of setState
+     * Queue the given state transition
      *
-     * When called, will animate the transitionand setState once the animation is finished()
-     * Supports queuing multiple state transitions during the course of an animation (note that the animation will be interrupted if the nextanimationName is set while the currentAnimation is not finished())
-     * @param nextState a React setState action for this state
-     * @param animate flag to animate the transition, or skip animation if false
+     * Analog of React setState
+     *
+     * @param nextState a React setState action for this state (either a literal value or function (prev) => next)
+     * @param isAsync if true, nextState is queued and will not be updated until endTransition is called.
+     * Otherwise, completes all interim transitions, then the given nextState transition and rerenders the using component
      */
-    (nextState: SetStateAction<S>, transition?: boolean) => void,
+    (nextState: SetStateAction<S>, isAsync?: boolean) => void,
     /**
-     * onTransitionEnd callback to be called when the transition is complete
+     * endTransition
+     *
+     * calling completes all queued transitions in order, sets isTransitioning to false, and rerenders
      */
     () => void,
     /**
      * isTransitioning
      *
-     * If true, is playing the transition Animation
+     * true iff this state is in the middle of a transition
      */
     boolean
 ];
@@ -37,16 +43,14 @@ function useSimpleTransitioningState<S = undefined>(): SimpleTransitioningState<
 function useSimpleTransitioningState<S>(initialState: S, initialTransitioning?: boolean): SimpleTransitioningState<S>;
 
 /**
- * Hook to useState that animates on transitioning states
- * This is a simplified version of useAnimatedTransitionState where only one animation is configured for all transitions and is expected to be named 'transition' in AnimationsByName
+ * Hook to useState that supports asynchronous transitions
  *
- * @typeParam A the accepted animation names
- * @typeParam E the Animated HTML element
+ * State transitions may be queued via startTransition, and all queued transitions are completed in order by endTransition
+ *
  * @typeParam S type of state
  * @param initialState
- * @param initialTransitioning if true, will animate when the togglingElementRef is first set. State will remain as initialState when finished()
- * @param onTransitionEnd
- * @returns [state, animatedTransitionState, transitioningElementRef, isTransitioning]
+ * @param initialTransitioning if true, initializes the state with isTransitioning: true
+ * @returns [state, startTransition, endTransition, isTransitioning]: SimpleTransitioningState<S>
  */
 function useSimpleTransitioningState<S>(
     initialState?: S | undefined,
