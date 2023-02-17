@@ -106,12 +106,6 @@ const SynchronizedAnimationExample: React.FC<{ chosenAnimation: MyAnimations }> 
 export default {
     component: SynchronizedAnimationExample,
     title: 'Components/SynchronizedAnimationExample',
-    parameters: {
-        componentSource: {
-            url: 'https://raw.githubusercontent.com/tristanjohnson849/react-controlled-animations/main/src/stories/SynchronizedAnimationExample.stories.tsx',
-            language: 'javascript',
-        }
-    }
 };
 
 const Template = args => <SynchronizedAnimationExample {...args} />;

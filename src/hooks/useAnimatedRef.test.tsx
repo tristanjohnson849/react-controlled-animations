@@ -91,7 +91,7 @@ test('plays animation with object type currentAnimation', async () => {
     const animator = getByText('Animator');
     const webAnimation = animator.getAnimations()[0];
     expectMatchingKeyframes(webAnimation, animationInput.keyframes);
-    expect(webAnimation.effect.getComputedTiming().duration).toEqual(duration);
+    expect(webAnimation.effect?.getComputedTiming().duration).toEqual(duration);
 
     await webAnimation.ready;
     

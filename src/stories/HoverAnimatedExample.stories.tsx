@@ -59,12 +59,6 @@ const HoverAnimatedExample = () => {
 export default {
     component: HoverAnimatedExample,
     title: 'Components/HoverAnimatedExample',
-    parameters: {
-        componentSource: {
-          url: 'https://raw.githubusercontent.com/tristanjohnson849/react-controlled-animations/main/src/stories/HoverAnimatedExample.stories.tsx',
-          language: 'typescript',
-        }
-    },
 };
 
 export const Primary: React.FC<{}> = () => <HoverAnimatedExample />;
