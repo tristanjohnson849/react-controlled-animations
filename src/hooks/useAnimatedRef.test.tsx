@@ -11,14 +11,14 @@ afterAll(cleanup);
 const Animated = ({ A = [], B = [], onAnimationEnd }: { 
     A?: AnimationInput, 
     B?: AnimationInput,
-    onAnimationEnd: (completedAnimation: 'A', webAnimation: Animation) => void
+    onAnimationEnd: (completedAnimation: 'A' | 'B' | null, webAnimation: Animation | null) => void
 }) => {
     const [state, setState] = useState<'A' | 'B' | null>(null); 
 
     const ref = useAnimatedRef<'A' | 'B', HTMLDivElement>(
         state,
         { A, B },
-        (completedAnimation: 'A', webAnimation: Animation) => {
+        (completedAnimation: 'A' | 'B' | null, webAnimation: Animation | null) => {
             onAnimationEnd(completedAnimation, webAnimation);
         }
     );
