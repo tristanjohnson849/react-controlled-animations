@@ -1,6 +1,6 @@
 {
   "name": "react-controlled-animations",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Utilities for declaratively controlling animations through React hooks",
   "type": "module",
   "repository": "https://github.com/tristanjohnson849/react-controlled-animations",
@@ -48,6 +48,7 @@
     "@types/eslint": "^8.21.0",
     "@types/gh-pages": "^3.2.1",
     "@types/jest": "^29.4.0",
+    "@types/node": "^18.13.0",
     "@types/prettier": "^2.7.2",
     "@types/react": "^18.0.27",
     "@types/react-dom": "^18.0.10",
@@ -79,6 +80,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-test-renderer": "^18.2.0",
+    "require-from-string": "^2.0.2",
     "standard-version": "^9.5.0",
     "storybook-source-code-addon": "^1.2.0",
     "ts-jest": "^29.0.5",
@@ -88,7 +90,8 @@
     "typedoc": "^0.23.24",
     "typedoc-github-wiki-theme": "^1.0.1",
     "typedoc-plugin-markdown": "^3.14.0",
-    "typescript": "^4.9.5"
+    "typescript": "^4.9.5",
+    "webpack": "^5.75.0"
   },
   "files": [
     "build/",
