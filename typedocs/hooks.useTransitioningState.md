@@ -27,7 +27,7 @@
 
 #### Defined in
 
-[hooks/useTransitioningState.ts:11](https://github.com/tristanjohnson849/react-controlled-animations/blob/ce6a177/src/hooks/useTransitioningState.ts#L11)
+[hooks/useTransitioningState.ts:11](https://github.com/tristanjohnson849/react-controlled-animations/blob/701e112/src/hooks/useTransitioningState.ts#L11)
 
 ## Functions
 
@@ -54,7 +54,7 @@ State transitions may be queued via startTransition, and all queued transitions 
 
 #### Defined in
 
-[hooks/useTransitioningState.ts:40](https://github.com/tristanjohnson849/react-controlled-animations/blob/ce6a177/src/hooks/useTransitioningState.ts#L40)
+[hooks/useTransitioningState.ts:40](https://github.com/tristanjohnson849/react-controlled-animations/blob/701e112/src/hooks/useTransitioningState.ts#L40)
 
 ▸ **default**<`S`, `T`\>(`initialState`, `initialTransition?`): [`TransitioningState`](../wiki/hooks.useTransitioningState#transitioningstate)<`S`, `T`\>
 
@@ -80,7 +80,7 @@ State is always a defined S if an initial state is provided
 
 #### Defined in
 
-[hooks/useTransitioningState.ts:44](https://github.com/tristanjohnson849/react-controlled-animations/blob/ce6a177/src/hooks/useTransitioningState.ts#L44)
+[hooks/useTransitioningState.ts:44](https://github.com/tristanjohnson849/react-controlled-animations/blob/701e112/src/hooks/useTransitioningState.ts#L44)
 
 ▸ **default**<`S`, `T`\>(`initialState`, `initialTransition?`): [`TransitioningState`](../wiki/hooks.useTransitioningState#transitioningstate)<`S` \| `undefined`, `T`\>
 
@@ -110,4 +110,4 @@ State transitions may be queued via startTransition, and all queued transitions 
 
 #### Defined in
 
-[hooks/useTransitioningState.ts:45](https://github.com/tristanjohnson849/react-controlled-animations/blob/ce6a177/src/hooks/useTransitioningState.ts#L45)
+[hooks/useTransitioningState.ts:45](https://github.com/tristanjohnson849/react-controlled-animations/blob/701e112/src/hooks/useTransitioningState.ts#L45)
