@@ -17,7 +17,7 @@
 
 #### Defined in
 
-[stories/SynchronizedAnimationExample.tsx:119](https://github.com/tristanjohnson849/react-controlled-animations/blob/c950a08/src/stories/SynchronizedAnimationExample.tsx#L119)
+[stories/SynchronizedAnimationExample.tsx:119](https://github.com/tristanjohnson849/react-controlled-animations/blob/ce6a177/src/stories/SynchronizedAnimationExample.tsx#L119)
 
 ___
 
@@ -27,7 +27,7 @@ ___
 
 #### Defined in
 
-[stories/SynchronizedAnimationExample.tsx:123](https://github.com/tristanjohnson849/react-controlled-animations/blob/c950a08/src/stories/SynchronizedAnimationExample.tsx#L123)
+[stories/SynchronizedAnimationExample.tsx:123](https://github.com/tristanjohnson849/react-controlled-animations/blob/ce6a177/src/stories/SynchronizedAnimationExample.tsx#L123)
 
 ___
 
@@ -37,7 +37,7 @@ ___
 
 #### Defined in
 
-[stories/SynchronizedAnimationExample.tsx:128](https://github.com/tristanjohnson849/react-controlled-animations/blob/c950a08/src/stories/SynchronizedAnimationExample.tsx#L128)
+[stories/SynchronizedAnimationExample.tsx:128](https://github.com/tristanjohnson849/react-controlled-animations/blob/ce6a177/src/stories/SynchronizedAnimationExample.tsx#L128)
 
 ___
 
@@ -58,4 +58,4 @@ ___
 
 #### Defined in
 
-[stories/SynchronizedAnimationExample.tsx:106](https://github.com/tristanjohnson849/react-controlled-animations/blob/c950a08/src/stories/SynchronizedAnimationExample.tsx#L106)
+[stories/SynchronizedAnimationExample.tsx:106](https://github.com/tristanjohnson849/react-controlled-animations/blob/ce6a177/src/stories/SynchronizedAnimationExample.tsx#L106)
