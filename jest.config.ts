@@ -15,6 +15,8 @@ const config: Config.InitialOptions = {
     "!src/**/*.stories.*",
     "!src/**/*.test.*",
   ],
+  setupFilesAfterEnv: ['./jestSetup.ts'],
+  testMatch: ["<rootDir>/src/**/*.test.ts(x)?"],
   coverageReporters: ["text", "json", "html", "lcov"],
   coverageThreshold: {
     global: {

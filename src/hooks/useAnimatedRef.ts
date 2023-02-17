@@ -53,19 +53,6 @@ function useAnimatedRef<A extends string = string, E extends HTMLElement = HTMLE
 
             if (webAnimation !== null) {
                 return () => cleanupAnimation(webAnimation);
-                    console.error(
-                        `Failed to animate ${elementRef.current}${
-                            selector ? `[${selector}]` : ''
-                        }(${currentAnimation}).\nCheck your animations: ${serializedAnimations}.\n`,
-                        err
-                    );
-                    return `Failed to animate ${currentAnimation} on ${elementRef.current.tagName}${
-                        selector ? `[${selector}]` : ''
-                    }.\nCheck your animations: ${serializedAnimation}.\n`;
-                }
-
-                onAnimationEnd && onAnimationEnd(currentAnimation, null);
-                return;
             }
         }
     }, [elementRef.current, currentAnimation, serializedAnimation]);
