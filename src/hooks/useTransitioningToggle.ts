@@ -20,7 +20,7 @@ export type TransitioningToggleState = readonly [
      * @param isAsync if true, nextState is queued and will not be updated until endTransition is called.
      * Otherwise, completes all interim toggles including this one and rerenders the using component
      */
-    (isAsync: boolean) => void,
+    (isAsync?: boolean) => void,
     /**
      * endToggling
      *
@@ -51,7 +51,7 @@ function useTransitioningToggle(initialState = false, initialTransitioning = fal
 
     const transition = nextTransition(isToggled);
 
-    const startToggling = useCallback(() => startTransition((prev) => !prev, transition), [transition]);
+    const startToggling = useCallback((isAsync = true) => startTransition((prev) => !prev, isAsync ? transition : null), [transition]);
 
     const currentTransition = isTransitioning !== null ? transition : null;
     return [isToggled, startToggling, endTransition, currentTransition];
