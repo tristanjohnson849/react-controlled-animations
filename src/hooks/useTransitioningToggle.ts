@@ -51,7 +51,10 @@ function useTransitioningToggle(initialState = false, initialTransitioning = fal
 
     const transition = nextTransition(isToggled);
 
-    const startToggling = useCallback((isAsync = true) => startTransition((prev) => !prev, isAsync ? transition : null), [transition]);
+    const startToggling = useCallback(
+        (isAsync = true) => startTransition((prev) => !prev, isAsync ? transition : null),
+        [transition]
+    );
 
     const currentTransition = isTransitioning !== null ? transition : null;
     return [isToggled, startToggling, endTransition, currentTransition];
