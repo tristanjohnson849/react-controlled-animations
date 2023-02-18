@@ -2,7 +2,6 @@ import React, { HTMLAttributes } from 'react';
 
 import { AnimationsByName } from '../AnimationInput';
 
-
 /**
  * Base HTML Elements
  */
