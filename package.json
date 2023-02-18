@@ -93,18 +93,15 @@
     "webpack": "^5.75.0"
   },
   "files": [
-    "build/",
-    "!**/*.test.*",
-    "!**/*.stories.*",
-    "!**/*.json",
+    "**/*.js",
+    "**/*.d.ts",
     "CHANGELOG.md",
     "LICENSE",
     "README.md",
     "!**/*.test.*",
     "!**/*.stories.*",
-    "!build/main/stories",
-    "!**/testUtils.ts",
-    "!**/*.json"
+    "!**/*.json",
+    "!**/testUtils.ts"
   ],
   "config": {
     "commitizen": {
