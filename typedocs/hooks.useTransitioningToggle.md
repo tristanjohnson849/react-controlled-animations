@@ -19,7 +19,7 @@
 
 #### Defined in
 
-[hooks/useTransitioningToggle.ts:5](https://github.com/tristanjohnson849/react-controlled-animations/blob/e4a9c8f/src/hooks/useTransitioningToggle.ts#L5)
+[hooks/useTransitioningToggle.ts:5](https://github.com/tristanjohnson849/react-controlled-animations/blob/e2bcfd7/src/hooks/useTransitioningToggle.ts#L5)
 
 ___
 
@@ -31,7 +31,7 @@ ___
 
 #### Defined in
 
-[hooks/useTransitioningToggle.ts:10](https://github.com/tristanjohnson849/react-controlled-animations/blob/e4a9c8f/src/hooks/useTransitioningToggle.ts#L10)
+[hooks/useTransitioningToggle.ts:10](https://github.com/tristanjohnson849/react-controlled-animations/blob/e2bcfd7/src/hooks/useTransitioningToggle.ts#L10)
 
 ## Functions
 
@@ -58,4 +58,4 @@ Toggle transitions may be queued via startToggling, and all queued toggles are c
 
 #### Defined in
 
-[hooks/useTransitioningToggle.ts:46](https://github.com/tristanjohnson849/react-controlled-animations/blob/e4a9c8f/src/hooks/useTransitioningToggle.ts#L46)
+[hooks/useTransitioningToggle.ts:46](https://github.com/tristanjohnson849/react-controlled-animations/blob/e2bcfd7/src/hooks/useTransitioningToggle.ts#L46)
