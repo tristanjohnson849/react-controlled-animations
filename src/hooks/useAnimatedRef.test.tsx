@@ -151,7 +151,7 @@ test('animation ends commits style, calls onAnimationEnd', async () => {
     expect(spy).toHaveBeenCalled();
 });
 
-test('animation interrupts null commits style, calls onAnimationEnd, no new animation', async () => {
+test('animation interrupts null commits style, calls onAnimationEnd, cancels animation', async () => {
     const onEnd = jest.fn();
 
     const duration = 100;
@@ -222,8 +222,7 @@ test('animation interrupts commits style, calls onAnimationEnd, play new animati
         getByText('B').click();
     })
 
-    expect(animator.getAnimations()).toHaveLength(1);
-    const animationB = animator.getAnimations()[0];
+    const animationB = animator.getAnimations()[1];
     expectMatchingKeyframes(animationB, animationInputB.keyframes);
 
     expect(onEnd).toHaveBeenCalledWith('A', animationA);
@@ -260,21 +259,21 @@ test('change current animation definition plays new animation definition', async
     })
 
     const animator = getByText('Animator');
-    const animationA = animator.getAnimations()[0];
-    expectMatchingKeyframes(animationA, animationInputA1.keyframes);
+    const animationA1 = animator.getAnimations()[0];
+    expectMatchingKeyframes(animationA1, animationInputA1.keyframes);
 
-    const spy = jest.spyOn(animationA, 'commitStyles');
-    await animationA.ready;
+    const spy = jest.spyOn(animationA1, 'commitStyles');
+    await animationA1.ready;
 
     rerender(<Animated
         A={animationInputA2}
         onAnimationEnd={onEnd}
     />)
 
-    const animationA2 = animator.getAnimations()[0];
+    const animationA2 = animator.getAnimations()[1];
     expectMatchingKeyframes(animationA2, animationInputA2.keyframes);
 
-    expect(onEnd).toHaveBeenCalledWith('A', animationA);
+    expect(onEnd).toHaveBeenCalledWith('A', animationA1);
     expect(spy).toHaveBeenCalled();
 
     await act(async () => {
