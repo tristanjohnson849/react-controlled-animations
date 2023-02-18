@@ -34,7 +34,7 @@ May be either
 
 #### Defined in
 
-[AnimationInput.ts:23](https://github.com/tristanjohnson849/react-controlled-animations/blob/e2bcfd7/src/AnimationInput.ts#L23)
+[AnimationInput.ts:23](https://github.com/tristanjohnson849/react-controlled-animations/blob/ed606dd/src/AnimationInput.ts#L23)
 
 ___
 
@@ -46,7 +46,7 @@ Override dom KeyframeAnimationOptions with [documented types](https://developer.
 
 #### Defined in
 
-[AnimationInput.ts:4](https://github.com/tristanjohnson849/react-controlled-animations/blob/e2bcfd7/src/AnimationInput.ts#L4)
+[AnimationInput.ts:4](https://github.com/tristanjohnson849/react-controlled-animations/blob/ed606dd/src/AnimationInput.ts#L4)
 
 ___
 
@@ -62,7 +62,7 @@ ___
 
 #### Defined in
 
-[AnimationInput.ts:48](https://github.com/tristanjohnson849/react-controlled-animations/blob/e2bcfd7/src/AnimationInput.ts#L48)
+[AnimationInput.ts:48](https://github.com/tristanjohnson849/react-controlled-animations/blob/ed606dd/src/AnimationInput.ts#L48)
 
 ## Variables
 
@@ -72,7 +72,7 @@ ___
 
 #### Defined in
 
-[AnimationInput.ts:31](https://github.com/tristanjohnson849/react-controlled-animations/blob/e2bcfd7/src/AnimationInput.ts#L31)
+[AnimationInput.ts:31](https://github.com/tristanjohnson849/react-controlled-animations/blob/ed606dd/src/AnimationInput.ts#L31)
 
 ## Functions
 
@@ -94,4 +94,4 @@ a NormalizedAnimation from the given AnimationInput
 
 #### Defined in
 
-[AnimationInput.ts:37](https://github.com/tristanjohnson849/react-controlled-animations/blob/e2bcfd7/src/AnimationInput.ts#L37)
+[AnimationInput.ts:37](https://github.com/tristanjohnson849/react-controlled-animations/blob/ed606dd/src/AnimationInput.ts#L37)
