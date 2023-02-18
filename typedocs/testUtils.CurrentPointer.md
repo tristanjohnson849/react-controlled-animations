@@ -22,4 +22,4 @@
 
 #### Defined in
 
-[testUtils.ts:29](https://github.com/tristanjohnson849/react-controlled-animations/blob/1a4f9c0/src/testUtils.ts#L29)
+[testUtils.ts:29](https://github.com/tristanjohnson849/react-controlled-animations/blob/64d1fff/src/testUtils.ts#L29)
