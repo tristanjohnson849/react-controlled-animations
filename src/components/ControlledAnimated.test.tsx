@@ -1,7 +1,6 @@
 import React from "react";
 import { expectMatchingKeyframes, isolatedRender } from "../testUtils";
 import ControlledAnimated from "./ControlledAnimated";
-import userEvent from '@testing-library/user-event';
 
 
 // much of the behavior of ControlledAnimated is dicated by useAnimatedRef and is covered in the hook tests
@@ -67,7 +66,6 @@ test('animates without forwarded ref', async () => {
 
     const element = getByTestId('element');
     
-    userEvent.hover(element);
     const webAnimation = element.getAnimations()[0];
     await webAnimation.ready;
 
@@ -92,7 +90,6 @@ test('animates with forwarded ref', async () => {
 
     const element = getByTestId('element');
     
-    userEvent.hover(element);
     const webAnimation = element.getAnimations()[0];
     await webAnimation.ready;
 

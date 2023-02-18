@@ -44,7 +44,7 @@ const HoverAnimatedExample = () => {
                     })
                     
                 }}
-                onAnimationEnd={(name, animation) => animation?.commitStyles()}
+                onAnimationEnd={(_, animation) => animation?.commitStyles()}
             >
                 🤓
             </HoverAnimated>

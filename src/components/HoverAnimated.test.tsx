@@ -1,7 +1,7 @@
+import { fireEvent } from "@testing-library/react";
 import React from "react";
 import { expectMatchingKeyframes, isolatedRender } from "../testUtils";
 import HoverAnimated from "./HoverAnimated";
-import userEvent from '@testing-library/user-event';
 
 
 test('renders as the passed tag with passed tag props', () => {
@@ -55,15 +55,15 @@ test('animates hovering', async () => {
             data-testid="element"
             animations={{
                 hovering: hoveringKeyframes,
-                notHovering: [{ rotate: '360deg' }, { rotate: 0 }]
+                notHovering: [{ rotate: 0 }]
             }}
         />
     );
 
     const element = getByTestId('element');
     
-    userEvent.hover(element);
-    const webAnimation = element.getAnimations()[0];
+    fireEvent.mouseOver(element);
+    const webAnimation = element.getAnimations()[1];
     await webAnimation.ready;
 
     expectMatchingKeyframes(webAnimation, hoveringKeyframes);
@@ -100,8 +100,8 @@ test('animates notHovering when unhovered', async () => {
         />
     );
     const element = getByTestId('element');
-    userEvent.hover(element);
-    userEvent.unhover(element);
+    fireEvent.mouseOver(element);
+    fireEvent.mouseOut(element);
 
     const webAnimation = element.getAnimations()[0];
     await webAnimation.ready;
