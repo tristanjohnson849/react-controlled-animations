@@ -7,8 +7,8 @@ export type ControlledAnimatedProps<A extends string, T extends HTMLIntrinsics =
     /**
      * The currentAnimation that controls this component. 
      * On changing this prop to a non-null value, will start the animation at animations[currentAnimation]
-     * If given null, will stop animating the component
-     * If given a new or null value while the previous aninmation is not finished(), will commit the current style to the element, call onAnimationEnd, and cancel() the previous animation
+     * If given null, will cancel() any current animations
+     * If given a new or null value while the previous aninmation is not finished(), will commit the current style to the element and call onAnimationEnd
      */
     currentAnimation: A | null
 } & AnimatedProps<A, T>;
