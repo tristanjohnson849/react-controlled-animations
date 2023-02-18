@@ -31,4 +31,4 @@ readonly [`boolean` \| `undefined`, `RefObject`<`E`\>]
 
 #### Defined in
 
-[hooks/useIsHovered.ts:11](https://github.com/tristanjohnson849/react-controlled-animations/blob/f69f4c7/src/hooks/useIsHovered.ts#L11)
+[hooks/useIsHovered.ts:11](https://github.com/tristanjohnson849/react-controlled-animations/blob/ec22ded/src/hooks/useIsHovered.ts#L11)

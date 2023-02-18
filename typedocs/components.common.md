@@ -35,20 +35,19 @@ Standard Props for an animated element. Includes the HTMLAttributes for the give
 
 #### Defined in
 
-[components/common.ts:59](https://github.com/tristanjohnson849/react-controlled-animations/blob/f69f4c7/src/components/common.ts#L59)
+[components/common.ts:55](https://github.com/tristanjohnson849/react-controlled-animations/blob/ec22ded/src/components/common.ts#L55)
 
 ___
 
 ### HTMLIntrinsics
 
-Ƭ **HTMLIntrinsics**: keyof `PickByType`<`JSX.IntrinsicElements`, `React.DetailedHTMLProps`<`any`, `any`\>\>
+Ƭ **HTMLIntrinsics**: keyof `JSX.IntrinsicElements`
 
-"a", "abbr", ..., "div", ... "webview"
-Excludes tags that extend React.SVGProps
+Base HTML Elements
 
 #### Defined in
 
-[components/common.ts:13](https://github.com/tristanjohnson849/react-controlled-animations/blob/f69f4c7/src/components/common.ts#L13)
+[components/common.ts:9](https://github.com/tristanjohnson849/react-controlled-animations/blob/ec22ded/src/components/common.ts#L9)
 
 ___
 
@@ -66,7 +65,7 @@ TagHTMLAttributes<"a"> is equivalent to React.AnchorHTMLAttributes<HTMLAnchorEle
 
 #### Defined in
 
-[components/common.ts:26](https://github.com/tristanjohnson849/react-controlled-animations/blob/f69f4c7/src/components/common.ts#L26)
+[components/common.ts:22](https://github.com/tristanjohnson849/react-controlled-animations/blob/ec22ded/src/components/common.ts#L22)
 
 ___
 
@@ -84,7 +83,7 @@ TagHTMLElement<"a"> is equivalent to HTMLAnchorElement
 
 #### Defined in
 
-[components/common.ts:18](https://github.com/tristanjohnson849/react-controlled-animations/blob/f69f4c7/src/components/common.ts#L18)
+[components/common.ts:14](https://github.com/tristanjohnson849/react-controlled-animations/blob/ec22ded/src/components/common.ts#L14)
 
 ## Functions
 
@@ -129,7 +128,7 @@ a new ref that manages both given refs as one
 
 #### Defined in
 
-[components/common.ts:82](https://github.com/tristanjohnson849/react-controlled-animations/blob/f69f4c7/src/components/common.ts#L82)
+[components/common.ts:78](https://github.com/tristanjohnson849/react-controlled-animations/blob/ec22ded/src/components/common.ts#L78)
 
 ___
 
@@ -158,4 +157,4 @@ Helper to update a ref (either CallbackRef or RefObject) to the given next value
 
 #### Defined in
 
-[components/common.ts:65](https://github.com/tristanjohnson849/react-controlled-animations/blob/f69f4c7/src/components/common.ts#L65)
+[components/common.ts:61](https://github.com/tristanjohnson849/react-controlled-animations/blob/ec22ded/src/components/common.ts#L61)

@@ -18,7 +18,7 @@
 
 #### Defined in
 
-[components/HoverAnimated.tsx:6](https://github.com/tristanjohnson849/react-controlled-animations/blob/f69f4c7/src/components/HoverAnimated.tsx#L6)
+[components/HoverAnimated.tsx:6](https://github.com/tristanjohnson849/react-controlled-animations/blob/ec22ded/src/components/HoverAnimated.tsx#L6)
 
 ## Functions
 
@@ -34,7 +34,7 @@ May accept an overriding currentAnimation
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `A` | extends `string` = `never` | the additional animation names; default = never makes the default animation names exactly components.HoverAnimations |
+| `A` | extends `string` = `never` | additional animation names |
 | `T` | extends keyof `IntrinsicElements` = ``"div"`` | the HTML Tag delegate |
 
 #### Parameters
@@ -49,4 +49,4 @@ May accept an overriding currentAnimation
 
 #### Defined in
 
-[components/HoverAnimated.tsx:49](https://github.com/tristanjohnson849/react-controlled-animations/blob/f69f4c7/src/components/HoverAnimated.tsx#L49)
+[components/HoverAnimated.tsx:49](https://github.com/tristanjohnson849/react-controlled-animations/blob/ec22ded/src/components/HoverAnimated.tsx#L49)
