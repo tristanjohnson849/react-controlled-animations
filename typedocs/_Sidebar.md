@@ -17,5 +17,4 @@
 - [hooks/useSimpleTransitioningState](../wiki/hooks.useSimpleTransitioningState)
 - [hooks/useTransitioningState](../wiki/hooks.useTransitioningState)
 - [hooks/useTransitioningToggle](../wiki/hooks.useTransitioningToggle)
-- [stories/SynchronizedAnimationExample](../wiki/stories.SynchronizedAnimationExample)
 - [testUtils](../wiki/testUtils)

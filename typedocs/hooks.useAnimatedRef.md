@@ -27,7 +27,7 @@ Note: will interrupt and play a new animation if the animations stored at data-a
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `currentAnimation` | `A` | On changing to a non-null value, will start the animation at animations[currentAnimation]. If given null, will stop animating the component. If given a new or null value while the previous aninmation is not finished(), will commit the current style to the element, call onAnimationEnd, and cancel() the previous animation |
+| `currentAnimation` | `A` | On changing to a non-null value, will start the animation at animations[currentAnimation]. If given null, will cancel() any current animations If given a new or null value while the previous aninmation is not finished(), will commit the current style to the element and call onAnimationEnd |
 | `animations` | [`AnimationsByName`](../wiki/AnimationInput#animationsbyname)<`A`\> | The mapping of animationName to AnimationInput |
 | `onAnimationEnd?` | (`completedAnimationName`: `A`, `webAnimation`: `Animation`) => `void` | callback to be called when the animation is finished(), or if the animation is interrupted by a new currentAnimation |
 
@@ -39,4 +39,4 @@ react Ref to be assigned to the Animated element
 
 #### Defined in
 
-[hooks/useAnimatedRef.ts:20](https://github.com/tristanjohnson849/react-controlled-animations/blob/701e112/src/hooks/useAnimatedRef.ts#L20)
+[hooks/useAnimatedRef.ts:20](https://github.com/tristanjohnson849/react-controlled-animations/blob/f69f4c7/src/hooks/useAnimatedRef.ts#L20)
