@@ -10,7 +10,7 @@ type HoverAnimatedProps<A extends string, T extends HTMLIntrinsics> = {
      * The optional currentAnimation override that may control this component
      * If present, will override the animation for the current hover state
      * If null or undefined, the component will animate based on the hover state
-     * Analogous to {@link components.ControlledAnimatedProps.currentAnimation}
+     * Analogous to currentAnimation in {@link components/ControlledAnimated.ControlledAnimatedProps}
      */
     currentAnimation?: A | null 
 } & AnimatedProps<HoverAnimations | A, T>;
@@ -43,7 +43,7 @@ function hoverAnimated<A extends string = never, T extends HTMLIntrinsics = "div
  * An Animated component that will track hover (via mouseenter/mouseleave listeners) and animate based on the corresponding hover state
  * May accept a ref to forward to the HTML tag delegate
  * May accept an overriding currentAnimation
- * @typeParam A the additional animation names; default = never makes the default animation names exactly {@link components.HoverAnimations}
+ * @typeParam A additional animation names
  * @typeParam T the HTML Tag delegate
  */
 const HoverAnimated = React.forwardRef(hoverAnimated) as <A extends string = never, T extends HTMLIntrinsics = "div">(

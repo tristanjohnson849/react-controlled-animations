@@ -2,15 +2,11 @@ import React, { HTMLAttributes } from 'react';
 
 import { AnimationsByName } from '../AnimationInput';
 
-type PickByType<T, Value> = {
-    [P in keyof T as T[P] extends Value | undefined ? P : never]: T[P];
-};
 
 /**
- * "a", "abbr", ..., "div", ... "webview"
- * Excludes tags that extend React.SVGProps
+ * Base HTML Elements
  */
-export type HTMLIntrinsics = keyof PickByType<JSX.IntrinsicElements, React.DetailedHTMLProps<any, any>>;
+export type HTMLIntrinsics = keyof JSX.IntrinsicElements;
 
 /**
  * TagHTMLElement<"a"> is equivalent to HTMLAnchorElement
