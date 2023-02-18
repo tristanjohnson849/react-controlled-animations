@@ -29,7 +29,7 @@ The mapping of animationName A to an AnimationInput
 
 #### Defined in
 
-[components/common.ts:40](https://github.com/tristanjohnson849/react-controlled-animations/blob/61755a5/src/components/common.ts#L40)
+[components/common.ts:40](https://github.com/tristanjohnson849/react-controlled-animations/blob/1a4f9c0/src/components/common.ts#L40)
 
 ___
 
@@ -42,7 +42,7 @@ Defaults to "div"
 
 #### Defined in
 
-[components/common.ts:35](https://github.com/tristanjohnson849/react-controlled-animations/blob/61755a5/src/components/common.ts#L35)
+[components/common.ts:35](https://github.com/tristanjohnson849/react-controlled-animations/blob/1a4f9c0/src/components/common.ts#L35)
 
 ___
 
@@ -69,4 +69,4 @@ Callback to be called when the animation is finished() or is interrupted by a ne
 
 #### Defined in
 
-[components/common.ts:47](https://github.com/tristanjohnson849/react-controlled-animations/blob/61755a5/src/components/common.ts#L47)
+[components/common.ts:47](https://github.com/tristanjohnson849/react-controlled-animations/blob/1a4f9c0/src/components/common.ts#L47)

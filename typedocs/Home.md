@@ -19,14 +19,17 @@ This library is a set of hooks and components to enable declarative, controlled 
 
 const AnimatedTransitionExample: React.FC<{}> = () => {
     const [
-        counter, animatedTransition,
-        elementRef, currentAnimation
+        counter,
+        startTransition,
+        endTransition, 
+        currentTransitionName
     ] = useAnimatedTransitionState<number, 'flying'|'sliding', HTMLElement>(0);
 
     return (
-        <Animated<'flying'|'sliding', "span">
+        <ControlledAnimated<'flying'|'sliding', "span">
             as="span"
-            ref={elementRef}
+            currentAnimation={currentTransitionName}
+            onAnimationEnd={endTransition}
             style={{
                 fontSize: '48px',
                 margin: '24px',
@@ -57,14 +60,14 @@ const AnimatedTransitionExample: React.FC<{}> = () => {
             }}
         >
             🤓
-        </Animated>
+        </ControlledAnimated>
         <div style={{ 
             textAlign: 'center',
             verticalAlign: 'middle', 
         }}>
             <div>Count: {counter}</div>
-            <div>Animation: {currentAnimation || "null"}</div>
-            <button onClick={() => animatedTransition(
+            <div>Animation: {currentTransitionName || "null"}</div>
+            <button onClick={() => startTransition(
                 prev => prev + 1, 
                 Math.random() > 0.5 ? 'flying' : 'sliding'
             )}>
@@ -75,7 +78,7 @@ const AnimatedTransitionExample: React.FC<{}> = () => {
 };
 ```
 
-Like normal React state, this component keeps a counter that is Incremented by the button. However, setting state for this component animates the transition (here with a random choice between 'flying' and 'sliding'), and the counter state is only updated once the animation is complete or interrupted by another click. This is done through the useAnimatedTransitionState hook and Animated component.
+Like normal React state, this component keeps a counter that is Incremented by the button. However, setting state for this component animates the transition (here with a random choice between 'flying' and 'sliding'), and the counter state is only updated once the animation is complete or interrupted by another click. This is done through the useAnimatedTransitionState hook and ControlledAnimated component.
 
 Also check out:
 
