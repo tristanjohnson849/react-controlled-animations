@@ -1,3 +1,5 @@
+set -e
+
 npm run prepare-release
 git push --follow-tags
 
