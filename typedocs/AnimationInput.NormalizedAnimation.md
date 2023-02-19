@@ -19,7 +19,7 @@ Normalized animation input for internal use, created from AnimationInput
 
 #### Defined in
 
-[AnimationInput.ts:12](https://github.com/tristanjohnson849/react-controlled-animations/blob/89825a5/src/AnimationInput.ts#L12)
+[AnimationInput.ts:12](https://github.com/tristanjohnson849/react-controlled-animations/blob/15e8493/src/AnimationInput.ts#L12)
 
 ___
 
@@ -29,4 +29,4 @@ ___
 
 #### Defined in
 
-[AnimationInput.ts:13](https://github.com/tristanjohnson849/react-controlled-animations/blob/89825a5/src/AnimationInput.ts#L13)
+[AnimationInput.ts:13](https://github.com/tristanjohnson849/react-controlled-animations/blob/15e8493/src/AnimationInput.ts#L13)
