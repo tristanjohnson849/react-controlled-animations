@@ -25,7 +25,7 @@
 
 #### Defined in
 
-[components/ControlledAnimated.tsx:6](https://github.com/tristanjohnson849/react-controlled-animations/blob/5f39586/src/components/ControlledAnimated.tsx#L6)
+[components/ControlledAnimated.tsx:6](https://github.com/tristanjohnson849/react-controlled-animations/blob/1cda27b/src/components/ControlledAnimated.tsx#L6)
 
 ## Functions
 
@@ -57,4 +57,4 @@ Note: forwarding a ref returned from [useAnimatedRef](../wiki/hooks#useanimatedr
 
 #### Defined in
 
-[components/ControlledAnimated.tsx:62](https://github.com/tristanjohnson849/react-controlled-animations/blob/5f39586/src/components/ControlledAnimated.tsx#L62)
+[components/ControlledAnimated.tsx:62](https://github.com/tristanjohnson849/react-controlled-animations/blob/1cda27b/src/components/ControlledAnimated.tsx#L62)
