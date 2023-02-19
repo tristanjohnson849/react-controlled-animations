@@ -4,7 +4,8 @@
   "description": "Utilities for declaratively controlling animations through React hooks",
   "type": "module",
   "exports": {
-    ".": "./build/index.js"
+    ".": "./build/index.js",
+    "./**/*": "./**/*"
   },
   "types": "./build/index.d.ts",
   "repository": "https://github.com/tristanjohnson849/react-controlled-animations",
