@@ -4,8 +4,7 @@
   "description": "Utilities for declaratively controlling animations through React hooks",
   "type": "module",
   "exports": {
-    ".": "./build/index.js",
-    "./**/*": "./build/**/*"
+    ".": "./build/index.js"
   },
   "types": "./build/index.d.ts",
   "repository": "https://github.com/tristanjohnson849/react-controlled-animations",
@@ -98,8 +97,8 @@
     "webpack": "^5.75.0"
   },
   "files": [
-    "**/*.js",
-    "**/*.d.ts",
+    "build/**/*.js",
+    "build/**/*.d.ts",
     "CHANGELOG.md",
     "LICENSE",
     "README.md",
