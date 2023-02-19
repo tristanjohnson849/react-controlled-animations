@@ -17,4 +17,5 @@
 - [hooks/useSimpleTransitioningState](../wiki/hooks.useSimpleTransitioningState)
 - [hooks/useTransitioningState](../wiki/hooks.useTransitioningState)
 - [hooks/useTransitioningToggle](../wiki/hooks.useTransitioningToggle)
+- [index](../wiki/index)
 - [testUtils](../wiki/testUtils)
