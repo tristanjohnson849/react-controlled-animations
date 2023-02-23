@@ -15,7 +15,7 @@ const textStyle: CSSProperties = {
 
 const DURATION = 2000;
 
-const SimpleAnimatedStateTransitionExample: React.FC<{ 'flying' }> = ({}) => {
+const SimpleAnimatedStateTransitionExample: React.FC<{}> = () => {
     const [
         moveCounter,
         startTransition,
@@ -31,8 +31,8 @@ const SimpleAnimatedStateTransitionExample: React.FC<{ 'flying' }> = ({}) => {
             justifyContent: 'center',
             flexDirection: 'column',
         }}>
-            <ControlledAnimated<'flying'>
-                currentAnimation= 'flying'
+            <ControlledAnimated<'transitioning'>
+                currentAnimation={isTransitioning ? 'transitioning' : null}
                 onAnimationEnd={endTransition}
                 style={{
                     width: '100px',
@@ -43,7 +43,7 @@ const SimpleAnimatedStateTransitionExample: React.FC<{ 'flying' }> = ({}) => {
                     verticalAlign: 'middle'
                 }}
                 animations={{
-                    flying: toTransitionAnimation({
+                    transitioning: toTransitionAnimation({
                         keyframes: [
                             { translate: 0 },
                             { translate: '0 -30vh' },
@@ -61,8 +61,8 @@ const SimpleAnimatedStateTransitionExample: React.FC<{ 'flying' }> = ({}) => {
             </ControlledAnimated>
             <div style={textStyle}>
                 <div>Moves: {moveCounter}</div>
-                <div>Animation: {isTransitioning || "null"}</div>
-                <button onClick={() => startTransition(prev => prev + 1, isTransitioning)}>Move</button>
+                <div>Transitioning? {isTransitioning.toString()}</div>
+                <button onClick={() => startTransition(prev => prev + 1)}>Move</button>
             </div>
             <div style={{maxWidth: '600px', ...textStyle}}>
                 The useSimpleTransitioningState hook lets you easily animate React state changes. 
@@ -74,9 +74,9 @@ const SimpleAnimatedStateTransitionExample: React.FC<{ 'flying' }> = ({}) => {
 
 export default {
     component: SimpleAnimatedStateTransitionExample,
-    title: `Hooks/SimpleAnimatedStateTransitionsExample`,
+    title: 'Hooks/SimpleAnimatedStateTransitionExample',
 };
 
 const Template = args => <SimpleAnimatedStateTransitionExample {...args} />;
 
-export const Flying = Template.bind({});
+export const Primary = Template.bind({});
