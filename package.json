@@ -15,7 +15,7 @@
   "license": "MIT",
   "keywords": [],
   "scripts": {
-    "build": "tsc -p tsconfig.json",
+    "build": "rm tsconfig.tsbuildinfo && rm -rf build/ && tsc -p tsconfig.json",
     "check": "run-s lint test:cov doc",
     "fix": "run-s fix:*",
     "fix:prettier": "prettier \"src/**/*.ts\" --write",
