@@ -18,7 +18,7 @@
 
 #### Defined in
 
-[components/HoverAnimated.tsx:6](https://github.com/tristanjohnson849/react-controlled-animations/blob/1a74b87/src/components/HoverAnimated.tsx#L6)
+[components/HoverAnimated.tsx:6](https://github.com/tristanjohnson849/react-controlled-animations/blob/5ad14e7/src/components/HoverAnimated.tsx#L6)
 
 ## Functions
 
@@ -49,4 +49,4 @@ May accept an overriding currentAnimation
 
 #### Defined in
 
-[components/HoverAnimated.tsx:48](https://github.com/tristanjohnson849/react-controlled-animations/blob/1a74b87/src/components/HoverAnimated.tsx#L48)
+[components/HoverAnimated.tsx:48](https://github.com/tristanjohnson849/react-controlled-animations/blob/5ad14e7/src/components/HoverAnimated.tsx#L48)
