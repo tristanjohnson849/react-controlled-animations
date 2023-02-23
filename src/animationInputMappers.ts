@@ -1,10 +1,4 @@
-import {
-    AnimationInput,
-    AnimationOptions,
-    AnimationsByName,
-    normalizedAnimation,
-    NormalizedAnimation,
-} from './AnimationInput';
+import { AnimationInput, AnimationOptions, normalizedAnimation, NormalizedAnimation } from './AnimationInput';
 import { ToggleTransitions } from './hooks/useTransitioningToggle';
 
 /**
@@ -59,7 +53,7 @@ export const toTransitionAnimation = (animation: AnimationInput): NormalizedAnim
  * The edits are:
  * - set fill: 'forwards' on the Animation options
  */
-export const toToggleAnimations = (togglingOn: AnimationInput): AnimationsByName<ToggleTransitions> => {
+export const toToggleAnimations = (togglingOn: AnimationInput): Record<ToggleTransitions, AnimationInput> => {
     const { keyframes, options } = toTransitionAnimation(togglingOn);
     return {
         togglingOn: { keyframes, options },
@@ -71,13 +65,13 @@ export const toToggleAnimations = (togglingOn: AnimationInput): AnimationsByName
 };
 
 /**
- * Helper to create AnimationsByName for a SimpleTransition animation
+ * Helper to create expected SimpleTransition animation Record
  *
  * See {@link hooks.useSimpleTransitioningState}
  *
  * @param transition
  */
-export const toSimpleTransitionAnimations = (transition: AnimationInput): AnimationsByName<'transition'> => {
+export const toSimpleTransitionAnimations = (transition: AnimationInput): Record<'transition', AnimationInput> => {
     const edited = toTransitionAnimation(transition);
     return {
         transition: edited,

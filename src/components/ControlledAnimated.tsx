@@ -1,34 +1,21 @@
-import React, { RefAttributes, ForwardedRef, useCallback } from 'react';
+import React, { ForwardedRef, useCallback } from 'react';
 import useAnimatedRef from '../hooks/useAnimatedRef';
-import { AnimatedProps, HTMLIntrinsics, TagHTMLElement, mergeRefs } from "./common";
+import { AnimatedProps, HTMLTags, mergeRefs, TagHTMLElement } from "./common";
 
 
-export type ControlledAnimatedProps<A extends string, T extends HTMLIntrinsics = "div"> = {
-    /**
-     * The currentAnimation that controls this component. 
-     * On changing this prop to a non-null value, will start the animation at animations[currentAnimation]
-     * If given null, will cancel() any current animations
-     * If given a new or null value while the previous aninmation is not finished(), will commit the current style to the element and call onAnimationEnd
-     */
-    currentAnimation: A | null
-} & AnimatedProps<A, T>;
-
-// typescript's really not liking the mapping between tags/elements/attributes, but type safety for component props is working except for the ref
-// TODO fix typesafety for refs
-// TODO see if we can get cleaner types in this component
-const controlledAnimated = <A extends string, T extends HTMLIntrinsics = "div">(
-    props: ControlledAnimatedProps<A, T>,
+const controlledAnimated = <A extends string, T extends HTMLTags = 'div'>(
+    props: Omit<AnimatedProps<A, T>, "ref">,
     forwardedRef?: ForwardedRef<TagHTMLElement<T>>
 ): React.ReactElement<any, any> => {
     const {
-        as: Tag = "div",
+        as: Tag = "div" as React.ElementType,
         animations,
         currentAnimation,
         onAnimationEnd,
         ...tagProps
     } = props;
 
-    const animatedRef = useAnimatedRef<A, HTMLElement>(
+    const animatedRef = useAnimatedRef<A, TagHTMLElement<T>>(
         currentAnimation,
         animations,
         onAnimationEnd,
@@ -36,14 +23,11 @@ const controlledAnimated = <A extends string, T extends HTMLIntrinsics = "div">(
 
     const elementRef = useCallback(mergeRefs(
         forwardedRef,
-        // @ts-ignore
         animatedRef
     ), [forwardedRef]);
 
     return (
-        // @ts-ignore 
         <Tag
-            // @ts-ignore 
             ref={elementRef}
             {...tagProps}
         />
@@ -59,8 +43,8 @@ const controlledAnimated = <A extends string, T extends HTMLIntrinsics = "div">(
  * @typeParam A the accepted animation names
  * @typeParam T the HTML Tag delegate
  */
-const ControlledAnimated = React.forwardRef(controlledAnimated) as <A extends string = string, T extends HTMLIntrinsics = "div">(
-    props: ControlledAnimatedProps<A, T> & RefAttributes<TagHTMLElement<T>>
+const ControlledAnimated = React.forwardRef(controlledAnimated) as <A extends string = string, T extends HTMLTags = "div">(
+    props: AnimatedProps<A, T>
 ) => React.ReactElement<any, any>;
 
 controlledAnimated.displayName = "ControlledAnimated";

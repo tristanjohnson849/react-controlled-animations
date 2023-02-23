@@ -1,32 +1,139 @@
-import React, { HTMLAttributes } from 'react';
+import React, { DetailedHTMLProps } from 'react';
 
-import { AnimationsByName } from '../AnimationInput';
+import { AnimationInput } from '../AnimationInput';
 
-/**
- * Base HTML Elements
- */
-export type HTMLIntrinsics = keyof JSX.IntrinsicElements;
+// exclude SVG
+export type HTMLTags =
+    | 'a'
+    | 'abbr'
+    | 'address'
+    | 'area'
+    | 'article'
+    | 'aside'
+    | 'audio'
+    | 'b'
+    | 'base'
+    | 'bdi'
+    | 'bdo'
+    | 'big'
+    | 'blockquote'
+    | 'body'
+    | 'br'
+    | 'button'
+    | 'canvas'
+    | 'caption'
+    | 'center'
+    | 'cite'
+    | 'code'
+    | 'col'
+    | 'colgroup'
+    | 'data'
+    | 'datalist'
+    | 'dd'
+    | 'del'
+    | 'details'
+    | 'dfn'
+    | 'dialog'
+    | 'div'
+    | 'dl'
+    | 'dt'
+    | 'em'
+    | 'embed'
+    | 'fieldset'
+    | 'figcaption'
+    | 'figure'
+    | 'footer'
+    | 'form'
+    | 'h1'
+    | 'h2'
+    | 'h3'
+    | 'h4'
+    | 'h5'
+    | 'h6'
+    | 'head'
+    | 'header'
+    | 'hgroup'
+    | 'hr'
+    | 'html'
+    | 'i'
+    | 'iframe'
+    | 'img'
+    | 'input'
+    | 'ins'
+    | 'kbd'
+    | 'keygen'
+    | 'label'
+    | 'legend'
+    | 'li'
+    | 'link'
+    | 'main'
+    | 'map'
+    | 'mark'
+    | 'menu'
+    | 'menuitem'
+    | 'meta'
+    | 'meter'
+    | 'nav'
+    | 'noindex'
+    | 'noscript'
+    | 'object'
+    | 'ol'
+    | 'optgroup'
+    | 'option'
+    | 'output'
+    | 'p'
+    | 'param'
+    | 'picture'
+    | 'pre'
+    | 'progress'
+    | 'q'
+    | 'rp'
+    | 'rt'
+    | 'ruby'
+    | 's'
+    | 'samp'
+    | 'slot'
+    | 'script'
+    | 'section'
+    | 'select'
+    | 'small'
+    | 'source'
+    | 'span'
+    | 'strong'
+    | 'style'
+    | 'sub'
+    | 'summary'
+    | 'sup'
+    | 'table'
+    | 'template'
+    | 'tbody'
+    | 'td'
+    | 'textarea'
+    | 'tfoot'
+    | 'th'
+    | 'thead'
+    | 'time'
+    | 'title'
+    | 'tr'
+    | 'track'
+    | 'u'
+    | 'ul'
+    | 'var'
+    | 'video'
+    | 'wbr'
+    | 'webview';
 
-/**
- * TagHTMLElement<"a"> is equivalent to HTMLAnchorElement
- */
-export type TagHTMLElement<T extends HTMLIntrinsics> = HTMLElement &
-    JSX.IntrinsicElements[T] extends React.DetailedHTMLProps<any, infer E>
+export type TagHTMLElement<T extends keyof JSX.IntrinsicElements> = JSX.IntrinsicElements[T] extends DetailedHTMLProps<
+    any,
+    infer E extends HTMLElement
+>
     ? E
-    : never;
-
-/**
- * TagHTMLAttributes<"a"> is equivalent to React.AnchorHTMLAttributes<HTMLAnchorElement>
- */
-export type TagHTMLAttributes<T extends HTMLIntrinsics> = HTMLAttributes<TagHTMLElement<T>> &
-    JSX.IntrinsicElements[T] extends React.DetailedHTMLProps<infer A, any>
-    ? A
     : never;
 
 /**
  * AnimatedProps excluding HTML Attributes, exported
  */
-export interface NonHTMLAnimatedProps<A extends string, T extends HTMLIntrinsics = 'div'> {
+export interface NonHTMLAnimatedProps<A extends string, T extends HTMLTags = 'div'> {
     /**
      * The given tag that this Animated element delegates to
      * Defaults to "div"
@@ -34,9 +141,17 @@ export interface NonHTMLAnimatedProps<A extends string, T extends HTMLIntrinsics
     as?: T;
 
     /**
+     * The currentAnimation that controls this component.
+     * On changing this prop to a non-null value, will start the animation at animations[currentAnimation]
+     * If given null, will cancel() any current animations
+     * If given a new or null value while the previous aninmation is not finished(), will commit the current style to the element and call onAnimationEnd
+     */
+    currentAnimation: A | null;
+
+    /**
      * The mapping of animationName A to an AnimationInput
      */
-    animations?: AnimationsByName<A>;
+    animations?: Record<A, AnimationInput>;
 
     /**
      * Callback to be called when the animation is finished() or is interrupted by a new animationName
@@ -51,8 +166,8 @@ export interface NonHTMLAnimatedProps<A extends string, T extends HTMLIntrinsics
  * @typeParam A the accepted animation names
  * @typeParam T the HTML Tag delegate
  */
-export type AnimatedProps<A extends string = string, T extends HTMLIntrinsics = 'div'> = NonHTMLAnimatedProps<A, T> &
-    Omit<TagHTMLAttributes<T>, 'onAnimationEnd'>;
+export type AnimatedProps<A extends string = string, T extends HTMLTags = 'div'> = NonHTMLAnimatedProps<A, T> &
+    Omit<JSX.IntrinsicElements[T], 'onAnimationEnd'>;
 
 /**
  * Helper to update a ref (either CallbackRef or RefObject) to the given next value

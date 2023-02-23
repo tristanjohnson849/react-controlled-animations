@@ -97,7 +97,6 @@ const AnimatedStateTransitionsExample: React.FC<{ chosenAnimation: MyAnimations}
     )
 }
 
-
 export default {
     component: AnimatedStateTransitionsExample,
     title: 'Hooks/AnimatedStateTransitionsExample',

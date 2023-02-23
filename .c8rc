@@ -1,8 +1,0 @@
-{
-    "src": "src/",
-    "extension": ["js", "jsx", "ts", "tsx"],
-    "statements": 50,
-    "lines": 50,
-    "functions": 80, 
-    "branches": 80
-}

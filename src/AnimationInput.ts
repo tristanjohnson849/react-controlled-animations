@@ -44,5 +44,3 @@ export const normalizedAnimation = (animationInput: AnimationInput): NormalizedA
 
     return { keyframes, options: normalizedOptions };
 };
-
-export type AnimationsByName<A extends string> = Record<A, AnimationInput | null>;

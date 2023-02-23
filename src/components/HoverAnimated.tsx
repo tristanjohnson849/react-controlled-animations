@@ -1,11 +1,11 @@
 import React, { useCallback } from "react";
-import { HTMLIntrinsics, mergeRefs, TagHTMLElement, AnimatedProps } from "./common";
+import { HTMLTags, mergeRefs, TagHTMLElement, AnimatedProps } from "./common";
 import ControlledAnimated from "./ControlledAnimated";
 import useIsHovered from "../hooks/useIsHovered";
 
 export type HoverAnimations = 'hovering'|'notHovering';
 
-type HoverAnimatedProps<A extends string, T extends HTMLIntrinsics> = { 
+type HoverAnimatedProps<A extends string, T extends HTMLTags = "div"> = { 
     /**
      * The optional currentAnimation override that may control this component
      * If present, will override the animation for the current hover state
@@ -13,9 +13,9 @@ type HoverAnimatedProps<A extends string, T extends HTMLIntrinsics> = {
      * Analogous to currentAnimation in {@link components/ControlledAnimated.ControlledAnimatedProps}
      */
     currentAnimation?: A | null 
-} & AnimatedProps<HoverAnimations | A, T>;
+} & Omit<AnimatedProps<HoverAnimations | A, T>, "currentAnimation">;
 
-function hoverAnimated<A extends string = never, T extends HTMLIntrinsics = "div">(
+function hoverAnimated<A extends string, T extends HTMLTags>(
     { 
         currentAnimation = null, 
         ...rest
@@ -30,11 +30,10 @@ function hoverAnimated<A extends string = never, T extends HTMLIntrinsics = "div
     );
 
     return (
-        // @ts-ignore
        <ControlledAnimated<HoverAnimations | A, T>
             currentAnimation={currentAnimation || (hovered ? "hovering" : "notHovering")}
             ref={mergedRef}
-            {...rest}
+            {...rest as AnimatedProps<HoverAnimations | A, T>}
        />
     );
 };
@@ -46,8 +45,8 @@ function hoverAnimated<A extends string = never, T extends HTMLIntrinsics = "div
  * @typeParam A additional animation names
  * @typeParam T the HTML Tag delegate
  */
-const HoverAnimated = React.forwardRef(hoverAnimated) as <A extends string = never, T extends HTMLIntrinsics = "div">(
-    props: HoverAnimatedProps<A, T> & React.RefAttributes<TagHTMLElement<T>>
+const HoverAnimated = React.forwardRef(hoverAnimated) as <A extends string = never, T extends HTMLTags = "div">(
+    props: HoverAnimatedProps<A, T>
 ) => React.ReactElement<any, any>;
 
 hoverAnimated.displayName = "HoverAnimated";

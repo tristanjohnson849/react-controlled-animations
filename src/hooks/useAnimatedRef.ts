@@ -1,6 +1,6 @@
 import { RefObject, useDebugValue, useEffect, useRef } from 'react';
 
-import { AnimationOptions, AnimationsByName, normalizedAnimation } from '../AnimationInput';
+import { AnimationInput, AnimationOptions, normalizedAnimation } from '../AnimationInput';
 
 /**
  * Low-level hook  that will animate the ref'd HTML element with the given currentAnimation name
@@ -19,7 +19,7 @@ import { AnimationOptions, AnimationsByName, normalizedAnimation } from '../Anim
  */
 function useAnimatedRef<A extends string = string, E extends HTMLElement = HTMLElement>(
     currentAnimation: A | null,
-    animations: AnimationsByName<A>,
+    animations: Record<A, AnimationInput>,
     onAnimationEnd?: (completedAnimationName: A | null, webAnimation: Animation | null) => void
 ): RefObject<E> {
     const elementRef = useRef<E>(null);

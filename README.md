@@ -17,63 +17,64 @@ This library is a set of hooks and components to enable declarative, controlled 
 ## Example usage
 
 ```typescript
-
 const AnimatedTransitionExample: React.FC<{}> = () => {
     const [
         counter,
         startTransition,
         endTransition, 
         currentTransitionName
-    ] = useAnimatedTransitionState<number, 'flying'|'sliding', HTMLElement>(0);
+    ] = useTransitioningState<number, 'flying'|'sliding'>(0);
 
     return (
-        <ControlledAnimated<'flying'|'sliding', "span">
-            as="span"
-            currentAnimation={currentTransitionName}
-            onAnimationEnd={endTransition}
-            style={{
-                fontSize: '48px',
-                margin: '24px',
+        <div>
+            <ControlledAnimated<'flying'|'sliding', "span">
+                as="span"
+                currentAnimation={currentTransitionName}
+                onAnimationEnd={endTransition}
+                style={{
+                    fontSize: '48px',
+                    margin: '24px',
+                    textAlign: 'center',
+                    verticalAlign: 'middle'
+                }}
+                animations={{
+                    flying: toTransitionAnimation({
+                        keyframes: [
+                            { translate: 0 },
+                            { translate: '0 -30vh' },
+                            { translate: '0 -28vh' },
+                            { translate: '0 -32vh' },
+                            { translate: '0 -28vh' },
+                            { translate: '0 -32vh' },
+                            { translate: 0, easing: 'ease-in-out' },
+                        ],
+                        options: { duration: 3000 }
+                    }),
+                    sliding: toTransitionAnimation({
+                        keyframes: [
+                            { translate: 0 },
+                            { translate: '25vw', offset: 0.2 },
+                            { translate: 0 },
+                        ],
+                        options: { duration: 3000, easing: 'ease-in-out' }
+                    }),
+                }}
+            >
+                🤓
+            </ControlledAnimated>
+            <div style={{ 
                 textAlign: 'center',
-                verticalAlign: 'middle'
-            }}
-            animations={{
-                flying: toTransitionAnimation({
-                    keyframes: [
-                        { translate: 0 },
-                        { translate: '0 -30vh' },
-                        { translate: '0 -28vh' },
-                        { translate: '0 -32vh' },
-                        { translate: '0 -28vh' },
-                        { translate: '0 -32vh' },
-                        { translate: 0, easing: 'ease-in-out' },
-                    ],
-                    options: { duration: 3000 }
-                }),
-                sliding: toTransitionAnimation({
-                    keyframes: [
-                        { translate: 0 },
-                        { translate: '25vw', offset: 0.2 },
-                        { translate: 0 },
-                    ],
-                    options: { duration: 3000, easing: 'ease-in-out' }
-                }),
-            }}
-        >
-            🤓
-        </ControlledAnimated>
-        <div style={{ 
-            textAlign: 'center',
-            verticalAlign: 'middle', 
-        }}>
-            <div>Count: {counter}</div>
-            <div>Animation: {currentTransitionName || "null"}</div>
-            <button onClick={() => startTransition(
-                prev => prev + 1, 
-                Math.random() > 0.5 ? 'flying' : 'sliding'
-            )}>
-                Increment
-            </button>
+                verticalAlign: 'middle', 
+            }}>
+                <div>Count: {counter}</div>
+                <div>Animation: {currentTransitionName || "null"}</div>
+                <button onClick={() => startTransition(
+                    prev => prev + 1, 
+                    Math.random() > 0.5 ? 'flying' : 'sliding'
+                )}>
+                    Increment
+                </button>
+            </div>
         </div>
     )
 };
