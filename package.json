@@ -5,7 +5,7 @@
   "type": "module",
   "exports": {
     ".": "./build/index.js",
-    "./**/*": "./**/*"
+    "./**/*": "./build/**/*"
   },
   "types": "./build/index.d.ts",
   "repository": "https://github.com/tristanjohnson849/react-controlled-animations",
