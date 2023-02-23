@@ -1,6 +1,6 @@
 {
   "name": "react-controlled-animations",
-  "version": "0.0.14",
+  "version": "0.0.15",
   "description": "Utilities for declaratively controlling animations through React hooks",
   "type": "module",
   "exports": {
