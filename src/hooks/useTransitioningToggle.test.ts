@@ -27,31 +27,37 @@ test('initialState = true, isToggled = true, isTransitioning = null', () => {
 
     expect(isToggled).toBeTruthy();
     expect(currentTransition).toBeNull();
-})
+});
 
-test('initialState=true initialTransitioning=true => isToggled = true, isTransitioning=togglingOff', () => {
+test('initialState=true initialTransitioning=true => isToggled = true, isTransitioning=togglingOn', () => {
     const { result } = renderHook(() => useTransitioningToggle(true, true));
     const [isToggled, , , currentTransition] = result.current;
 
     expect(isToggled).toBeTruthy();
-    expect(currentTransition).toBe('togglingOff')
-})
+    expect(currentTransition).toBe('togglingOn');
+});
 
-test('initialState=true initialTransitioning=true endTransition=> isToggled = false, isTransitioning=null', ()=> {
+test('initialState=true initialTransitioning=true endTransition=> isToggled = true, isTransitioning=null', ()=> {
     const { result } = renderHook(() => useTransitioningToggle(true, true));
-    const [isToggled, , endTransition, currentTransition] = result.current;
-    endTransition();
 
-    expect(isToggled).toBeFalsy();
-    expect(currentTransition).toBeNull();
-})
+    actAndThen(
+        result,
+        ([, , endTransition]) => endTransition(),
+        ([isToggled, , , currentTransition]) => {
+                expect(isToggled).toBe(true);
+                expect(currentTransition).toBeNull();
+        }
+    );
+});
 
 test('startToggling => state unchanged, isTransitioning=togglingOn', () => {
     const { result } = renderHook(() => useTransitioningToggle());
-    const [ , startToggling, , currentTransition] = result.current;
-    startToggling();
 
-    expect(currentTransition).toBe('togglingOn');
+    actAndThen(
+        result,
+        ([, startToggling]) => startToggling(),
+        ([, , , currentTransition]) => expect(currentTransition).toBe('togglingOn')
+    );
 });
 
 test('startToggling, endTransition same render => state inverted, isTransitioning=null', () => {
@@ -66,22 +72,20 @@ test('startToggling, endTransition same render => state inverted, isTransitionin
             expect(currentTransition).toBeNull();
 
         }
-    )
+    );
 });
 
 test('start toggling, rerender, end transition => state inverted, isTransitioning=null', () => {
-    const { result } = renderHook(() => useTransitioningToggle());
+    const { result } = renderHook(() => useTransitioningToggle(false));
 
-    const [, startToggling] = result.current;
-
-    act(() => {
-        startToggling();
-    });
     actAndThen(
         result,
-        ([, , endTransition]) => endTransition(),
+        [
+            ([, startToggling]) => startToggling(),
+            ([, , endTransition]) => endTransition(),
+        ],
         ([isToggled, , , currentTransition]) => {
-            expect(isToggled).toBeTruthy();
+            expect(isToggled).toBe(true);
             expect(currentTransition).toBeNull();
         }
     )

@@ -39,15 +39,15 @@ export type TransitioningToggleState = readonly [
  * Toggle transitions may be queued via startToggling, and all queued toggles are completed by endTransition
  *
  * @param initialState
- * @param initialTransitioning if true, will toggle away from initialState when the togglingElementRef is first set
+ * @param initialTransitioning if true, will toggle into initialState when the togglingElementRef is first set
  *
  * @return [isToggled, startToggling, endToggling, currentTransition]: TransitioningToggleState
  */
 function useTransitioningToggle(initialState = false, initialTransitioning = false): TransitioningToggleState {
-    const [isToggled, startTransition, endTransition, isTransitioning] = useTransitioningState<
+    const [isToggled, startTransition, endTransition, currentTransition] = useTransitioningState<
         boolean,
         ToggleTransitions
-    >(initialState, initialTransitioning ? nextTransition(initialState) : null);
+    >(initialState, initialTransitioning ? nextTransition(!initialState) : null);
 
     const transition = nextTransition(isToggled);
 
@@ -56,7 +56,6 @@ function useTransitioningToggle(initialState = false, initialTransitioning = fal
         [transition]
     );
 
-    const currentTransition = isTransitioning !== null ? transition : null;
     return [isToggled, startToggling, endTransition, currentTransition];
 }
 
