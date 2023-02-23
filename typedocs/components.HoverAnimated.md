@@ -18,7 +18,7 @@
 
 #### Defined in
 
-[components/HoverAnimated.tsx:6](https://github.com/tristanjohnson849/react-controlled-animations/blob/15e8493/src/components/HoverAnimated.tsx#L6)
+[components/HoverAnimated.tsx:6](https://github.com/tristanjohnson849/react-controlled-animations/blob/6759966/src/components/HoverAnimated.tsx#L6)
 
 ## Functions
 
@@ -35,13 +35,13 @@ May accept an overriding currentAnimation
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `A` | extends `string` = `never` | additional animation names |
-| `T` | extends keyof `IntrinsicElements` = ``"div"`` | the HTML Tag delegate |
+| `T` | extends [`HTMLTags`](../wiki/components.common#htmltags) = ``"div"`` | the HTML Tag delegate |
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `props` | { `currentAnimation?`: `A`  } & [`NonHTMLAnimatedProps`](../wiki/components.common.NonHTMLAnimatedProps)<[`HoverAnimations`](../wiki/components.HoverAnimated#hoveranimations) \| `A`, `T`\> & `Omit`<[`TagHTMLAttributes`](../wiki/components.common#taghtmlattributes)<`T`\>, ``"onAnimationEnd"``\> & `RefAttributes`<[`TagHTMLElement`](../wiki/components.common#taghtmlelement)<`T`\>\> |
+| `props` | `HoverAnimatedProps`<`A`, `T`\> |
 
 #### Returns
 
@@ -49,4 +49,4 @@ May accept an overriding currentAnimation
 
 #### Defined in
 
-[components/HoverAnimated.tsx:49](https://github.com/tristanjohnson849/react-controlled-animations/blob/15e8493/src/components/HoverAnimated.tsx#L49)
+[components/HoverAnimated.tsx:48](https://github.com/tristanjohnson849/react-controlled-animations/blob/6759966/src/components/HoverAnimated.tsx#L48)

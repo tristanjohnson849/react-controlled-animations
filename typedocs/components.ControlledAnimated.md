@@ -2,30 +2,9 @@
 
 ## Table of contents
 
-### Type Aliases
-
-- [ControlledAnimatedProps](../wiki/components.ControlledAnimated#controlledanimatedprops)
-
 ### Functions
 
 - [default](../wiki/components.ControlledAnimated#default)
-
-## Type Aliases
-
-### ControlledAnimatedProps
-
-Ƭ **ControlledAnimatedProps**<`A`, `T`\>: { `currentAnimation`: `A` \| ``null``  } & [`AnimatedProps`](../wiki/components.common#animatedprops)<`A`, `T`\>
-
-#### Type parameters
-
-| Name | Type |
-| :------ | :------ |
-| `A` | extends `string` |
-| `T` | extends [`HTMLIntrinsics`](../wiki/components.common#htmlintrinsics) = ``"div"`` |
-
-#### Defined in
-
-[components/ControlledAnimated.tsx:6](https://github.com/tristanjohnson849/react-controlled-animations/blob/15e8493/src/components/ControlledAnimated.tsx#L6)
 
 ## Functions
 
@@ -43,13 +22,13 @@ Note: forwarding a ref returned from [useAnimatedRef](../wiki/hooks#useanimatedr
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `A` | extends `string` = `string` | the accepted animation names |
-| `T` | extends keyof `IntrinsicElements` = ``"div"`` | the HTML Tag delegate |
+| `T` | extends [`HTMLTags`](../wiki/components.common#htmltags) = ``"div"`` | the HTML Tag delegate |
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `props` | { `currentAnimation`: `A`  } & [`NonHTMLAnimatedProps`](../wiki/components.common.NonHTMLAnimatedProps)<`A`, `T`\> & `Omit`<[`TagHTMLAttributes`](../wiki/components.common#taghtmlattributes)<`T`\>, ``"onAnimationEnd"``\> & `RefAttributes`<[`TagHTMLElement`](../wiki/components.common#taghtmlelement)<`T`\>\> |
+| `props` | [`AnimatedProps`](../wiki/components.common#animatedprops)<`A`, `T`\> |
 
 #### Returns
 
@@ -57,4 +36,4 @@ Note: forwarding a ref returned from [useAnimatedRef](../wiki/hooks#useanimatedr
 
 #### Defined in
 
-[components/ControlledAnimated.tsx:62](https://github.com/tristanjohnson849/react-controlled-animations/blob/15e8493/src/components/ControlledAnimated.tsx#L62)
+[components/ControlledAnimated.tsx:46](https://github.com/tristanjohnson849/react-controlled-animations/blob/6759966/src/components/ControlledAnimated.tsx#L46)

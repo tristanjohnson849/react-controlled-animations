@@ -34,15 +34,15 @@ The edits are:
 
 #### Defined in
 
-[animationInputMappers.ts:18](https://github.com/tristanjohnson849/react-controlled-animations/blob/15e8493/src/animationInputMappers.ts#L18)
+[animationInputMappers.ts:12](https://github.com/tristanjohnson849/react-controlled-animations/blob/6759966/src/animationInputMappers.ts#L12)
 
 ___
 
 ### toSimpleTransitionAnimations
 
-▸ **toSimpleTransitionAnimations**(`transition`): [`AnimationsByName`](../wiki/AnimationInput#animationsbyname)<``"transition"``\>
+▸ **toSimpleTransitionAnimations**(`transition`): `Record`<``"transition"``, [`AnimationInput`](../wiki/AnimationInput#animationinput)\>
 
-Helper to create AnimationsByName for a SimpleTransition animation
+Helper to create expected SimpleTransition animation Record
 
 See [useSimpleTransitioningState](../wiki/hooks#usesimpletransitioningstate)
 
@@ -54,17 +54,17 @@ See [useSimpleTransitioningState](../wiki/hooks#usesimpletransitioningstate)
 
 #### Returns
 
-[`AnimationsByName`](../wiki/AnimationInput#animationsbyname)<``"transition"``\>
+`Record`<``"transition"``, [`AnimationInput`](../wiki/AnimationInput#animationinput)\>
 
 #### Defined in
 
-[animationInputMappers.ts:80](https://github.com/tristanjohnson849/react-controlled-animations/blob/15e8493/src/animationInputMappers.ts#L80)
+[animationInputMappers.ts:74](https://github.com/tristanjohnson849/react-controlled-animations/blob/6759966/src/animationInputMappers.ts#L74)
 
 ___
 
 ### toToggleAnimations
 
-▸ **toToggleAnimations**(`togglingOn`): [`AnimationsByName`](../wiki/AnimationInput#animationsbyname)<[`ToggleTransitions`](../wiki/hooks.useTransitioningToggle#toggletransitions)\>
+▸ **toToggleAnimations**(`togglingOn`): `Record`<[`ToggleTransitions`](../wiki/hooks.useTransitioningToggle#toggletransitions), [`AnimationInput`](../wiki/AnimationInput#animationinput)\>
 
 Helper to create a complete toggling animation by reversing a given togglingOn animation
 
@@ -79,11 +79,11 @@ The edits are:
 
 #### Returns
 
-[`AnimationsByName`](../wiki/AnimationInput#animationsbyname)<[`ToggleTransitions`](../wiki/hooks.useTransitioningToggle#toggletransitions)\>
+`Record`<[`ToggleTransitions`](../wiki/hooks.useTransitioningToggle#toggletransitions), [`AnimationInput`](../wiki/AnimationInput#animationinput)\>
 
 #### Defined in
 
-[animationInputMappers.ts:62](https://github.com/tristanjohnson849/react-controlled-animations/blob/15e8493/src/animationInputMappers.ts#L62)
+[animationInputMappers.ts:56](https://github.com/tristanjohnson849/react-controlled-animations/blob/6759966/src/animationInputMappers.ts#L56)
 
 ___
 
@@ -109,4 +109,4 @@ The edits are:
 
 #### Defined in
 
-[animationInputMappers.ts:48](https://github.com/tristanjohnson849/react-controlled-animations/blob/15e8493/src/animationInputMappers.ts#L48)
+[animationInputMappers.ts:42](https://github.com/tristanjohnson849/react-controlled-animations/blob/6759966/src/animationInputMappers.ts#L42)

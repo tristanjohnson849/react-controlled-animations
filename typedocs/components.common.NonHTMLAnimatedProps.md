@@ -9,7 +9,7 @@ AnimatedProps excluding HTML Attributes, exported
 | Name | Type |
 | :------ | :------ |
 | `A` | extends `string` |
-| `T` | extends [`HTMLIntrinsics`](../wiki/components.common#htmlintrinsics) = ``"div"`` |
+| `T` | extends [`HTMLTags`](../wiki/components.common#htmltags) = ``"div"`` |
 
 ## Table of contents
 
@@ -17,19 +17,20 @@ AnimatedProps excluding HTML Attributes, exported
 
 - [animations](../wiki/components.common.NonHTMLAnimatedProps#animations)
 - [as](../wiki/components.common.NonHTMLAnimatedProps#as)
+- [currentAnimation](../wiki/components.common.NonHTMLAnimatedProps#currentanimation)
 - [onAnimationEnd](../wiki/components.common.NonHTMLAnimatedProps#onanimationend)
 
 ## Properties
 
 ### animations
 
-• `Optional` **animations**: [`AnimationsByName`](../wiki/AnimationInput#animationsbyname)<`A`\>
+• `Optional` **animations**: `Record`<`A`, [`AnimationInput`](../wiki/AnimationInput#animationinput)\>
 
 The mapping of animationName A to an AnimationInput
 
 #### Defined in
 
-[components/common.ts:39](https://github.com/tristanjohnson849/react-controlled-animations/blob/15e8493/src/components/common.ts#L39)
+[components/common.ts:154](https://github.com/tristanjohnson849/react-controlled-animations/blob/6759966/src/components/common.ts#L154)
 
 ___
 
@@ -42,7 +43,22 @@ Defaults to "div"
 
 #### Defined in
 
-[components/common.ts:34](https://github.com/tristanjohnson849/react-controlled-animations/blob/15e8493/src/components/common.ts#L34)
+[components/common.ts:141](https://github.com/tristanjohnson849/react-controlled-animations/blob/6759966/src/components/common.ts#L141)
+
+___
+
+### currentAnimation
+
+• **currentAnimation**: `A`
+
+The currentAnimation that controls this component.
+On changing this prop to a non-null value, will start the animation at animations[currentAnimation]
+If given null, will cancel() any current animations
+If given a new or null value while the previous aninmation is not finished(), will commit the current style to the element and call onAnimationEnd
+
+#### Defined in
+
+[components/common.ts:149](https://github.com/tristanjohnson849/react-controlled-animations/blob/6759966/src/components/common.ts#L149)
 
 ___
 
@@ -69,4 +85,4 @@ Callback to be called when the animation is finished() or is interrupted by a ne
 
 #### Defined in
 
-[components/common.ts:46](https://github.com/tristanjohnson849/react-controlled-animations/blob/15e8493/src/components/common.ts#L46)
+[components/common.ts:161](https://github.com/tristanjohnson849/react-controlled-animations/blob/6759966/src/components/common.ts#L161)
