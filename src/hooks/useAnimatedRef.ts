@@ -1,6 +1,6 @@
 import { RefObject, useDebugValue, useEffect, useRef } from 'react';
 
-import { AnimationInput, AnimationOptions, normalizedAnimation } from '../AnimationInput';
+import { AnimationInput, AnimationOptions, normalizedAnimation } from '../AnimationInput.js';
 
 /**
  * Low-level hook  that will animate the ref'd HTML element with the given currentAnimation name

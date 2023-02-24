@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { expectMatchingKeyframes, isolatedCleanup, isolatedRender } from '../testUtils';
-import useAnimatedRef from './useAnimatedRef';
-import { AnimationInput } from '../AnimationInput';
+import { expectMatchingKeyframes, isolatedCleanup, isolatedRender } from '../testUtils.js';
+import useAnimatedRef from './useAnimatedRef.js';
+import { AnimationInput } from '../AnimationInput.js';
 
 import { act, cleanup, waitFor } from '@testing-library/react';
 

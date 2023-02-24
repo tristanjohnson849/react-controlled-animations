@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 
-import useTransitioningState from './useTransitioningState';
+import useTransitioningState from './useTransitioningState.js';
 
 export type ToggleTransitions = 'togglingOn' | 'togglingOff';
 

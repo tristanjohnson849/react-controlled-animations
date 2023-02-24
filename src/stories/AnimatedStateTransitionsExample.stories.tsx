@@ -1,7 +1,7 @@
 import React, { CSSProperties } from 'react';
-import { toTransitionAnimation } from '../animationInputMappers';
-import ControlledAnimated from '../components/ControlledAnimated';
-import useTransitioningState from '../hooks/useTransitioningState';
+import { toTransitionAnimation } from '../animationInputMappers.js';
+import ControlledAnimated from '../components/ControlledAnimated.js';
+import useTransitioningState from '../hooks/useTransitioningState.js';
 
 
 const allAnimations = ['flying', 'jumping', 'sliding'] as const;
