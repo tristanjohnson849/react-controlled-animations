@@ -36,4 +36,4 @@ Note: forwarding a ref returned from [useAnimatedRef](../wiki/hooks#useanimatedr
 
 #### Defined in
 
-[components/ControlledAnimated.tsx:46](https://github.com/tristanjohnson849/react-controlled-animations/blob/f7e3c40/src/components/ControlledAnimated.tsx#L46)
+[components/ControlledAnimated.tsx:46](https://github.com/tristanjohnson849/react-controlled-animations/blob/5858e1a/src/components/ControlledAnimated.tsx#L46)
