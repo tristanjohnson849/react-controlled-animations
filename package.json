@@ -5,10 +5,8 @@
   "type": "module",
   "exports": {
     ".": "./build/index.js",
-    "./components/*": "./components/*",
-    "./hooks/*": "./hooks/*",
-    "./animationInputMappers": "./animationInputMappers",
-    "./AnimationInput": "./AnimationInput"
+    "./*.js": "./build/*.js",
+    "./*.d.ts": "./build/*.d.ts"
   },
   "types": "./build/index.d.ts",
   "repository": "https://github.com/tristanjohnson849/react-controlled-animations",
