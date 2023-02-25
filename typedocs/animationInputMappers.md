@@ -34,7 +34,7 @@ The edits are:
 
 #### Defined in
 
-[animationInputMappers.ts:12](https://github.com/tristanjohnson849/react-controlled-animations/blob/5858e1a/src/animationInputMappers.ts#L12)
+[animationInputMappers.ts:12](https://github.com/tristanjohnson849/react-controlled-animations/blob/4e9f56f/src/animationInputMappers.ts#L12)
 
 ___
 
@@ -58,7 +58,7 @@ See [useSimpleTransitioningState](../wiki/hooks#usesimpletransitioningstate)
 
 #### Defined in
 
-[animationInputMappers.ts:74](https://github.com/tristanjohnson849/react-controlled-animations/blob/5858e1a/src/animationInputMappers.ts#L74)
+[animationInputMappers.ts:74](https://github.com/tristanjohnson849/react-controlled-animations/blob/4e9f56f/src/animationInputMappers.ts#L74)
 
 ___
 
@@ -83,7 +83,7 @@ The edits are:
 
 #### Defined in
 
-[animationInputMappers.ts:56](https://github.com/tristanjohnson849/react-controlled-animations/blob/5858e1a/src/animationInputMappers.ts#L56)
+[animationInputMappers.ts:56](https://github.com/tristanjohnson849/react-controlled-animations/blob/4e9f56f/src/animationInputMappers.ts#L56)
 
 ___
 
@@ -109,4 +109,4 @@ The edits are:
 
 #### Defined in
 
-[animationInputMappers.ts:42](https://github.com/tristanjohnson849/react-controlled-animations/blob/5858e1a/src/animationInputMappers.ts#L42)
+[animationInputMappers.ts:42](https://github.com/tristanjohnson849/react-controlled-animations/blob/4e9f56f/src/animationInputMappers.ts#L42)
