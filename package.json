@@ -27,7 +27,8 @@
     "version": "standard-version",
     "prepare-release": "run-s build check version doc",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build  -o stories-build"
+    "build-storybook": "storybook build  -o stories-build",
+    "inc-release": " npm run prepare-release && git push --follow-tags && npm publish"
   },
   "engines": {
     "node": " >=16.15"

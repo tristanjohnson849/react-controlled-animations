@@ -96,3 +96,28 @@ test('animates with forwarded ref', async () => {
     expectMatchingKeyframes(webAnimation, keyframes);
 
 });
+
+
+test('no finish or cancel when interrupted', async () => {
+
+});
+
+test('calls finish when interrupted and finishOnInterrupt=true', async () => {
+
+});
+
+test('calls cancel when interrupted and cancelOnInterrupt=true', async () => {
+
+});
+
+test('calls commitStyles on finish', async () => {
+
+});
+
+test('calls commitStyles when interrupted', async () => {
+
+});
+
+test('no commitStyles on end and commitStylesOnEnd=false', async () => {
+
+});

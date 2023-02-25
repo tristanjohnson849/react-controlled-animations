@@ -155,10 +155,35 @@ export interface NonHTMLAnimatedProps<A extends string, T extends HTMLTags = 'di
 
     /**
      * Callback to be called when the animation is finished() or is interrupted by a new animationName
+     *
+     * Callback will be called after the declarative end behavior (finishOnInterrupt, commitStylesOnEnd, etc) is run
      * @param completedAnimationName the name of the animation that is ending
      * @param webAnimation the Web API Animation that is ending, or null if the animation was not started
      */
     onAnimationEnd?: (completedAnimationName: A, webAnimation: Animation | null) => void;
+
+    /**
+     * If the currentAnimation is interrupted, webAnimation.finish()
+     * If both finishOnInterrupt and cancelOnInterrupt are true, finishOnInterrupt overrides
+     *
+     * Default: false
+     */
+    finishOnInterrupt?: boolean;
+
+    /**
+     * If the currentAnimation is interrupted, webAnimation.cancel()
+     * If both finishOnInterrupt and cancelOnInterrupt are true, finishOnInterrupt overrides
+     *
+     * Default: false
+     */
+    cancelOnInterrupt?: boolean;
+
+    /**
+     * On every animation end, webAnimation.commitStyles()
+     *
+     * Default: true
+     */
+    commitStylesOnEnd?: boolean;
 }
 
 /**

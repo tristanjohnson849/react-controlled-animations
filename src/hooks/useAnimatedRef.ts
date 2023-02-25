@@ -40,7 +40,7 @@ function useAnimatedRef<A extends string = string, E extends HTMLElement = HTMLE
             }
             const { keyframes, options } = normalizedAnimation(animations[currentAnimation]);
 
-            const webAnimation = runAnimation(
+            return runAnimation(
                 elementRef.current,
                 keyframes,
                 options,
@@ -52,10 +52,6 @@ function useAnimatedRef<A extends string = string, E extends HTMLElement = HTMLE
                     }.\nCheck your animations: ${serializedAnimation}.\n`;
                 }
             );
-
-            if (webAnimation !== null) {
-                return () => cleanupAnimation(webAnimation);
-            }
         }
     }, [elementRef.current, currentAnimation, serializedAnimation]);
 
@@ -68,33 +64,26 @@ const runAnimation = <E extends HTMLElement>(
     options: AnimationOptions,
     onAnimationEnd: (webAnimation: Animation | null) => void,
     errorMessage: (err: Error) => string
-) => {
+): void | (() => void) => {
     try {
         const webAnimation = element.animate(keyframes, options as KeyframeAnimationOptions);
 
         webAnimation.onfinish = () => {
-            try {
-                webAnimation.commitStyles();
-            } catch (e) {
-                // element may have been unmounted
-            }
             onAnimationEnd && onAnimationEnd(webAnimation);
         };
-        return webAnimation;
+
+        return () => {
+            // useEffect cleanup. Only call onEnd if we haven't already finished
+            if (webAnimation.playState !== 'finished') {
+                onAnimationEnd && onAnimationEnd(webAnimation);
+            }
+        };
     } catch (err) {
         if (process.env.NODE_ENV !== 'production') {
             console.error(errorMessage(err), err);
         }
 
         onAnimationEnd && onAnimationEnd(null);
-        return null;
-    }
-};
-
-const cleanupAnimation = (webAnimation: Animation) => {
-    if (webAnimation.playState !== 'finished') {
-        // simulate finish without actually calling finish() for infinite animations
-        webAnimation.onfinish(null);
     }
 };
 

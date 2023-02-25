@@ -12,13 +12,33 @@ const controlledAnimated = <A extends string, T extends HTMLTags = 'div'>(
         animations,
         currentAnimation,
         onAnimationEnd,
+        finishOnInterrupt = false,
+        cancelOnInterrupt = false,
+        commitStylesOnEnd = true,
         ...tagProps
     } = props;
+
+    const decoratedOnEnd = useCallback((completedAnimationName: A, webAnimation: Animation | null) => {
+        if (webAnimation) {
+            if (commitStylesOnEnd) {
+                webAnimation.commitStyles();
+            }
+            if (webAnimation.playState !== 'finished') {
+                if (finishOnInterrupt) {
+                    webAnimation.finish();
+                } else if (cancelOnInterrupt) {
+                    webAnimation.cancel();
+                }
+            }
+        }
+
+        onAnimationEnd && onAnimationEnd(completedAnimationName, webAnimation);
+    }, [onAnimationEnd, finishOnInterrupt, cancelOnInterrupt, commitStylesOnEnd]);
 
     const animatedRef = useAnimatedRef<A, TagHTMLElement<T>>(
         currentAnimation,
         animations,
-        onAnimationEnd,
+        decoratedOnEnd,
     );
 
     const elementRef = useCallback(mergeRefs(
