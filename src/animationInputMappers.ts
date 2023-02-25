@@ -1,5 +1,5 @@
-import { AnimationInput, AnimationOptions, normalizedAnimation, NormalizedAnimation } from './AnimationInput';
-import { ToggleTransitions } from './hooks/useTransitioningToggle';
+import { AnimationInput, AnimationOptions, normalizedAnimation, NormalizedAnimation } from './AnimationInput.js';
+import { ToggleTransitions } from './hooks/useTransitioningToggle.js';
 
 /**
  * Returns an edited animation that runs it's last keyframe infinitely (until interrupted)

@@ -3,9 +3,9 @@ import {
     fireEvent,
 } from '@testing-library/react';
 
-import useIsHovered from './useIsHovered';
+import useIsHovered from './useIsHovered.js';
 import React from 'react';
-import { isolatedCleanup, isolatedRender } from '../testUtils';
+import { isolatedCleanup, isolatedRender } from '../testUtils.js';
 
 afterEach(isolatedCleanup);
 afterAll(cleanup);

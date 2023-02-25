@@ -1,6 +1,6 @@
 import React, { DetailedHTMLProps } from 'react';
 
-import { AnimationInput } from '../AnimationInput';
+import { AnimationInput } from '../AnimationInput.js';
 
 // exclude SVG
 export type HTMLTags =

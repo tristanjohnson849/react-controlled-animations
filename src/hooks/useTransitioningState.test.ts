@@ -1,10 +1,10 @@
 import { act, renderHook } from '@testing-library/react-hooks';
 
-import { actAndThen } from '../testUtils';
+import { actAndThen } from '../testUtils.js';
 
-import useTransitioningState from './useTransitioningState';
+import useTransitioningState from './useTransitioningState.js';
 
-// import useTransitioningState from './useTransitioningState';
+// import useTransitioningState from './useTransitioningState.js';
 
 // initial state
 test('initialState=undefined initialTransition=undefined => get undefined state, transition=null', () => {
