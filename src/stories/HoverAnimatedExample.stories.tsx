@@ -1,6 +1,6 @@
 import React from "react";
-import { toPersistedAnimation } from "../animationInputMappers";
-import HoverAnimated from "../components/HoverAnimated";
+import { toPersistedAnimation } from '../animationInputMappers.js';
+import HoverAnimated from '../components/HoverAnimated.js';
 
 
 const HoverAnimatedExample = () => {

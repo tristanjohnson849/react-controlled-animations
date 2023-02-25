@@ -1,7 +1,7 @@
 import React, { useCallback } from "react";
-import { HTMLTags, mergeRefs, TagHTMLElement, AnimatedProps } from "./common";
-import ControlledAnimated from "./ControlledAnimated";
-import useIsHovered from "../hooks/useIsHovered";
+import { HTMLTags, mergeRefs, TagHTMLElement, AnimatedProps } from './common.js';
+import ControlledAnimated from './ControlledAnimated.js';
+import useIsHovered from '../hooks/useIsHovered.js';
 
 export type HoverAnimations = 'hovering'|'notHovering';
 

@@ -1,7 +1,7 @@
 import { fireEvent } from "@testing-library/react";
 import React from "react";
-import { expectMatchingKeyframes, isolatedRender } from "../testUtils";
-import HoverAnimated from "./HoverAnimated";
+import { expectMatchingKeyframes, isolatedRender } from '../testUtils.js';
+import HoverAnimated from './HoverAnimated.js';
 
 
 test('renders as the passed tag with passed tag props', () => {
