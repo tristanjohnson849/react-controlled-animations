@@ -1,12 +1,11 @@
 {
   "name": "react-controlled-animations",
-  "version": "0.0.19",
+  "version": "0.0.20",
   "description": "Utilities for declaratively controlling animations through React hooks",
   "type": "module",
   "exports": {
     ".": "./build/index.js",
-    "./*.js": "./build/*.js",
-    "./*.d.ts": "./build/*.d.ts"
+    "./*": "./build/*"
   },
   "types": "./build/index.d.ts",
   "repository": "https://github.com/tristanjohnson849/react-controlled-animations",
