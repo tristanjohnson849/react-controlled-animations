@@ -1,6 +1,6 @@
 import { SetStateAction } from 'react';
 
-import useTransitioningState from './useTransitioningState';
+import useTransitioningState from './useTransitioningState.js';
 
 /**
  * [state, startTransition, endTransition, isTransitioning]

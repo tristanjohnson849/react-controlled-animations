@@ -1,6 +1,6 @@
 import { SetStateAction, useState } from 'react';
 
-import useQueuedState from './useQueuedState';
+import useQueuedState from './useQueuedState.js';
 
 /**
  * [state, startTransition, endTransition, currentTransition]

@@ -2,12 +2,18 @@
 import type {Config} from '@jest/types';
 // Sync object
 const config: Config.InitialOptions = {
-  verbose: true,
   transform: {
-    '^.+\\.tsx?$': 'esbuild-jest',
+    '^.+\\.tsx?$': [
+      'ts-jest',
+      {
+        useESM: true,
+      },
+    ],
   },
-  // @ts-ignore jest hasn't declared this value yet
-  extensionsToTreatAsEsm: ['.ts', '.jsx'],
+  moduleNameMapper: {
+    "(.+)\\.js": "$1"
+  },
+  extensionsToTreatAsEsm: ['.ts', '.tsx', '.jsx'],
   testEnvironment: 'jsdom',
   coverageProvider: 'v8',
   collectCoverageFrom: [
@@ -20,10 +26,10 @@ const config: Config.InitialOptions = {
   coverageReporters: ["text", "json", "html", "lcov"],
   coverageThreshold: {
     global: {
-      function: 80,
-      branch: 80,
-      line: 50,
-      statement: 50,
+      functions: 80,
+      branches: 80,
+      lines: 50,
+      statements: 50,
     }
   }
 };

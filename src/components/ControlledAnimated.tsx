@@ -1,5 +1,5 @@
 import React, { ForwardedRef, useCallback } from 'react';
-import useAnimatedRef from '../hooks/useAnimatedRef';
+import useAnimatedRef from '../hooks/useAnimatedRef.js';
 import { AnimatedProps, HTMLTags, mergeRefs, TagHTMLElement } from "./common";
 
 

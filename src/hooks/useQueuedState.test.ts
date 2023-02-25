@@ -1,8 +1,8 @@
 import { act, renderHook } from '@testing-library/react-hooks';
 
-import { actAndThen } from '../testUtils';
+import { actAndThen } from '../testUtils.js';
 
-import useQueuedState from './useQueuedState';
+import useQueuedState from './useQueuedState.js';
 
 const render = <S>(initialState?: S) => renderHook(() => useQueuedState<S>(initialState)).result;
 
