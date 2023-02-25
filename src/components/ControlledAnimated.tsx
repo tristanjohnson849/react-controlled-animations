@@ -1,6 +1,6 @@
 import React, { ForwardedRef, useCallback } from 'react';
 import useAnimatedRef from '../hooks/useAnimatedRef.js';
-import { AnimatedProps, HTMLTags, mergeRefs, TagHTMLElement } from "./common";
+import { AnimatedProps, HTMLTags, mergeRefs, TagHTMLElement } from './common.js';
 
 
 const controlledAnimated = <A extends string, T extends HTMLTags = 'div'>(

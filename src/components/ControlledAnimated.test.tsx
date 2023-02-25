@@ -1,6 +1,6 @@
 import React from "react";
-import { expectMatchingKeyframes, isolatedRender } from "../testUtils";
-import ControlledAnimated from "./ControlledAnimated";
+import { expectMatchingKeyframes, isolatedRender } from '../testUtils.js';
+import ControlledAnimated from './ControlledAnimated.js';
 
 
 // much of the behavior of ControlledAnimated is dicated by useAnimatedRef and is covered in the hook tests
