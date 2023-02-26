@@ -1,6 +1,8 @@
-import { RefObject, useDebugValue, useEffect, useRef } from 'react';
+import { RefObject, useContext, useDebugValue, useEffect, useRef } from 'react';
 
 import { AnimationInput, AnimationOptions, normalizedAnimation } from '../AnimationInput.js';
+
+import { EnableAnimationContext } from './enableAnimationContext.js';
 
 /**
  * Low-level hook  that will animate the ref'd HTML element with the given currentAnimation name
@@ -23,6 +25,7 @@ function useAnimatedRef<A extends string = string, E extends HTMLElement = HTMLE
     onAnimationEnd?: (completedAnimationName: A | null, webAnimation: Animation | null) => void
 ): RefObject<E> {
     const elementRef = useRef<E>(null);
+    const enabledContext = useContext(EnableAnimationContext);
 
     const serializedAnimation =
         currentAnimation && animations && animations[currentAnimation] && JSON.stringify(animations[currentAnimation]);
@@ -32,11 +35,11 @@ function useAnimatedRef<A extends string = string, E extends HTMLElement = HTMLE
     // if we have a ref and an currentAnimation, animate the ref with the currentAnimation
     useEffect(() => {
         if (elementRef.current !== null) {
-            if (!currentAnimation || !animations || !animations[currentAnimation]) {
+            if (!enabledContext.enabled || !currentAnimation || !animations || !animations[currentAnimation]) {
                 elementRef.current.getAnimations().forEach((anim) => anim.cancel());
 
                 onAnimationEnd && onAnimationEnd(currentAnimation, null);
-                return undefined;
+                return;
             }
             const { keyframes, options } = normalizedAnimation(animations[currentAnimation]);
 
@@ -61,7 +64,7 @@ function useAnimatedRef<A extends string = string, E extends HTMLElement = HTMLE
                 };
             }
         }
-    }, [elementRef.current, currentAnimation, serializedAnimation]);
+    }, [enabledContext, elementRef.current, currentAnimation, serializedAnimation]);
 
     return elementRef;
 }
