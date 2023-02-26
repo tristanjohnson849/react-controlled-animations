@@ -1,5 +1,5 @@
+import { StoryFn } from "@storybook/react";
 import React from "react";
-import { toPersistedAnimation } from '../animationInputMappers.js';
 import HoverAnimated from '../components/HoverAnimated.js';
 
 
@@ -34,17 +34,16 @@ const HoverAnimatedExample = () => {
                             { scale: 1 },
                             { scale: 2 }
                         ],
-                        options: { iterations: 'Infinity', direction: 'alternate', duration: 1000 }
+                        options: { iterations: 'Infinity', direction: 'alternate' }
                     },
-                    notHovering: toPersistedAnimation({
+                    notHovering: {
                         keyframes: [
                             { scale: 1 }
                         ], 
-                        options: { duration: 1000} 
-                    })
-                    
+                        options: { fill: 'forwards' } 
+                    }
                 }}
-                onAnimationEnd={(_, animation) => animation?.commitStyles()}
+                animationOptions={{ duration: 1000 }}
             >
                 🤓
             </HoverAnimated>
@@ -62,4 +61,4 @@ export default {
     title: 'Components/HoverAnimatedExample',
 };
 
-export const Primary: React.FC<{}> = () => <HoverAnimatedExample />;
+export const Primary: StoryFn<typeof HoverAnimatedExample> = () => <HoverAnimatedExample />;

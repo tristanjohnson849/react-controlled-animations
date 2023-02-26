@@ -1,7 +1,8 @@
 import React from 'react';
 import useTransitioningState from '../hooks/useTransitioningState.js';
 import ControlledAnimated from '../components/ControlledAnimated.js';
-import { toTransitionAnimation } from '../animationInputMappers.js';
+
+import { StoryFn } from '@storybook/react';
 
 const allAnimations = ['flying', 'jumping', 'sliding'] as const;
 type MyAnimations = typeof allAnimations[number];
@@ -19,15 +20,14 @@ const SynchronizedAnimationExample: React.FC<{ chosenAnimation: MyAnimations }> 
     return (
         <ControlledAnimated<'movingBackground'>
             currentAnimation={currentAnimation ? 'movingBackground' : null}
+            finishOnInterrupt
             animations={{
-                movingBackground: {
-                    keyframes: [
+                movingBackground: [
                         { backgroundPosition: 0 },
                         { backgroundPosition: '-100vw' },
                     ],
-                    options: { duration: DURATION, easing: 'ease-in-out' }
-                }
             }}
+            animationOptions={{ duration: DURATION, easing: 'ease-in-out' }}
             style={{
                 width: '100vw',
                 height: '100vh',
@@ -42,43 +42,35 @@ const SynchronizedAnimationExample: React.FC<{ chosenAnimation: MyAnimations }> 
                 currentAnimation={currentAnimation}
                 onAnimationEnd={endTransition}
                 animations={{
-                    flying: toTransitionAnimation({
-                        keyframes: [
-                            { translate: 0 },
-                            { translate: '0 -30vh' },
-                            { translate: '0 -28vh' },
-                            { translate: '0 -32vh' },
-                            { translate: '0 -28vh' },
-                            { translate: '0 -32vh' },
-                            { translate: 0, easing: 'ease-in-out' },
-                        ],
-                        options: { duration: DURATION }
-                    }),
-                    jumping: toTransitionAnimation({
-                        keyframes: [
-                            { translate: 0, scale: 1 },
-                            { translate: 0, scale: 1, offset: 0.1 },
-                            { scale: '1.1 0.9', translate: 0, offset: 0.15 },
-                            { scale: '0.9 1.1', translate: 0, offset: 0.2 },
-                            { scale: '0.9 1.1', translate: '0 -18vh', offset: 0.35 },
-                            { scale: '0.9 1.1', translate: '0 -20vh', offset: 0.4 },
-                            { scale: '0.9 1.1', translate: '0 -18vh', offset: 0.45 },
-                            { scale: '0.9 1.1', translate: 0, offset: 0.6 },
-                            { scale: '1.1 0.9', translate: 0, offset: 0.65 },
-                            { scale: 1, translate: 0, offset: 0.7 },
-                            { scale: 1, translate: 0 },
-                        ],
-                        options: { duration: DURATION, easing: 'ease-in-out' }
-                    }),
-                    sliding: toTransitionAnimation({
-                        keyframes: [
-                            { translate: 0 },
-                            { translate: '25vw', offset: 0.2 },
-                            { translate: 0 },
-                        ],
-                        options: { duration: DURATION, easing: 'ease-in-out' }
-                    }),
+                    flying: [
+                        { translate: 0 },
+                        { translate: '0 -30vh' },
+                        { translate: '0 -28vh' },
+                        { translate: '0 -32vh' },
+                        { translate: '0 -28vh' },
+                        { translate: '0 -32vh' },
+                        { translate: 0 },
+                    ],
+                    jumping: [
+                        { scale: 1, translate: 0 },
+                        { scale: 1, translate: 0, offset: 0.1 },
+                        { scale: '1.1 0.9', translate: 0, offset: 0.15 },
+                        { scale: '0.9 1.1', translate: 0, offset: 0.2 },
+                        { scale: '0.9 1.1', translate: '0 -18vh', offset: 0.35 },
+                        { scale: '0.9 1.1', translate: '0 -20vh', offset: 0.4 },
+                        { scale: '0.9 1.1', translate: '0 -18vh', offset: 0.45 },
+                        { scale: '0.9 1.1', translate: 0, offset: 0.6 },
+                        { scale: '1.1 0.9', translate: 0, offset: 0.65 },
+                        { scale: 1, translate: 0, offset: 0.7 },
+                        { scale: 1, translate: 0 },
+                    ],
+                    sliding: [
+                        { translate: 0 },
+                        { translate: '25vw', offset: 0.2 },
+                        { translate: 0 },
+                    ]
                 }}
+                animationOptions={{ duration: DURATION, easing: 'ease-in-out' }}
                 style={{
                     width: '100px',
                     height: '100px',
@@ -108,7 +100,7 @@ export default {
     title: 'Components/SynchronizedAnimationExample',
 };
 
-const Template = args => <SynchronizedAnimationExample {...args} />;
+const Template: StoryFn<typeof SynchronizedAnimationExample> = args => <SynchronizedAnimationExample {...args} />;
 
 export const Flying = Template.bind({});
 Flying.args = {

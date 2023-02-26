@@ -11,6 +11,7 @@ test('renders as the passed tag with passed tag props', () => {
             src="https://url.com/img.png"
             alt="animated image"
             data-testid="element"
+            animations={{}}
         />
     );
 
@@ -25,6 +26,10 @@ test('if no tag passed, renders as div with passed tag props', () => {
         <HoverAnimated
             title="animated div"
             data-testid="element"
+            animations={{
+                hovering: null,
+                notHovering: null,
+            }}
         />
     );
 
@@ -40,6 +45,10 @@ test('correctly forwards ref', () => {
         <HoverAnimated
             ref={ref}
             data-testid="element"
+            animations={{
+                hovering: null,
+                notHovering: null,
+            }}
         />
     );
 

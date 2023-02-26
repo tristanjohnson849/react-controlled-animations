@@ -11,7 +11,8 @@ test('renders as the passed tag with passed tag props', () => {
             data-testid="element"
             src="https://url.com/img.png"
             alt="animated image" 
-            currentAnimation={null}        
+            currentAnimation={null}
+            animations={{}}
         />
     );
 
@@ -27,6 +28,7 @@ test('if no tag passed, renders as div with passed tag props', () => {
             data-testid="element"
             title="animated div"
             currentAnimation={null}
+            animations={{}}
         />
     );
 
@@ -43,6 +45,7 @@ test('correctly forwards ref', () => {
             data-testid="element"
             ref={ref}
             currentAnimation={null}
+            animations={{}}
         />
     );
 
@@ -54,12 +57,12 @@ test('correctly forwards ref', () => {
 test('animates without forwarded ref', async () => {
     const keyframes = [{ rotate: 0 }, { rotate: '360deg' }];
     const { getByTestId } = isolatedRender(
-        <ControlledAnimated<'primary'>
+        <ControlledAnimated<'on'>
             data-testid="element"
             title="animated div"
-            currentAnimation={'primary'}
+            currentAnimation="on"
             animations={{
-                primary: keyframes
+                on: keyframes
             }}
         />
     );
@@ -73,16 +76,16 @@ test('animates without forwarded ref', async () => {
 });
 
 test('animates with forwarded ref', async () => {
-    const ref = jest.fn()
+    const ref = jest.fn();
 
     const keyframes = [{ rotate: 0 }, { rotate: '360deg' }];
     const { getByTestId } = isolatedRender(
-        <ControlledAnimated<'primary'>
+        <ControlledAnimated<'on'>
             data-testid="element"
             title="animated div"
-            currentAnimation={'primary'}
+            currentAnimation="on"
             animations={{
-                primary: keyframes
+                on: keyframes
             }}
             ref={ref}
         />
@@ -93,6 +96,154 @@ test('animates with forwarded ref', async () => {
     const webAnimation = element.getAnimations()[0];
     await webAnimation.ready;
 
+    expect(ref).toHaveBeenCalledWith(element);
+    expectMatchingKeyframes(webAnimation, keyframes);
+});
+
+test('cancel and no finish when interrupted', async () => {
+    const keyframes = [{ rotate: 0 }, { rotate: '360deg' }];
+    const { getByTestId, rerender } = isolatedRender(
+        <ControlledAnimated<'on'>
+            currentAnimation="on"
+            data-testid="element"
+            title="animated div"
+            animations={{
+                on: keyframes
+            }}
+            animationOptions={{duration: 1000}}
+        />
+    );
+
+    const element = getByTestId('element');
+    
+    const webAnimation = element.getAnimations()[0];
+    const finishSpy = jest.spyOn(webAnimation, 'finish');
+    const cancelSpy = jest.spyOn(webAnimation, 'cancel');
+
+    await webAnimation.ready;
+
     expectMatchingKeyframes(webAnimation, keyframes);
 
+    rerender(
+        <ControlledAnimated<'on'>
+            currentAnimation={null}
+            data-testid="element"
+            title="animated div"
+            animations={{
+                on: keyframes
+            }}
+            animationOptions={{duration: 1000}}
+        />
+    );
+
+    expect(finishSpy).not.toHaveBeenCalled();
+    expect(cancelSpy).toHaveBeenCalled();
 });
+
+test('calls finish when interrupted and finishOnInterrupt=true', async () => {
+    const keyframes = [{ rotate: 0 }, { rotate: '360deg' }];
+    const { getByTestId, rerender } = isolatedRender(
+        <ControlledAnimated<'on'>
+            currentAnimation="on"
+            data-testid="element"
+            title="animated div"
+            animations={{
+                on: keyframes
+            }}
+            animationOptions={{duration: 1000}}
+            finishOnInterrupt
+        />
+    );
+
+    const element = getByTestId('element');
+    
+    const webAnimation = element.getAnimations()[0];
+    const finishSpy = jest.spyOn(webAnimation, 'finish');
+    const cancelSpy = jest.spyOn(webAnimation, 'cancel');
+
+    await webAnimation.ready;
+
+    expectMatchingKeyframes(webAnimation, keyframes);
+
+    rerender(
+        <ControlledAnimated<'on'>
+            currentAnimation={null}
+            data-testid="element"
+            title="animated div"
+            animations={{
+                on: keyframes
+            }}
+            animationOptions={{duration: 1000}}
+            finishOnInterrupt
+        />
+    );
+    
+    expect(finishSpy).toHaveBeenCalled();
+    expect(cancelSpy).not.toHaveBeenCalled();
+});
+
+test('calls commitStyles on finish', async () => {
+    const keyframes = [{ rotate: 0 }, { rotate: '360deg' }];
+    const { getByTestId } = isolatedRender(
+        <ControlledAnimated<'on'>
+            currentAnimation="on"
+            data-testid="element"
+            title="animated div"
+            animations={{
+                on: keyframes
+            }}
+            animationOptions={{duration: 1000}}
+        />
+    );
+
+    const element = getByTestId('element');
+    
+    const webAnimation = element.getAnimations()[0];
+    const commitStylesSpy = jest.spyOn(webAnimation, 'commitStyles');
+
+    await webAnimation.ready;
+
+    expectMatchingKeyframes(webAnimation, keyframes);
+
+    await webAnimation.finished;
+
+    expect(commitStylesSpy).toHaveBeenCalled();
+});
+
+test('calls commitStyles when interrupted', async () => {
+    const keyframes = [{ rotate: 0 }, { rotate: '360deg' }];
+    const { getByTestId, rerender } = isolatedRender(
+        <ControlledAnimated<'on'>
+            currentAnimation="on"
+            data-testid="element"
+            title="animated div"
+            animations={{
+                on: keyframes
+            }}
+            animationOptions={{duration: 1000}}
+        />
+    );
+
+    const element = getByTestId('element');
+    
+    const webAnimation = element.getAnimations()[0];
+    const commitStylesSpy = jest.spyOn(webAnimation, 'commitStyles');
+
+    await webAnimation.ready;
+
+    expectMatchingKeyframes(webAnimation, keyframes);
+
+    rerender(
+        <ControlledAnimated<'on'>
+            currentAnimation={null}
+            data-testid="element"
+            title="animated div"
+            animations={{
+                on: keyframes
+            }}
+        />
+    );
+    expect(commitStylesSpy).toHaveBeenCalled();
+});
+
+// no good way to test no commit styles when flag is false due to jsdom-testing-mocks behavior
