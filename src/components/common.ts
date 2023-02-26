@@ -172,7 +172,7 @@ export interface NonHTMLAnimatedProps<A extends string, T extends HTMLTags = 'di
     /**
      * If the currentAnimation is interrupted, webAnimation.finish()
      * If both finishOnInterrupt and cancelOnInterrupt are true, finishOnInterrupt overrides
-     * 
+     *
      * Default: false
      */
     finishOnInterrupt?: boolean;
