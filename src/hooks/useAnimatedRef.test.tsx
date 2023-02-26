@@ -4,15 +4,18 @@ import useAnimatedRef from './useAnimatedRef.js';
 import { AnimationInput } from '../AnimationInput.js';
 
 import { act, cleanup, waitFor } from '@testing-library/react';
+import { EnableAnimationContext } from './enableAnimationContext.js';
 
 afterEach(isolatedCleanup);
 afterAll(cleanup);
 
-const Animated = ({ A = [], B = [], onAnimationEnd }: { 
-    A?: AnimationInput, 
-    B?: AnimationInput,
-    onAnimationEnd: (completedAnimation: 'A' | 'B' | null, webAnimation: Animation | null) => void
-}) => {
+interface AnimatedProps {
+    A?: AnimationInput;
+    B?: AnimationInput;
+    onAnimationEnd: (completedAnimation: 'A' | 'B' | null, webAnimation: Animation | null) => void;
+}
+
+const Animated = ({ A = [], B = [], onAnimationEnd }: AnimatedProps) => {
     const [state, setState] = useState<'A' | 'B' | null>(null); 
 
     const ref = useAnimatedRef<'A' | 'B', HTMLDivElement>(
@@ -319,4 +322,77 @@ test('change other animation definition does not interrupt current animation', a
     expectMatchingKeyframes(animator.getAnimations()[0], animationInputA.keyframes);
 
     expect(onEnd).not.toHaveBeenCalledWith('A', expect.any(Animation));
+});
+
+
+const ContextAnimated = ({initEnabled = true, ...animatedProps}: { initEnabled?: boolean } & AnimatedProps) => {
+    const [animationEnabled, setAnimationEnabled] = useState(initEnabled); 
+
+    return (
+        <div>
+            <EnableAnimationContext.Provider value={{ enabled: animationEnabled }}>
+                <Animated {...animatedProps} />
+            </EnableAnimationContext.Provider>
+            <button onClick={() => setAnimationEnabled(p => !p)}>ChangeEnabled</button>
+        </div>
+    );
+}
+
+test('with EnabledAnimationContext.enabled=false, set currentAnimation => no animation, call onAnimationEnd', async () => {
+    const onEnd = jest.fn();
+
+    const duration = 500;
+    const animationInputA: AnimationInput = { 
+        keyframes: [ {opacity: 1 }, { opacity: 0 }, { opacity: 0.5 } ],
+        options: { duration }
+    };
+
+    const { getByText } = isolatedRender(<ContextAnimated
+        initEnabled={false}
+        A={animationInputA}
+        onAnimationEnd={onEnd}
+    />);
+
+    act(() => {
+        getByText('A').click();
+    });
+
+    const animator = getByText('Animator');
+    expect(animator.getAnimations()).toHaveLength(0);
+
+    expect(onEnd).toHaveBeenCalledWith('A', null);
+});
+
+test('play animation, change EnabledAnimationContext.enabled to false, current animation canceled', async () => {
+    const onEnd = jest.fn();
+
+    const duration = 500;
+    const animationInputA: AnimationInput = { 
+        keyframes: [ {opacity: 1 }, { opacity: 0 }, { opacity: 0.5 } ],
+        options: { duration }
+    };
+
+    const { getByText } = isolatedRender(<ContextAnimated
+        A={animationInputA}
+        onAnimationEnd={onEnd}
+    />);
+
+    act(() => {
+        getByText('A').click();
+    });
+
+    const animator = getByText('Animator');
+    const animationA = animator.getAnimations()[0];
+    const cancelSpy = jest.spyOn(animationA, 'cancel');
+    expectMatchingKeyframes(animationA, animationInputA.keyframes);
+
+    await animationA.ready;
+
+    act(() => {
+        getByText('ChangeEnabled').click();
+    });
+
+    expect(cancelSpy).toHaveBeenCalled();
+    expect(animator.getAnimations()).toHaveLength(0);
+    expect(onEnd).toHaveBeenCalledWith('A', null);
 });
