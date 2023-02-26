@@ -33,7 +33,7 @@ const Animated = ({ A = [], B = [], onAnimationEnd }: AnimatedProps) => {
             </div>
             <button onClick={() => setState('A')}>A</button>
             <button onClick={() => setState('B')}>B</button>
-            <button onClick={() => setState(null)}>Cancel</button>
+            <button onClick={() => setState(null)}>Interrupt</button>
         </div>
     );
 }
@@ -153,7 +153,7 @@ test('animation ends calls onAnimationEnd', async () => {
     expect(onEnd).toHaveBeenCalledWith('A', webAnimation);
 });
 
-test('animation interrupts null calls onAnimationEnd, cancels animation', async () => {
+test('animation interrupts null calls onAnimationEnd', async () => {
     const onEnd = jest.fn();
 
     const duration = 100;
@@ -178,14 +178,56 @@ test('animation interrupts null calls onAnimationEnd, cancels animation', async 
     await webAnimation.ready;
 
     act(() => {
-        getByText('Cancel').click();
+        getByText('Interrupt').click();
     })
 
     expect(onEnd).toHaveBeenCalledWith('A', webAnimation);
+});
 
-    expect(animator.getAnimations()).toEqual([]);
-    expect(webAnimation.replaceState).toBe('active');
-    expect(onEnd).toHaveBeenCalledWith(null, null);
+test('animation interrupts null, set currentAnimation to same value => first animation is canceled, second plays', async () => {
+    const onEnd = jest.fn();
+
+    const duration = 100;
+    const animationInput: AnimationInput = { 
+        keyframes: [ {opacity: 1 }, { opacity: 0 }, { opacity: 0.5 } ],
+        options: { duration }
+    };
+
+    const { getByText } = isolatedRender(<Animated
+        A={animationInput}
+        onAnimationEnd={onEnd}
+    />); 
+    
+    act(() => {
+        getByText('A').click();
+    })
+
+    const animator = getByText('Animator');
+    const firstAnimation = animator.getAnimations()[0];
+    const cancelSpy = jest.spyOn(firstAnimation, 'cancel');
+    expectMatchingKeyframes(firstAnimation, animationInput.keyframes);
+
+    await firstAnimation.ready;
+
+    act(() => {
+        getByText('Interrupt').click();
+    })
+
+    expect(onEnd).toHaveBeenCalledWith('A', firstAnimation);
+
+    act(() => {
+        getByText('A').click();
+    })
+
+    const secondAnimation = animator.getAnimations()[0];
+
+    expectMatchingKeyframes(secondAnimation, animationInput.keyframes);
+    expect(secondAnimation).not.toBe(firstAnimation);
+    expect(cancelSpy).toHaveBeenCalled();
+
+    await secondAnimation.finished;
+
+    expect(onEnd).toHaveBeenCalledWith('A', secondAnimation);
 });
 
 test('animation interrupts calls onAnimationEnd, play new animation', async () => {
@@ -233,7 +275,7 @@ test('animation interrupts calls onAnimationEnd, play new animation', async () =
     expect(onEnd).toHaveBeenCalledWith('B', animationB);
 });
 
-test('change current animation definition plays new animation definition', async () => {
+test('change current animation definition cancels previous and plays new animation definition', async () => {
     const onEnd = jest.fn();
 
     const duration = 100;
@@ -257,6 +299,7 @@ test('change current animation definition plays new animation definition', async
 
     const animator = getByText('Animator');
     const animationA1 = animator.getAnimations()[0];
+    const cancelSpy = jest.spyOn(animationA1, 'cancel');
     expectMatchingKeyframes(animationA1, animationInputA1.keyframes);
 
     await animationA1.ready;
@@ -266,10 +309,11 @@ test('change current animation definition plays new animation definition', async
         onAnimationEnd={onEnd}
     />)
 
-    const animationA2 = animator.getAnimations()[1];
-    expectMatchingKeyframes(animationA2, animationInputA2.keyframes);
-
+    expect(cancelSpy).toHaveBeenCalled();
     expect(onEnd).toHaveBeenCalledWith('A', animationA1);
+
+    const animationA2 = animator.getAnimations()[0];
+    expectMatchingKeyframes(animationA2, animationInputA2.keyframes);
 
     await act(async () => {
         await animationA2.finished;
@@ -360,7 +404,7 @@ test('with EnabledAnimationContext.enabled=false, set currentAnimation => no ani
     const animator = getByText('Animator');
     expect(animator.getAnimations()).toHaveLength(0);
 
-    expect(onEnd).toHaveBeenCalledWith('A', null);
+    expect(onEnd).toHaveBeenCalledWith('A', expect.any(Animation));
 });
 
 test('play animation, change EnabledAnimationContext.enabled to false, current animation canceled', async () => {
@@ -394,5 +438,5 @@ test('play animation, change EnabledAnimationContext.enabled to false, current a
 
     expect(cancelSpy).toHaveBeenCalled();
     expect(animator.getAnimations()).toHaveLength(0);
-    expect(onEnd).toHaveBeenCalledWith('A', null);
+    expect(onEnd).toHaveBeenCalledWith('A', expect.any(Animation));
 });

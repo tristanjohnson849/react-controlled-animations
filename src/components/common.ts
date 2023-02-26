@@ -170,11 +170,19 @@ export interface NonHTMLAnimatedProps<A extends string, T extends HTMLTags = 'di
     onAnimationEnd?: (completedAnimationName: A, webAnimation: Animation | null) => void;
 
     /**
-     * If the currentAnimation is interrupted, webAnimation.finish() instead of webAnimation.cancel()
-     *
+     * If the currentAnimation is interrupted, webAnimation.finish()
+     * If both finishOnInterrupt and cancelOnInterrupt are true, finishOnInterrupt overrides
+     * 
      * Default: false
      */
     finishOnInterrupt?: boolean;
+
+    /**
+     * If the currentAnimation is interrupted, webAnimation.cancel()
+     *
+     * Default: false
+     */
+    cancelOnInterrupt?: boolean;
 
     /**
      * On every animation end, webAnimation.commitStyles()
