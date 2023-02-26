@@ -37,7 +37,7 @@ function useAnimatedRef<A extends string = string, E extends HTMLElement = HTMLE
         if (elementRef.current !== null) {
             // remove existing animations for currentAnimation
             if (currentAnimation) {
-                elementRef.current.getAnimations().forEach(anim => {
+                elementRef.current.getAnimations().forEach((anim) => {
                     if (anim.id === currentAnimation) {
                         anim.cancel();
                     }
@@ -76,7 +76,10 @@ function useAnimatedRef<A extends string = string, E extends HTMLElement = HTMLE
             if (webAnimation) {
                 return () => {
                     // useEffect cleanup. Only call onEnd if we haven't already finished and it's still registered on the element
-                    if (webAnimation.playState !== 'finished' && elementRef?.current?.getAnimations()?.includes(webAnimation)) {
+                    if (
+                        webAnimation.playState !== 'finished' &&
+                        elementRef?.current?.getAnimations()?.includes(webAnimation)
+                    ) {
                         onAnimationEnd && onAnimationEnd(currentAnimation, webAnimation);
                     }
                 };
