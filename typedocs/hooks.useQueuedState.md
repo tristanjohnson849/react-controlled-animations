@@ -34,7 +34,7 @@ QueuedTransitionState
 
 #### Defined in
 
-[hooks/useQueuedState.ts:26](https://github.com/tristanjohnson849/react-controlled-animations/blob/63539c1/src/hooks/useQueuedState.ts#L26)
+[hooks/useQueuedState.ts:26](https://github.com/tristanjohnson849/react-controlled-animations/blob/bad52f8/src/hooks/useQueuedState.ts#L26)
 
 ▸ **default**<`S`\>(`initialState`): [`QueuedTransitionState`](../wiki/hooks.useQueuedState.QueuedTransitionState)<`S`\>
 
@@ -58,4 +58,4 @@ State is always a defined S if an initial state is provided
 
 #### Defined in
 
-[hooks/useQueuedState.ts:30](https://github.com/tristanjohnson849/react-controlled-animations/blob/63539c1/src/hooks/useQueuedState.ts#L30)
+[hooks/useQueuedState.ts:30](https://github.com/tristanjohnson849/react-controlled-animations/blob/bad52f8/src/hooks/useQueuedState.ts#L30)

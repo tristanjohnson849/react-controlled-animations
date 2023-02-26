@@ -19,7 +19,7 @@
 
 #### Defined in
 
-[hooks/useTransitioningToggle.ts:5](https://github.com/tristanjohnson849/react-controlled-animations/blob/63539c1/src/hooks/useTransitioningToggle.ts#L5)
+[hooks/useTransitioningToggle.ts:5](https://github.com/tristanjohnson849/react-controlled-animations/blob/bad52f8/src/hooks/useTransitioningToggle.ts#L5)
 
 ___
 
@@ -31,7 +31,7 @@ ___
 
 #### Defined in
 
-[hooks/useTransitioningToggle.ts:10](https://github.com/tristanjohnson849/react-controlled-animations/blob/63539c1/src/hooks/useTransitioningToggle.ts#L10)
+[hooks/useTransitioningToggle.ts:10](https://github.com/tristanjohnson849/react-controlled-animations/blob/bad52f8/src/hooks/useTransitioningToggle.ts#L10)
 
 ## Functions
 
@@ -48,7 +48,7 @@ Toggle transitions may be queued via startToggling, and all queued toggles are c
 | Name | Type | Default value | Description |
 | :------ | :------ | :------ | :------ |
 | `initialState` | `boolean` | `false` |  |
-| `initialTransitioning` | `boolean` | `false` | if true, will toggle away from initialState when the togglingElementRef is first set |
+| `initialTransitioning` | `boolean` | `false` | if true, will toggle into initialState when the togglingElementRef is first set |
 
 #### Returns
 
@@ -58,4 +58,4 @@ Toggle transitions may be queued via startToggling, and all queued toggles are c
 
 #### Defined in
 
-[hooks/useTransitioningToggle.ts:46](https://github.com/tristanjohnson849/react-controlled-animations/blob/63539c1/src/hooks/useTransitioningToggle.ts#L46)
+[hooks/useTransitioningToggle.ts:46](https://github.com/tristanjohnson849/react-controlled-animations/blob/bad52f8/src/hooks/useTransitioningToggle.ts#L46)
