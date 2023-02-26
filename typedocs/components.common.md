@@ -34,7 +34,7 @@ Standard Props for an animated element. Includes the HTMLAttributes for the give
 
 #### Defined in
 
-[components/common.ts:169](https://github.com/tristanjohnson849/react-controlled-animations/blob/bad52f8/src/components/common.ts#L169)
+[components/common.ts:192](https://github.com/tristanjohnson849/react-controlled-animations/blob/3a86756/src/components/common.ts#L192)
 
 ___
 
@@ -44,7 +44,7 @@ ___
 
 #### Defined in
 
-[components/common.ts:6](https://github.com/tristanjohnson849/react-controlled-animations/blob/bad52f8/src/components/common.ts#L6)
+[components/common.ts:6](https://github.com/tristanjohnson849/react-controlled-animations/blob/3a86756/src/components/common.ts#L6)
 
 ___
 
@@ -60,7 +60,7 @@ ___
 
 #### Defined in
 
-[components/common.ts:126](https://github.com/tristanjohnson849/react-controlled-animations/blob/bad52f8/src/components/common.ts#L126)
+[components/common.ts:126](https://github.com/tristanjohnson849/react-controlled-animations/blob/3a86756/src/components/common.ts#L126)
 
 ## Functions
 
@@ -105,7 +105,7 @@ a new ref that manages both given refs as one
 
 #### Defined in
 
-[components/common.ts:192](https://github.com/tristanjohnson849/react-controlled-animations/blob/bad52f8/src/components/common.ts#L192)
+[components/common.ts:215](https://github.com/tristanjohnson849/react-controlled-animations/blob/3a86756/src/components/common.ts#L215)
 
 ___
 
@@ -134,4 +134,4 @@ Helper to update a ref (either CallbackRef or RefObject) to the given next value
 
 #### Defined in
 
-[components/common.ts:175](https://github.com/tristanjohnson849/react-controlled-animations/blob/bad52f8/src/components/common.ts#L175)
+[components/common.ts:198](https://github.com/tristanjohnson849/react-controlled-animations/blob/3a86756/src/components/common.ts#L198)

@@ -11,10 +11,6 @@
 - [AnimationInput](../wiki/AnimationInput#animationinput)
 - [AnimationOptions](../wiki/AnimationInput#animationoptions)
 
-### Variables
-
-- [DEFAULT\_DURATION](../wiki/AnimationInput#default_duration)
-
 ### Functions
 
 - [normalizedAnimation](../wiki/AnimationInput#normalizedanimation)
@@ -33,7 +29,7 @@ May be either
 
 #### Defined in
 
-[AnimationInput.ts:23](https://github.com/tristanjohnson849/react-controlled-animations/blob/bad52f8/src/AnimationInput.ts#L23)
+[AnimationInput.ts:23](https://github.com/tristanjohnson849/react-controlled-animations/blob/3a86756/src/AnimationInput.ts#L23)
 
 ___
 
@@ -45,17 +41,7 @@ Override dom KeyframeAnimationOptions with [documented types](https://developer.
 
 #### Defined in
 
-[AnimationInput.ts:4](https://github.com/tristanjohnson849/react-controlled-animations/blob/bad52f8/src/AnimationInput.ts#L4)
-
-## Variables
-
-### DEFAULT\_DURATION
-
-• `Const` **DEFAULT\_DURATION**: ``1000``
-
-#### Defined in
-
-[AnimationInput.ts:31](https://github.com/tristanjohnson849/react-controlled-animations/blob/bad52f8/src/AnimationInput.ts#L31)
+[AnimationInput.ts:4](https://github.com/tristanjohnson849/react-controlled-animations/blob/3a86756/src/AnimationInput.ts#L4)
 
 ## Functions
 
@@ -77,4 +63,4 @@ a NormalizedAnimation from the given AnimationInput
 
 #### Defined in
 
-[AnimationInput.ts:37](https://github.com/tristanjohnson849/react-controlled-animations/blob/bad52f8/src/AnimationInput.ts#L37)
+[AnimationInput.ts:35](https://github.com/tristanjohnson849/react-controlled-animations/blob/3a86756/src/AnimationInput.ts#L35)
