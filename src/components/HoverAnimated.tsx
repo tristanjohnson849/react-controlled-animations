@@ -42,6 +42,7 @@ function hoverAnimated<A extends string, T extends HTMLTags>(
  * An Animated component that will track hover (via mouseenter/mouseleave listeners) and animate based on the corresponding hover state
  * May accept a ref to forward to the HTML tag delegate
  * May accept an overriding currentAnimation
+ * 
  * @typeParam A additional animation names
  * @typeParam T the HTML Tag delegate
  */

@@ -19,7 +19,7 @@ import { AnimationInput, AnimationOptions, normalizedAnimation } from '../Animat
  */
 function useAnimatedRef<A extends string = string, E extends HTMLElement = HTMLElement>(
     currentAnimation: A | null,
-    animations: Record<A, AnimationInput>,
+    animations: Record<A, AnimationInput | null>,
     onAnimationEnd?: (completedAnimationName: A | null, webAnimation: Animation | null) => void
 ): RefObject<E> {
     const elementRef = useRef<E>(null);
@@ -40,7 +40,7 @@ function useAnimatedRef<A extends string = string, E extends HTMLElement = HTMLE
             }
             const { keyframes, options } = normalizedAnimation(animations[currentAnimation]);
 
-            return runAnimation(
+            const webAnimation = runAnimation(
                 elementRef.current,
                 keyframes,
                 options,
@@ -52,6 +52,14 @@ function useAnimatedRef<A extends string = string, E extends HTMLElement = HTMLE
                     }.\nCheck your animations: ${serializedAnimation}.\n`;
                 }
             );
+            if (webAnimation) {
+                return () => {
+                    // useEffect cleanup. Only call onEnd if we haven't already finished
+                    if (webAnimation.playState !== 'finished') {
+                        onAnimationEnd && onAnimationEnd(currentAnimation, webAnimation);
+                    }
+                };
+            }
         }
     }, [elementRef.current, currentAnimation, serializedAnimation]);
 
@@ -64,7 +72,7 @@ const runAnimation = <E extends HTMLElement>(
     options: AnimationOptions,
     onAnimationEnd: (webAnimation: Animation | null) => void,
     errorMessage: (err: Error) => string
-): void | (() => void) => {
+): Animation | null => {
     try {
         const webAnimation = element.animate(keyframes, options as KeyframeAnimationOptions);
 
@@ -72,18 +80,14 @@ const runAnimation = <E extends HTMLElement>(
             onAnimationEnd && onAnimationEnd(webAnimation);
         };
 
-        return () => {
-            // useEffect cleanup. Only call onEnd if we haven't already finished
-            if (webAnimation.playState !== 'finished') {
-                onAnimationEnd && onAnimationEnd(webAnimation);
-            }
-        };
+        return webAnimation;
     } catch (err) {
         if (process.env.NODE_ENV !== 'production') {
             console.error(errorMessage(err), err);
         }
 
         onAnimationEnd && onAnimationEnd(null);
+        return null;
     }
 };
 

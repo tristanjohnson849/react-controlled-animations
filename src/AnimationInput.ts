@@ -28,16 +28,18 @@ export type AnimationInput =
           options: number | AnimationOptions;
       };
 
-export const DEFAULT_DURATION = 1000;
-
 /**
  *
  * @returns a NormalizedAnimation from the given AnimationInput
  */
-export const normalizedAnimation = (animationInput: AnimationInput): NormalizedAnimation => {
-    if (Array.isArray(animationInput)) {
-        return { keyframes: animationInput, options: { duration: DEFAULT_DURATION } };
+export const normalizedAnimation = (animationInput: AnimationInput | null): NormalizedAnimation => {
+    if (animationInput == null) {
+        return { keyframes: [], options: {} };
     }
+    if (Array.isArray(animationInput)) {
+        return { keyframes: animationInput, options: {} };
+    }
+
     const { keyframes, options } = animationInput;
 
     const normalizedOptions = typeof options === 'number' ? { duration: options } : options;

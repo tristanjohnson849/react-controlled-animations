@@ -1,4 +1,5 @@
 import React, { ForwardedRef, useCallback } from 'react';
+import { AnimationInput, normalizedAnimation } from '../AnimationInput.js';
 import useAnimatedRef from '../hooks/useAnimatedRef.js';
 import { AnimatedProps, HTMLTags, mergeRefs, TagHTMLElement } from './common.js';
 
@@ -10,34 +11,49 @@ const controlledAnimated = <A extends string, T extends HTMLTags = 'div'>(
     const {
         as: Tag = "div" as React.ElementType,
         animations,
+        animationOptions,
         currentAnimation,
         onAnimationEnd,
         finishOnInterrupt = false,
-        cancelOnInterrupt = false,
         commitStylesOnEnd = true,
         ...tagProps
     } = props;
 
-    const decoratedOnEnd = useCallback((completedAnimationName: A, webAnimation: Animation | null) => {
+    const decoratedOnEnd = (completedAnimationName: A, webAnimation: Animation | null) => {
         if (webAnimation) {
             if (commitStylesOnEnd) {
-                webAnimation.commitStyles();
+                try {
+                    webAnimation.commitStyles();
+                } catch(err) {
+                    // element was unmounted
+                }
             }
             if (webAnimation.playState !== 'finished') {
                 if (finishOnInterrupt) {
                     webAnimation.finish();
-                } else if (cancelOnInterrupt) {
-                    webAnimation.cancel();
                 }
             }
         }
 
         onAnimationEnd && onAnimationEnd(completedAnimationName, webAnimation);
-    }, [onAnimationEnd, finishOnInterrupt, cancelOnInterrupt, commitStylesOnEnd]);
+    };
+
+    const formattedAnimations = Object.fromEntries(
+        Object.entries(animations).map(([name, anim]: [A, AnimationInput]) => {
+            const { keyframes, options } = normalizedAnimation(anim);
+            
+            return [name, {
+                keyframes,
+                options: {...(animationOptions ? animationOptions : {}), ...options}
+            }];
+        })
+    ) as Record<A, AnimationInput | null>;
+
+
 
     const animatedRef = useAnimatedRef<A, TagHTMLElement<T>>(
         currentAnimation,
-        animations,
+        formattedAnimations,
         decoratedOnEnd,
     );
 

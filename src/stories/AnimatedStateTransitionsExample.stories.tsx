@@ -1,5 +1,5 @@
+import { StoryFn } from '@storybook/react';
 import React, { CSSProperties } from 'react';
-import { toTransitionAnimation } from '../animationInputMappers.js';
 import ControlledAnimated from '../components/ControlledAnimated.js';
 import useTransitioningState from '../hooks/useTransitioningState.js';
 
@@ -8,17 +8,17 @@ const allAnimations = ['flying', 'jumping', 'sliding'] as const;
 type MyAnimations = typeof allAnimations[number];
 
 const textStyle: CSSProperties = {
-    background: 'white', 
-    padding: '16px', 
+    background: 'white',
+    padding: '16px',
     fontFamily: '"Helvetica", "Arial", sans-serif',
     textAlign: 'center',
-    verticalAlign: 'middle', 
+    verticalAlign: 'middle',
     borderRadius: '8px'
 };
 
 const DURATION = 2000;
 
-const AnimatedStateTransitionsExample: React.FC<{ chosenAnimation: MyAnimations}> = ({ chosenAnimation }) => {
+const AnimatedStateTransitionsExample: React.FC<{ chosenAnimation: MyAnimations }> = ({ chosenAnimation }) => {
     const [
         moveCounter,
         startTransition,
@@ -26,7 +26,7 @@ const AnimatedStateTransitionsExample: React.FC<{ chosenAnimation: MyAnimations}
         currentTransition
     ] = useTransitioningState<number, 'jumping' | 'flying' | 'sliding'>(0);
     return (
-        <div style={{ 
+        <div style={{
             width: '100vw',
             height: '100vh',
             display: 'flex',
@@ -46,51 +46,43 @@ const AnimatedStateTransitionsExample: React.FC<{ chosenAnimation: MyAnimations}
                     verticalAlign: 'middle'
                 }}
                 animations={{
-                    flying: toTransitionAnimation({
-                        keyframes: [
-                            { translate: 0 },
-                            { translate: '0 -30vh' },
-                            { translate: '0 -28vh' },
-                            { translate: '0 -32vh' },
-                            { translate: '0 -28vh' },
-                            { translate: '0 -32vh' },
-                            { translate: 0, easing: 'ease-in-out' },
-                        ],
-                        options: { duration: DURATION }
-                    }),
-                    jumping: toTransitionAnimation({
-                        keyframes: [
-                            { translate: 0, scale: 1 },
-                            { scale: '1.1 0.9', translate: 0, offset: 0.05 },
-                            { scale: '0.9 1.1', translate: 0, offset: 0.1 },
-                            { scale: '0.9 1.1', translate: '0 -18vh', offset: 0.45 },
-                            { scale: '0.9 1.1', translate: '0 -20vh', offset: 0.5 },
-                            { scale: '0.9 1.1', translate: '0 -18vh', offset: 0.55 },
-                            { scale: '0.9 1.1', translate: 0, offset: 0.9 },
-                            { scale: '1.1 0.9', translate: 0, offset: 0.95 },
-                            { scale: 1, translate: 0 },
-                        ],
-                        options: { duration: DURATION, easing: 'ease-in-out' }
-                    }),
-                    sliding: toTransitionAnimation({
-                        keyframes: [
-                            { translate: 0 },
-                            { translate: '25vw', offset: 0.2 },
-                            { translate: 0 },
-                        ],
-                        options: { duration: DURATION, easing: 'ease-in-out' }
-                    }),
+                    flying: [
+                        { translate: 0 },
+                        { translate: '0 -30vh' },
+                        { translate: '0 -28vh' },
+                        { translate: '0 -32vh' },
+                        { translate: '0 -28vh' },
+                        { translate: '0 -32vh' },
+                        { translate: 0 },
+                    ],
+                    jumping: [
+                        { scale: 1, translate: 0 },
+                        { scale: '1.1 0.9', translate: 0, offset: 0.05 },
+                        { scale: '0.9 1.1', translate: 0, offset: 0.1 },
+                        { scale: '0.9 1.1', translate: '0 -18vh', offset: 0.45 },
+                        { scale: '0.9 1.1', translate: '0 -20vh', offset: 0.5 },
+                        { scale: '0.9 1.1', translate: '0 -18vh', offset: 0.55 },
+                        { scale: '0.9 1.1', translate: 0, offset: 0.9 },
+                        { scale: '1.1 0.9', translate: 0, offset: 0.95 },
+                        { scale: 1, translate: 0 },
+                    ],
+                    sliding: [
+                        { translate: 0 },
+                        { translate: '25vw', offset: 0.2 },
+                        { translate: 0 },
+                    ]
                 }}
-                >
-            🤓
+                animationOptions={{ duration: DURATION, easing: 'ease-in-out' }}
+            >
+                🤓
             </ControlledAnimated>
             <div style={textStyle}>
                 <div>Moves: {moveCounter}</div>
                 <div>Animation: {currentTransition || "null"}</div>
                 <button onClick={() => startTransition(prev => prev + 1, chosenAnimation)}>Move</button>
             </div>
-            <div style={{maxWidth: '600px', ...textStyle}}>
-                The useAnimatedTransitionState hook lets you easily animate React state changes. 
+            <div style={{ maxWidth: '600px', ...textStyle }}>
+                The useAnimatedTransitionState hook lets you easily animate React state changes.
                 Notice that the Move counter is only updated once the animation completes, and that continued clicks on the 'Move' button still count towards the counter.
             </div>
         </div>
@@ -102,7 +94,7 @@ export default {
     title: 'Hooks/AnimatedStateTransitionsExample',
 };
 
-const Template = args => <AnimatedStateTransitionsExample {...args} />;
+const Template: StoryFn<typeof AnimatedStateTransitionsExample> = args => <AnimatedStateTransitionsExample {...args} />;
 
 
 export const Flying = Template.bind({});

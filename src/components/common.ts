@@ -1,6 +1,6 @@
 import React, { DetailedHTMLProps } from 'react';
 
-import { AnimationInput } from '../AnimationInput.js';
+import { AnimationInput, AnimationOptions } from '../AnimationInput.js';
 
 // exclude SVG
 export type HTMLTags =
@@ -151,7 +151,14 @@ export interface NonHTMLAnimatedProps<A extends string, T extends HTMLTags = 'di
     /**
      * The mapping of animationName A to an AnimationInput
      */
-    animations?: Record<A, AnimationInput>;
+    animations: Record<A, AnimationInput | null>;
+
+    /**
+     * AnimationOptions to be applied to all AnimationInputs in animations.
+     *
+     * If a property is defined twice, the property on the specific animation in animations overrides the property in animationOptions
+     */
+    animationOptions?: AnimationOptions;
 
     /**
      * Callback to be called when the animation is finished() or is interrupted by a new animationName
@@ -163,20 +170,11 @@ export interface NonHTMLAnimatedProps<A extends string, T extends HTMLTags = 'di
     onAnimationEnd?: (completedAnimationName: A, webAnimation: Animation | null) => void;
 
     /**
-     * If the currentAnimation is interrupted, webAnimation.finish()
-     * If both finishOnInterrupt and cancelOnInterrupt are true, finishOnInterrupt overrides
+     * If the currentAnimation is interrupted, webAnimation.finish() instead of webAnimation.cancel()
      *
      * Default: false
      */
     finishOnInterrupt?: boolean;
-
-    /**
-     * If the currentAnimation is interrupted, webAnimation.cancel()
-     * If both finishOnInterrupt and cancelOnInterrupt are true, finishOnInterrupt overrides
-     *
-     * Default: false
-     */
-    cancelOnInterrupt?: boolean;
 
     /**
      * On every animation end, webAnimation.commitStyles()
