@@ -112,7 +112,7 @@ test('animates notHovering when unhovered', async () => {
     fireEvent.mouseOver(element);
     fireEvent.mouseOut(element);
 
-    const webAnimation = element.getAnimations()[0];
+    const webAnimation = element.getAnimations().find(anim => anim.id === 'notHovering');
     await webAnimation.ready;
 
     expectMatchingKeyframes(webAnimation, notHoveringKeyframes);

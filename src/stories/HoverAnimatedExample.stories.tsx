@@ -36,14 +36,11 @@ const HoverAnimatedExample = () => {
                         ],
                         options: { iterations: 'Infinity', direction: 'alternate' }
                     },
-                    notHovering: {
-                        keyframes: [
-                            { scale: 1 }
-                        ], 
-                        options: { fill: 'forwards' } 
-                    }
+                    notHovering: [
+                        { scale: 1, offset: 1 }
+                    ],
                 }}
-                animationOptions={{ duration: 1000 }}
+                animationOptions={{ duration: 1000, fill: 'forwards' }}
             >
                 🤓
             </HoverAnimated>
