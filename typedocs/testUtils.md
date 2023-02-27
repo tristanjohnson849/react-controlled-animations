@@ -44,7 +44,7 @@ Assumes a mutable "current" pointer will be updated by each act() (e.g. RenderHo
 
 #### Defined in
 
-[testUtils.ts:36](https://github.com/tristanjohnson849/react-controlled-animations/blob/bea49b0/src/testUtils.ts#L36)
+[testUtils.ts:36](https://github.com/tristanjohnson849/react-controlled-animations/blob/2131d8d/src/testUtils.ts#L36)
 
 ___
 
@@ -72,7 +72,7 @@ ___
 
 #### Defined in
 
-[testUtils.ts:50](https://github.com/tristanjohnson849/react-controlled-animations/blob/bea49b0/src/testUtils.ts#L50)
+[testUtils.ts:50](https://github.com/tristanjohnson849/react-controlled-animations/blob/2131d8d/src/testUtils.ts#L50)
 
 ___
 
@@ -99,7 +99,7 @@ ___
 
 #### Defined in
 
-[testUtils.ts:17](https://github.com/tristanjohnson849/react-controlled-animations/blob/bea49b0/src/testUtils.ts#L17)
+[testUtils.ts:17](https://github.com/tristanjohnson849/react-controlled-animations/blob/2131d8d/src/testUtils.ts#L17)
 
 ___
 
@@ -120,7 +120,7 @@ ___
 
 #### Defined in
 
-[testUtils.ts:24](https://github.com/tristanjohnson849/react-controlled-animations/blob/bea49b0/src/testUtils.ts#L24)
+[testUtils.ts:24](https://github.com/tristanjohnson849/react-controlled-animations/blob/2131d8d/src/testUtils.ts#L24)
 
 ___
 
@@ -134,7 +134,7 @@ ___
 
 #### Defined in
 
-[testUtils.ts:10](https://github.com/tristanjohnson849/react-controlled-animations/blob/bea49b0/src/testUtils.ts#L10)
+[testUtils.ts:10](https://github.com/tristanjohnson849/react-controlled-animations/blob/2131d8d/src/testUtils.ts#L10)
 
 ___
 
@@ -154,4 +154,4 @@ ___
 
 #### Defined in
 
-[testUtils.ts:4](https://github.com/tristanjohnson849/react-controlled-animations/blob/bea49b0/src/testUtils.ts#L4)
+[testUtils.ts:4](https://github.com/tristanjohnson849/react-controlled-animations/blob/2131d8d/src/testUtils.ts#L4)
