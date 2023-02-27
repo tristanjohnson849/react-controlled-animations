@@ -59,6 +59,7 @@ const AnimatedTransitionExample: React.FC<{}> = () => {
                         options: { duration: 3000, easing: 'ease-in-out' }
                     }),
                 }}
+                finishOnInterrupt
             >
                 🤓
             </ControlledAnimated>
@@ -80,12 +81,11 @@ const AnimatedTransitionExample: React.FC<{}> = () => {
 };
 ```
 
-Like normal React state, this component keeps a counter that is Incremented by the button. However, setting state for this component animates the transition (here with a random choice between 'flying' and 'sliding'), and the counter state is only updated once the animation is complete or interrupted by another click. This is done through the useAnimatedTransitionState hook and ControlledAnimated component.
+Like normal React state, this component keeps a counter that is Incremented by the button. However, setting state for this component animates the transition (here with a random choice between 'flying' and 'sliding'), and the counter state is only updated once the animation is complete. If the animation is interrupted by another click, it will run the new animation (if different), and queue the state changes until that new animation is complete. This is done through the useAnimatedTransitionState hook and ControlledAnimated component.
 
 Also check out:
 
 Components
-- [ControlledAnimated](https://github.com/tristanjohnson849/react-controlled-animations/wiki/components.ControlledAnimated): like Animated, but is controlled by the currentAnimation prop. This is helpful for synchronizing animations across multiple elements based on one state
 - [HoverAnimated](https://github.com/tristanjohnson849/react-controlled-animations/wiki/components.HoverAnimated): a utility that animates based whether the component is hovered or not (generally very difficult with basic inline styles)
 
 Hooks
