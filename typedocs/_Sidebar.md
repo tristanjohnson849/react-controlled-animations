@@ -11,6 +11,7 @@
 - [components/HoverAnimated](../wiki/components.HoverAnimated)
 - [components/common](../wiki/components.common)
 - [hooks](../wiki/hooks)
+- [hooks/enableAnimationContext](../wiki/hooks.enableAnimationContext)
 - [hooks/useAnimatedRef](../wiki/hooks.useAnimatedRef)
 - [hooks/useIsHovered](../wiki/hooks.useIsHovered)
 - [hooks/useQueuedState](../wiki/hooks.useQueuedState)

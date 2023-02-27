@@ -39,4 +39,4 @@ react Ref to be assigned to the Animated element
 
 #### Defined in
 
-[hooks/useAnimatedRef.ts:20](https://github.com/tristanjohnson849/react-controlled-animations/blob/e6f8404/src/hooks/useAnimatedRef.ts#L20)
+[hooks/useAnimatedRef.ts:22](https://github.com/tristanjohnson849/react-controlled-animations/blob/4fa6b95/src/hooks/useAnimatedRef.ts#L22)

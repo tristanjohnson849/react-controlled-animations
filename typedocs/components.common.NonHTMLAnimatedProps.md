@@ -18,6 +18,7 @@ AnimatedProps excluding HTML Attributes, exported
 - [animationOptions](../wiki/components.common.NonHTMLAnimatedProps#animationoptions)
 - [animations](../wiki/components.common.NonHTMLAnimatedProps#animations)
 - [as](../wiki/components.common.NonHTMLAnimatedProps#as)
+- [cancelOnInterrupt](../wiki/components.common.NonHTMLAnimatedProps#canceloninterrupt)
 - [commitStylesOnEnd](../wiki/components.common.NonHTMLAnimatedProps#commitstylesonend)
 - [currentAnimation](../wiki/components.common.NonHTMLAnimatedProps#currentanimation)
 - [finishOnInterrupt](../wiki/components.common.NonHTMLAnimatedProps#finishoninterrupt)
@@ -35,7 +36,7 @@ If a property is defined twice, the property on the specific animation in animat
 
 #### Defined in
 
-[components/common.ts:161](https://github.com/tristanjohnson849/react-controlled-animations/blob/e6f8404/src/components/common.ts#L161)
+[components/common.ts:161](https://github.com/tristanjohnson849/react-controlled-animations/blob/4fa6b95/src/components/common.ts#L161)
 
 ___
 
@@ -47,7 +48,7 @@ The mapping of animationName A to an AnimationInput
 
 #### Defined in
 
-[components/common.ts:154](https://github.com/tristanjohnson849/react-controlled-animations/blob/e6f8404/src/components/common.ts#L154)
+[components/common.ts:154](https://github.com/tristanjohnson849/react-controlled-animations/blob/4fa6b95/src/components/common.ts#L154)
 
 ___
 
@@ -60,7 +61,21 @@ Defaults to "div"
 
 #### Defined in
 
-[components/common.ts:141](https://github.com/tristanjohnson849/react-controlled-animations/blob/e6f8404/src/components/common.ts#L141)
+[components/common.ts:141](https://github.com/tristanjohnson849/react-controlled-animations/blob/4fa6b95/src/components/common.ts#L141)
+
+___
+
+### cancelOnInterrupt
+
+• `Optional` **cancelOnInterrupt**: `boolean`
+
+If the currentAnimation is interrupted, webAnimation.cancel()
+
+Default: false
+
+#### Defined in
+
+[components/common.ts:185](https://github.com/tristanjohnson849/react-controlled-animations/blob/4fa6b95/src/components/common.ts#L185)
 
 ___
 
@@ -74,7 +89,7 @@ Default: true
 
 #### Defined in
 
-[components/common.ts:184](https://github.com/tristanjohnson849/react-controlled-animations/blob/e6f8404/src/components/common.ts#L184)
+[components/common.ts:192](https://github.com/tristanjohnson849/react-controlled-animations/blob/4fa6b95/src/components/common.ts#L192)
 
 ___
 
@@ -89,7 +104,7 @@ If given a new or null value while the previous aninmation is not finished(), wi
 
 #### Defined in
 
-[components/common.ts:149](https://github.com/tristanjohnson849/react-controlled-animations/blob/e6f8404/src/components/common.ts#L149)
+[components/common.ts:149](https://github.com/tristanjohnson849/react-controlled-animations/blob/4fa6b95/src/components/common.ts#L149)
 
 ___
 
@@ -97,13 +112,14 @@ ___
 
 • `Optional` **finishOnInterrupt**: `boolean`
 
-If the currentAnimation is interrupted, webAnimation.finish() instead of webAnimation.cancel()
+If the currentAnimation is interrupted, webAnimation.finish()
+If both finishOnInterrupt and cancelOnInterrupt are true, finishOnInterrupt overrides
 
 Default: false
 
 #### Defined in
 
-[components/common.ts:177](https://github.com/tristanjohnson849/react-controlled-animations/blob/e6f8404/src/components/common.ts#L177)
+[components/common.ts:178](https://github.com/tristanjohnson849/react-controlled-animations/blob/4fa6b95/src/components/common.ts#L178)
 
 ___
 
@@ -132,4 +148,4 @@ Callback will be called after the declarative end behavior (finishOnInterrupt, c
 
 #### Defined in
 
-[components/common.ts:170](https://github.com/tristanjohnson849/react-controlled-animations/blob/e6f8404/src/components/common.ts#L170)
+[components/common.ts:170](https://github.com/tristanjohnson849/react-controlled-animations/blob/4fa6b95/src/components/common.ts#L170)
