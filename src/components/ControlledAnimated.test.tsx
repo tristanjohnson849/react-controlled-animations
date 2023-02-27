@@ -100,7 +100,7 @@ test('animates with forwarded ref', async () => {
     expectMatchingKeyframes(webAnimation, keyframes);
 });
 
-test('cancel and no finish when interrupted', async () => {
+test('no cancel and no finish when interrupted', async () => {
     const keyframes = [{ rotate: 0 }, { rotate: '360deg' }];
     const { getByTestId, rerender } = isolatedRender(
         <ControlledAnimated<'on'>
@@ -137,7 +137,7 @@ test('cancel and no finish when interrupted', async () => {
     );
 
     expect(finishSpy).not.toHaveBeenCalled();
-    expect(cancelSpy).toHaveBeenCalled();
+    expect(cancelSpy).not.toHaveBeenCalled();
 });
 
 test('calls finish when interrupted and finishOnInterrupt=true', async () => {
@@ -180,6 +180,48 @@ test('calls finish when interrupted and finishOnInterrupt=true', async () => {
     
     expect(finishSpy).toHaveBeenCalled();
     expect(cancelSpy).not.toHaveBeenCalled();
+});
+
+test('calls cancel when interrupted and cancelOnInterrupt=true', async () => {
+    const keyframes = [{ rotate: 0 }, { rotate: '360deg' }];
+    const { getByTestId, rerender } = isolatedRender(
+        <ControlledAnimated<'on'>
+            currentAnimation="on"
+            data-testid="element"
+            title="animated div"
+            animations={{
+                on: keyframes
+            }}
+            animationOptions={{duration: 1000}}
+            cancelOnInterrupt
+        />
+    );
+
+    const element = getByTestId('element');
+    
+    const webAnimation = element.getAnimations()[0];
+    const finishSpy = jest.spyOn(webAnimation, 'finish');
+    const cancelSpy = jest.spyOn(webAnimation, 'cancel');
+
+    await webAnimation.ready;
+
+    expectMatchingKeyframes(webAnimation, keyframes);
+
+    rerender(
+        <ControlledAnimated<'on'>
+            currentAnimation={null}
+            data-testid="element"
+            title="animated div"
+            animations={{
+                on: keyframes
+            }}
+            animationOptions={{duration: 1000}}
+            cancelOnInterrupt
+        />
+    );
+    
+    expect(finishSpy).not.toHaveBeenCalled();
+    expect(cancelSpy).toHaveBeenCalled();
 });
 
 test('calls commitStyles on finish', async () => {

@@ -1,6 +1,8 @@
-import { RefObject, useDebugValue, useEffect, useRef } from 'react';
+import { RefObject, useContext, useDebugValue, useEffect, useRef } from 'react';
 
 import { AnimationInput, AnimationOptions, normalizedAnimation } from '../AnimationInput.js';
+
+import { EnableAnimationContext } from './enableAnimationContext.js';
 
 /**
  * Low-level hook  that will animate the ref'd HTML element with the given currentAnimation name
@@ -23,6 +25,7 @@ function useAnimatedRef<A extends string = string, E extends HTMLElement = HTMLE
     onAnimationEnd?: (completedAnimationName: A | null, webAnimation: Animation | null) => void
 ): RefObject<E> {
     const elementRef = useRef<E>(null);
+    const enabledContext = useContext(EnableAnimationContext);
 
     const serializedAnimation =
         currentAnimation && animations && animations[currentAnimation] && JSON.stringify(animations[currentAnimation]);
@@ -32,18 +35,27 @@ function useAnimatedRef<A extends string = string, E extends HTMLElement = HTMLE
     // if we have a ref and an currentAnimation, animate the ref with the currentAnimation
     useEffect(() => {
         if (elementRef.current !== null) {
-            if (!currentAnimation || !animations || !animations[currentAnimation]) {
-                elementRef.current.getAnimations().forEach((anim) => anim.cancel());
-
-                onAnimationEnd && onAnimationEnd(currentAnimation, null);
-                return undefined;
+            // remove existing animations for currentAnimation
+            if (currentAnimation) {
+                elementRef.current.getAnimations().forEach((anim) => {
+                    if (anim.id === currentAnimation) {
+                        anim.cancel();
+                    }
+                });
             }
-            const { keyframes, options } = normalizedAnimation(animations[currentAnimation]);
 
+            // if we cannot animate, still call onAnimationEnd
+            if (!currentAnimation || !animations || !animations[currentAnimation]) {
+                onAnimationEnd && onAnimationEnd(currentAnimation, null);
+                return;
+            }
+
+            const { keyframes, options } = normalizedAnimation(animations[currentAnimation]);
             const webAnimation = runAnimation(
                 elementRef.current,
                 keyframes,
-                options,
+                // id will always be currentAnimation
+                { ...options, id: currentAnimation },
                 (anim) => onAnimationEnd && onAnimationEnd(currentAnimation, anim),
                 () => {
                     const selector = elementRef.current.id || elementRef.current.className || null;
@@ -52,16 +64,28 @@ function useAnimatedRef<A extends string = string, E extends HTMLElement = HTMLE
                     }.\nCheck your animations: ${serializedAnimation}.\n`;
                 }
             );
+
+            // similar to just having currentAnimation == null, but we'll initialize and cancel each new animation in case we need to finish()
+            if (!enabledContext.enabled) {
+                onAnimationEnd && onAnimationEnd(currentAnimation, webAnimation);
+                if (webAnimation?.playState !== 'finished') {
+                    webAnimation?.cancel();
+                }
+                return;
+            }
             if (webAnimation) {
                 return () => {
-                    // useEffect cleanup. Only call onEnd if we haven't already finished
-                    if (webAnimation.playState !== 'finished') {
+                    // useEffect cleanup. Only call onEnd if we haven't already finished and it's still registered on the element
+                    if (
+                        webAnimation.playState !== 'finished' &&
+                        elementRef?.current?.getAnimations()?.includes(webAnimation)
+                    ) {
                         onAnimationEnd && onAnimationEnd(currentAnimation, webAnimation);
                     }
                 };
             }
         }
-    }, [elementRef.current, currentAnimation, serializedAnimation]);
+    }, [enabledContext, elementRef.current, currentAnimation, serializedAnimation]);
 
     return elementRef;
 }

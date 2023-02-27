@@ -15,6 +15,7 @@ const controlledAnimated = <A extends string, T extends HTMLTags = 'div'>(
         currentAnimation,
         onAnimationEnd,
         finishOnInterrupt = false,
+        cancelOnInterrupt = false,
         commitStylesOnEnd = true,
         ...tagProps
     } = props;
@@ -31,6 +32,8 @@ const controlledAnimated = <A extends string, T extends HTMLTags = 'div'>(
             if (webAnimation.playState !== 'finished') {
                 if (finishOnInterrupt) {
                     webAnimation.finish();
+                } else if (cancelOnInterrupt) {
+                    webAnimation.cancel();
                 }
             }
         }
