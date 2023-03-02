@@ -10,7 +10,7 @@
   "types": "./build/index.d.ts",
   "repository": "https://github.com/tristanjohnson849/react-controlled-animations",
   "license": "MIT",
-  "keywords": [],
+  "keywords": ["react", "hooks", "web-animations", "waapi", "animation", "esm"],
   "scripts": {
     "build": "rm tsconfig.tsbuildinfo && rm -rf build/ && tsc -p tsconfig.json",
     "check": "run-s lint test:cov doc",
