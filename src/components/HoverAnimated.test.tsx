@@ -71,7 +71,7 @@ test('animates hovering', async () => {
 
     const element = getByTestId('element');
     
-    fireEvent.mouseOver(element);
+    fireEvent.mouseEnter(element);
     const webAnimation = element.getAnimations()[1];
     await webAnimation.ready;
 
@@ -109,8 +109,8 @@ test('animates notHovering when unhovered', async () => {
         />
     );
     const element = getByTestId('element');
-    fireEvent.mouseOver(element);
-    fireEvent.mouseOut(element);
+    fireEvent.mouseEnter(element);
+    fireEvent.mouseLeave(element);
 
     const webAnimation = element.getAnimations().find(anim => anim.id === 'notHovering');
     await webAnimation.ready;
