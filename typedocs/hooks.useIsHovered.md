@@ -15,7 +15,7 @@
 Hook to capture the hovering state of a ref'd HTMLElement
 
 Note: if the ref is pointed at a new element, isHovered will be the last hoverState of the previous element
-until a mouseOver/Out event happens on the new element
+until a mouseenter/leave event happens on the new element
 
 #### Type parameters
 
@@ -31,4 +31,4 @@ readonly [`boolean` \| `undefined`, `RefObject`<`E`\>]
 
 #### Defined in
 
-[hooks/useIsHovered.ts:11](https://github.com/tristanjohnson849/react-controlled-animations/blob/c5b4b7c/src/hooks/useIsHovered.ts#L11)
+[hooks/useIsHovered.ts:11](https://github.com/tristanjohnson849/react-controlled-animations/blob/04fd953/src/hooks/useIsHovered.ts#L11)

@@ -22,6 +22,6 @@ The context is used by [useAnimatedRef](../wiki/hooks#useanimatedref) to immedia
 
 #### Defined in
 
-[hooks/enableAnimationContext.ts:3](https://github.com/tristanjohnson849/react-controlled-animations/blob/c5b4b7c/src/hooks/enableAnimationContext.ts#L3)
+[hooks/enableAnimationContext.ts:3](https://github.com/tristanjohnson849/react-controlled-animations/blob/04fd953/src/hooks/enableAnimationContext.ts#L3)
 
-[hooks/enableAnimationContext.ts:13](https://github.com/tristanjohnson849/react-controlled-animations/blob/c5b4b7c/src/hooks/enableAnimationContext.ts#L13)
+[hooks/enableAnimationContext.ts:13](https://github.com/tristanjohnson849/react-controlled-animations/blob/04fd953/src/hooks/enableAnimationContext.ts#L13)
