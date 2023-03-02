@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.1](https://github.com/tristanjohnson849/react-controlled-animations/compare/v0.1.0...v0.1.1) (2023-03-02)
+
 ## [0.1.0](https://github.com/tristanjohnson849/react-controlled-animations/compare/v0.0.21...v0.1.0) (2023-02-27)
 
 ### [0.0.21](https://github.com/tristanjohnson849/react-controlled-animations/compare/v0.0.20...v0.0.21) (2023-02-26)

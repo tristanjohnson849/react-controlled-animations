@@ -1,5 +1,5 @@
-import { AnimationInput, normalizedAnimation } from './AnimationInput';
-import { ToggleTransitions } from './hooks/useTransitioningToggle';
+import { AnimationInput, normalizedAnimation } from './AnimationInput.js';
+import { ToggleTransitions } from './hooks/useTransitioningToggle.js';
 
 /**
  * Helper to create a complete toggling animation by reversing a given togglingOn animation
