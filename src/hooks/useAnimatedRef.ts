@@ -16,7 +16,7 @@ import { EnableAnimationContext } from './enableAnimationContext.js';
  * If given a new or null value while the previous aninmation is not finished(),
  * will commit the current style to the element and call onAnimationEnd
  * @param animations The mapping of animationName to AnimationInput
- * @param onAnimationEnd callback to be called when the animation is finished(), or if the animation is interrupted by a new currentAnimation
+ * @param onAnimationEnd callback to be called when the animation is finished(), or if the animation is interrupted by a new currentAnimation. Must be stable across renders.
  * @returns react Ref to be assigned to the Animated element
  */
 function useAnimatedRef<A extends string = string, E extends HTMLElement = HTMLElement>(
