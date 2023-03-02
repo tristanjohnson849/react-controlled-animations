@@ -63,7 +63,7 @@ function useSimpleTransitioningState<S>(
 
     return [
         state,
-        (action, shouldTransition = true) => startTransition(action, shouldTransition ? 'transitioning' : null),
+        (action, isAsync = true) => startTransition(action, isAsync ? 'transitioning' : null),
         endTransition,
         currentTransition !== null,
     ];
