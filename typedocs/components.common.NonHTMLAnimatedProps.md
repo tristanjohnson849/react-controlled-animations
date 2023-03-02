@@ -36,7 +36,7 @@ If a property is defined twice, the property on the specific animation in animat
 
 #### Defined in
 
-[components/common.ts:161](https://github.com/tristanjohnson849/react-controlled-animations/blob/04fd953/src/components/common.ts#L161)
+[components/common.ts:161](https://github.com/tristanjohnson849/react-controlled-animations/blob/da9ca15/src/components/common.ts#L161)
 
 ___
 
@@ -48,7 +48,7 @@ The mapping of animationName A to an AnimationInput
 
 #### Defined in
 
-[components/common.ts:154](https://github.com/tristanjohnson849/react-controlled-animations/blob/04fd953/src/components/common.ts#L154)
+[components/common.ts:154](https://github.com/tristanjohnson849/react-controlled-animations/blob/da9ca15/src/components/common.ts#L154)
 
 ___
 
@@ -61,7 +61,7 @@ Defaults to "div"
 
 #### Defined in
 
-[components/common.ts:141](https://github.com/tristanjohnson849/react-controlled-animations/blob/04fd953/src/components/common.ts#L141)
+[components/common.ts:141](https://github.com/tristanjohnson849/react-controlled-animations/blob/da9ca15/src/components/common.ts#L141)
 
 ___
 
@@ -75,7 +75,7 @@ Default: false
 
 #### Defined in
 
-[components/common.ts:185](https://github.com/tristanjohnson849/react-controlled-animations/blob/04fd953/src/components/common.ts#L185)
+[components/common.ts:185](https://github.com/tristanjohnson849/react-controlled-animations/blob/da9ca15/src/components/common.ts#L185)
 
 ___
 
@@ -89,7 +89,7 @@ Default: true
 
 #### Defined in
 
-[components/common.ts:192](https://github.com/tristanjohnson849/react-controlled-animations/blob/04fd953/src/components/common.ts#L192)
+[components/common.ts:192](https://github.com/tristanjohnson849/react-controlled-animations/blob/da9ca15/src/components/common.ts#L192)
 
 ___
 
@@ -104,7 +104,7 @@ If given a new or null value while the previous aninmation is not finished(), wi
 
 #### Defined in
 
-[components/common.ts:149](https://github.com/tristanjohnson849/react-controlled-animations/blob/04fd953/src/components/common.ts#L149)
+[components/common.ts:149](https://github.com/tristanjohnson849/react-controlled-animations/blob/da9ca15/src/components/common.ts#L149)
 
 ___
 
@@ -119,7 +119,7 @@ Default: false
 
 #### Defined in
 
-[components/common.ts:178](https://github.com/tristanjohnson849/react-controlled-animations/blob/04fd953/src/components/common.ts#L178)
+[components/common.ts:178](https://github.com/tristanjohnson849/react-controlled-animations/blob/da9ca15/src/components/common.ts#L178)
 
 ___
 
@@ -148,4 +148,4 @@ Callback will be called after the declarative end behavior (finishOnInterrupt, c
 
 #### Defined in
 
-[components/common.ts:170](https://github.com/tristanjohnson849/react-controlled-animations/blob/04fd953/src/components/common.ts#L170)
+[components/common.ts:170](https://github.com/tristanjohnson849/react-controlled-animations/blob/da9ca15/src/components/common.ts#L170)

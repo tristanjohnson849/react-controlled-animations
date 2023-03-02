@@ -30,4 +30,4 @@ The edits are:
 
 #### Defined in
 
-[animationInputMappers.ts:11](https://github.com/tristanjohnson849/react-controlled-animations/blob/04fd953/src/animationInputMappers.ts#L11)
+[animationInputMappers.ts:11](https://github.com/tristanjohnson849/react-controlled-animations/blob/da9ca15/src/animationInputMappers.ts#L11)
