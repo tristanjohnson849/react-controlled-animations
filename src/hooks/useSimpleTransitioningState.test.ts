@@ -98,7 +98,7 @@ test('defined state, initialTransitioning = false, endTransition => no changes',
     actAndThen(
         renderHook(() => useSimpleTransitioningState('Hello World', false)).result,
         ([, , endTransition]) => endTransition,
-        ([state, , , currentTransition])=> {
+        ([state, , , currentTransition]) => {
             expect(state).toBe('Hello World');
             expect(currentTransition).toBe(false);
         }
@@ -112,7 +112,7 @@ test('defined state, startTransition isAsync = true, startTransition isAsync = f
             startTransition('Goodbye World', true);
             startTransition('Greetings World', false);
         },
-        ([state, , , currentTransition])=> {
+        ([state, , , currentTransition]) => {
             expect(state).toBe('Greetings World');
             expect(currentTransition).toBe(false);
         }
@@ -122,8 +122,10 @@ test('defined state, startTransition isAsync = true, startTransition isAsync = f
 test('defined state, startTransition isAsync = true, rerender, startTransition isAsync = false => state is second new value, currentTransition  = false', () => {
     actAndThen(
         renderHook(() => useSimpleTransitioningState('Hello World', false)).result,
-        [([, startTransition]) => startTransition('Goodbye World', true),
-         ([, startTransition]) => startTransition('Greetings World', false)],
+        [
+            ([, startTransition]) => startTransition('Goodbye World', true),
+            ([, startTransition]) => startTransition('Greetings World', false),
+        ],
         ([state, , , currentTransition]) => {
             expect(state).toBe('Greetings World');
             expect(currentTransition).toBe(false);
@@ -131,12 +133,12 @@ test('defined state, startTransition isAsync = true, rerender, startTransition i
     );
 });
 
-test('defined state, startTransition isAsync = true x 2 => state unchaged, currentTransition = true', ()=> {
+test('defined state, startTransition isAsync = true x 2 => state unchaged, currentTransition = true', () => {
     actAndThen(
         renderHook(() => useSimpleTransitioningState('Hello World', false)).result,
         ([, startTransition]) => {
-            startTransition('Goodbye World', true)
-            startTransition('Greetings World', true)
+            startTransition('Goodbye World', true);
+            startTransition('Greetings World', true);
         },
         ([state, , , currentTransition]) => {
             expect(state).toBe('Hello World');
@@ -148,8 +150,10 @@ test('defined state, startTransition isAsync = true x 2 => state unchaged, curre
 test('defined state, startTransition isAsync = true, re render, startTransition isAsync = true => state unchanged, currentTransition = true', () => {
     actAndThen(
         renderHook(() => useSimpleTransitioningState('Hello World', false)).result,
-        [([, startTransition]) => startTransition('Goodbye World', true),
-         ([, startTransition]) => startTransition('Greetings World', true)],
+        [
+            ([, startTransition]) => startTransition('Goodbye World', true),
+            ([, startTransition]) => startTransition('Greetings World', true),
+        ],
         ([state, , , currentTransition]) => {
             expect(state).toBe('Hello World');
             expect(currentTransition).toBe(true);
@@ -160,11 +164,13 @@ test('defined state, startTransition isAsync = true, re render, startTransition 
 test('defined state, start Transition isAsync = true, start Transition isAsync = true, re render, endTransition => 2nd new state value, currentTransition = false', () => {
     actAndThen(
         renderHook(() => useSimpleTransitioningState('Hello World', false)).result,
-        [([, startTransition]) => {
-            startTransition('Goodbye World', true);
-            startTransition('Greetings World', true);
-        },
-         ([, , endTransition]) => endTransition()],
+        [
+            ([, startTransition]) => {
+                startTransition('Goodbye World', true);
+                startTransition('Greetings World', true);
+            },
+            ([, , endTransition]) => endTransition(),
+        ],
         ([state, , , currentTransition]) => {
             expect(state).toBe('Greetings World');
             expect(currentTransition).toBe(false);
@@ -175,13 +181,14 @@ test('defined state, start Transition isAsync = true, start Transition isAsync =
 test('defined state, startTransition with action, isAsync = true, re render, startTransition with action, isAsync = true, re render, endTransition => startTransition actions occur in order, currentTransition = false', () => {
     actAndThen(
         renderHook(() => useSimpleTransitioningState('Hello World', false)).result,
-        [([, startTransition]) => startTransition((prev) => prev + ' Hello', true),
-         ([, startTransition]) => startTransition((prev) => prev + ' World', true),
-        ([, , endTransition]) => endTransition()],
+        [
+            ([, startTransition]) => startTransition((prev) => prev + ' Hello', true),
+            ([, startTransition]) => startTransition((prev) => prev + ' World', true),
+            ([, , endTransition]) => endTransition(),
+        ],
         ([state, , , currentTransition]) => {
             expect(state).toBe('Hello World Hello World');
             expect(currentTransition).toBe(false);
         }
     );
 });
-
