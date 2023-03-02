@@ -1,6 +1,6 @@
 {
   "name": "react-controlled-animations",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Utilities for declaratively controlling animations through React hooks",
   "type": "module",
   "exports": {
@@ -10,7 +10,14 @@
   "types": "./build/index.d.ts",
   "repository": "https://github.com/tristanjohnson849/react-controlled-animations",
   "license": "MIT",
-  "keywords": ["react", "hooks", "web-animations", "waapi", "animation", "esm"],
+  "keywords": [
+    "react",
+    "hooks",
+    "web-animations",
+    "waapi",
+    "animation",
+    "esm"
+  ],
   "scripts": {
     "build": "rm tsconfig.tsbuildinfo && rm -rf build/ && tsc -p tsconfig.json",
     "check": "run-s lint test:cov doc",
