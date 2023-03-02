@@ -30,33 +30,33 @@ test('initial state is undefined', () => {
     expect(capture.innerHTML).toBe('undefined');
 });
 
-test('mouseover results in true', () => {
+test('mouseenter results in true', () => {
     const { getByTestId } = isolatedRender(<HoverCapture />);
 
     const capture = getByTestId('hoverCapture');
-    fireEvent.mouseOver(capture);
+    fireEvent.mouseEnter(capture);
 
     expect(capture.innerHTML).toBe('true');
 });
 
 
-test('mouseover mouseout results in false', () => {
+test('mouseenter mouseleave results in false', () => {
     const { getByTestId } = isolatedRender(<HoverCapture />);
 
     const capture = getByTestId('hoverCapture');
-    fireEvent.mouseOver(capture);
-    fireEvent.mouseOut(capture);
+    fireEvent.mouseEnter(capture);
+    fireEvent.mouseLeave(capture);
 
     expect(capture.innerHTML).toBe('false');
 });
 
-test('mouseover mouseout mouseover results in true', () => {
+test('mouseenter mouseleave mouseenter results in true', () => {
     const { getByTestId } = isolatedRender(<HoverCapture />);
 
     const capture = getByTestId('hoverCapture');
-    fireEvent.mouseOver(capture);
-    fireEvent.mouseOut(capture);
-    fireEvent.mouseOver(capture);
+    fireEvent.mouseEnter(capture);
+    fireEvent.mouseLeave(capture);
+    fireEvent.mouseEnter(capture);
 
     expect(capture.innerHTML).toBe('true');
 });
