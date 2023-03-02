@@ -30,7 +30,7 @@ Current state value
 
 #### Defined in
 
-[hooks/useQueuedState.ts:11](https://github.com/tristanjohnson849/react-controlled-animations/blob/da9ca15/src/hooks/useQueuedState.ts#L11)
+[hooks/useQueuedState.ts:11](https://github.com/tristanjohnson849/react-controlled-animations/blob/c9fdb9a/src/hooks/useQueuedState.ts#L11)
 
 ___
 
@@ -56,7 +56,7 @@ enqueue a state transition - either a literal value or a function (prev) => next
 
 #### Defined in
 
-[hooks/useQueuedState.ts:15](https://github.com/tristanjohnson849/react-controlled-animations/blob/da9ca15/src/hooks/useQueuedState.ts#L15)
+[hooks/useQueuedState.ts:15](https://github.com/tristanjohnson849/react-controlled-animations/blob/c9fdb9a/src/hooks/useQueuedState.ts#L15)
 
 ___
 
@@ -76,7 +76,7 @@ process one queued transition
 
 #### Defined in
 
-[hooks/useQueuedState.ts:19](https://github.com/tristanjohnson849/react-controlled-animations/blob/da9ca15/src/hooks/useQueuedState.ts#L19)
+[hooks/useQueuedState.ts:19](https://github.com/tristanjohnson849/react-controlled-animations/blob/c9fdb9a/src/hooks/useQueuedState.ts#L19)
 
 ___
 
@@ -96,4 +96,4 @@ process all queued transitions
 
 #### Defined in
 
-[hooks/useQueuedState.ts:23](https://github.com/tristanjohnson849/react-controlled-animations/blob/da9ca15/src/hooks/useQueuedState.ts#L23)
+[hooks/useQueuedState.ts:23](https://github.com/tristanjohnson849/react-controlled-animations/blob/c9fdb9a/src/hooks/useQueuedState.ts#L23)
