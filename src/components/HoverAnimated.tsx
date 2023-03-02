@@ -5,7 +5,7 @@ import useIsHovered from '../hooks/useIsHovered.js';
 
 export type HoverAnimations = 'hovering'|'notHovering';
 
-type HoverAnimatedProps<A extends string, T extends HTMLTags = "div"> = { 
+export type HoverAnimatedProps<A extends string, T extends HTMLTags = "div"> = { 
     /**
      * The optional currentAnimation override that may control this component
      * If present, will override the animation for the current hover state
