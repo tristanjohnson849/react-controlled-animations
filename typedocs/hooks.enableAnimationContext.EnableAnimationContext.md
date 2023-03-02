@@ -17,7 +17,7 @@
 
 #### Defined in
 
-[hooks/enableAnimationContext.ts:4](https://github.com/tristanjohnson849/react-controlled-animations/blob/c9fdb9a/src/hooks/enableAnimationContext.ts#L4)
+[hooks/enableAnimationContext.ts:4](https://github.com/tristanjohnson849/react-controlled-animations/blob/1e5bcb3/src/hooks/enableAnimationContext.ts#L4)
 
 ___
 
@@ -41,4 +41,4 @@ ___
 
 #### Defined in
 
-[hooks/enableAnimationContext.ts:5](https://github.com/tristanjohnson849/react-controlled-animations/blob/c9fdb9a/src/hooks/enableAnimationContext.ts#L5)
+[hooks/enableAnimationContext.ts:5](https://github.com/tristanjohnson849/react-controlled-animations/blob/1e5bcb3/src/hooks/enableAnimationContext.ts#L5)
