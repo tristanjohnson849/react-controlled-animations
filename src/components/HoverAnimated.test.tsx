@@ -71,7 +71,7 @@ test('animates hovering', async () => {
 
     const element = getByTestId('element');
     
-    fireEvent.mouseOver(element);
+    fireEvent.mouseEnter(element);
     const webAnimation = element.getAnimations()[1];
     await webAnimation.ready;
 

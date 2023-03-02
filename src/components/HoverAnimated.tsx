@@ -9,7 +9,7 @@ type HoverAnimatedProps<A extends string, T extends HTMLTags = "div"> = {
     /**
      * The optional currentAnimation override that may control this component
      * If present, will override the animation for the current hover state
-     * If null or undefined, the component will animate based on the hover state
+     * If null or undefined, the component will animate based on the hover state using mouseEnter and mouseLeave event listeners.
      * Analogous to currentAnimation in {@link components/ControlledAnimated.ControlledAnimatedProps}
      */
     currentAnimation?: A | null 
